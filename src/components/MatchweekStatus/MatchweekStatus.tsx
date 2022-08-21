@@ -1,4 +1,4 @@
-import "../styles/MatchweekStatus.css"
+import "./MatchweekStatus.css"
 
 const MatchweekStatus = () => {
   return (
