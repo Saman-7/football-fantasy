@@ -1,4 +1,4 @@
-import PLHeader from "../../images/Header.svg"
+import PLHeader from "../../svg/Header.svg";
 
 const Header = () => {
   return (
@@ -9,7 +9,7 @@ const Header = () => {
       }}
       alt="Premier league header"
     />
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

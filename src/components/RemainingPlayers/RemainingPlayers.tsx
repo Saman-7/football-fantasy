@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import Logo from "../../images/Vector.svg"
+import styled from "styled-components";
+import Logo from "../../svg/Vector.svg";
 
 const RemainingPlayersContainer = styled.div`
   width: 273px;
@@ -9,7 +9,7 @@ const RemainingPlayersContainer = styled.div`
   border-radius: 16px 16px 0px 0px;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const RemainingPlayersFractionContainer = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const RemainingPlayersFractionContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const RemainingPlayersFraction = styled.span`
   font-family: "Vazirmatn";
@@ -25,7 +25,7 @@ const RemainingPlayersFraction = styled.span`
   font-weight: 900;
   font-size: 36px;
   color: #3d195b;
-`
+`;
 
 const RemainingPlayersLogoContainer = styled.div`
   display: flex;
@@ -34,13 +34,13 @@ const RemainingPlayersLogoContainer = styled.div`
   flex-direction: column;
   position: relative;
   right: 18px;
-`
+`;
 
 const RemainingPlayersLogo = styled.img`
   width: 36.34px;
   height: 40px;
   position: relative;
-`
+`;
 
 const RemainingPlayersLogoContainerText = styled.span`
   font-family: "Vazirmatn";
@@ -48,7 +48,7 @@ const RemainingPlayersLogoContainerText = styled.span`
   font-weight: 900;
   font-size: 14px;
   color: #3d195b;
-`
+`;
 
 const RemainingPlayers = () => {
   return (
@@ -65,7 +65,7 @@ const RemainingPlayers = () => {
         </RemainingPlayersLogoContainerText>
       </RemainingPlayersLogoContainer>
     </RemainingPlayersContainer>
-  )
-}
+  );
+};
 
-export default RemainingPlayers
+export default RemainingPlayers;

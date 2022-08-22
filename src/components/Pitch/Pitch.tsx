@@ -1,15 +1,10 @@
-import { ReactComponent as LinePitchSVG } from "../svg/linePitch.svg";
-import { ReactComponent as PlusSVG } from "../svg/plus.svg";
-import { ReactComponent as DeleteSVG } from "../svg/delete.svg";
-import undress from "../img/undress.png";
-import uniform from "../img/uniform.png";
-import blueDress from "../img/blue-dress.png";
-import {
-  BoxDress,
-  LanePitch,
-  PaleGreen,
-  PitchContainer,
-} from "../styles/Pitch";
+import { ReactComponent as LinePitchSVG } from "../../svg/linePitch.svg";
+import { ReactComponent as PlusSVG } from "../../svg/plus.svg";
+import { ReactComponent as DeleteSVG } from "../../svg/delete.svg";
+import undress from "../../images/undress.png";
+import uniform from "../../images/uniform.png";
+import blueDress from "../../images/blue-dress.png";
+import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./PitchStyled";
 
 const Pitch = () => {
   return (

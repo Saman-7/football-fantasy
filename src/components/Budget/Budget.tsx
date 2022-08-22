@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import Logo from "../../images/empty-wallet.svg"
+import styled from "styled-components";
+import Logo from "../../svg/empty-wallet.svg";
 
 const BudgetContainer = styled.div`
   width: 274px;
@@ -9,7 +9,7 @@ const BudgetContainer = styled.div`
   border-radius: 16px 16px 0px 0px;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const BudgetAmmountContainer = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const BudgetAmmountContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const BudgetAmmount = styled.span`
   font-family: "Vazirmatn";
@@ -25,7 +25,7 @@ const BudgetAmmount = styled.span`
   font-weight: 900;
   font-size: 40px;
   color: #3d195b;
-`
+`;
 
 const BudgetLogoContainer = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const BudgetLogoContainer = styled.div`
   flex-direction: column;
   position: relative;
   right: 18px;
-`
+`;
 
 const BudgetLogoContainerText = styled.span`
   font-family: "Vazirmatn";
@@ -42,12 +42,12 @@ const BudgetLogoContainerText = styled.span`
   font-weight: 900;
   font-size: 14px;
   color: #3d195b;
-`
+`;
 
 const WalletLogo = styled.img`
   width: 48px;
   height: 48px;
-`
+`;
 
 const Budget = () => {
   return (
@@ -62,7 +62,7 @@ const Budget = () => {
         <BudgetLogoContainerText>باقی مانده پول</BudgetLogoContainerText>
       </BudgetLogoContainer>
     </BudgetContainer>
-  )
-}
+  );
+};
 
-export default Budget
+export default Budget;

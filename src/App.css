@@ -1,6 +1,21 @@
+@font-face {
+  font-family: "vazirmatn";
+  src: url("font/vazirmatn/vazirmatn.eot");
+  src: url("font/vazirmatn/vazirmatn.woff") format("woff"),
+    url("font/vazirmatn/vazirmatn.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("font/roboto/roboto.eot");
+  src: url("font/roboto/roboto.woff") format("woff"),
+    url("font/roboto/roboto.ttf") format("truetype");
+}
+
 .app {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: white;
+  font-family: vazirmatn;
 }

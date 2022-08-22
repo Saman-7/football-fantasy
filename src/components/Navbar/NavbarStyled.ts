@@ -9,9 +9,9 @@ export const NavbarContainer = styled.ul`
   align-items: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
   margin: auto;
-  top: 210px;
   position: relative;
   z-index: 10;
+  background-color: white;
 `;
 
 export const NavItem = styled.li`
@@ -39,5 +39,12 @@ export const NavItem = styled.li`
     font-size: 17px;
     line-height: 27px;
     color: #3d195b;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
   }
 `;

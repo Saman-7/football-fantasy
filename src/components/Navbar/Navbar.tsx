@@ -1,4 +1,4 @@
-import { NavItem, NavbarContainer } from "../styles/NavbarStyled";
+import { NavItem, NavbarContainer } from "./NavbarStyled";
 
 const itemsText = [
   "تیم من",
@@ -13,7 +13,7 @@ const Navbar = () => {
     <NavbarContainer>
       {itemsText.map((t) => (
         <NavItem>
-          <a>{t}</a>
+          <a href="/#">{t}</a>
         </NavItem>
       ))}
     </NavbarContainer>
