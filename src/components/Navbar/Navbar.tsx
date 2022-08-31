@@ -1,23 +1,23 @@
-import { NavItem, NavbarContainer } from "./NavbarStyled";
+import { NavbarItem, NavbarContainer } from "./Navbar.styled"
 
-const itemsText = [
+const NavbarItemsTexts = [
   "تیم من",
   "نقل و انتقالات",
   "آخرین رویداد‌ها",
   "پروفایل",
   "جوایز",
-];
+]
 
 const Navbar = () => {
   return (
     <NavbarContainer>
-      {itemsText.map((t) => (
-        <NavItem>
-          <a href="/#">{t}</a>
-        </NavItem>
+      {NavbarItemsTexts.map((text) => (
+        <NavbarItem>
+          <a href="/#">{text}</a>
+        </NavbarItem>
       ))}
     </NavbarContainer>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
