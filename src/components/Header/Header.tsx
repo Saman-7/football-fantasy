@@ -1,15 +1,19 @@
-import PLHeader from "../../svg/Header.svg";
+import { HeaderContainer, HeaderRightContainer, PLLogo } from "./Header.style"
+import ThreePlayersSVG from "../../svg/three-players.svg"
+import PLLogoSVG from "../../svg/pl-logo.svg"
 
 const Header = () => {
   return (
-    <img
-      src={PLHeader}
-      style={{
-        width: "100%",
-      }}
-      alt="Premier league header"
-    />
-  );
-};
+    <HeaderContainer>
+      <HeaderRightContainer>
+        <PLLogo src={PLLogoSVG} alt="Premier league" />
 
-export default Header;
+        <span>فوتبال فانتزی</span>
+      </HeaderRightContainer>
+
+      <img src={ThreePlayersSVG} alt="Three players" />
+    </HeaderContainer>
+  )
+}
+
+export default Header
