@@ -1,26 +1,26 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const NavbarContainer = styled.ul`
-  width: 770px;
-  height: 80px;
+  width: 48.125rem;
+  height: 5rem;
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.12);
   margin: auto;
   position: relative;
   z-index: 10;
   background-color: white;
-`;
+  border-radius: 0.5rem;
+`
 
-export const NavItem = styled.li`
-  width: 142px;
-  height: 60px;
+export const NavbarItem = styled.li`
+  width: 8.875rem;
+  height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
 
   &:first-child,
@@ -29,15 +29,15 @@ export const NavItem = styled.li`
   }
 
   & a {
-    width: 120px;
-    height: 38px;
+    width: 7.5rem;
+    height: 2.375rem;
     display: flex;
     justify-content: center;
     align-items: center;
     font-style: normal;
     font-weight: 600;
-    font-size: 17px;
-    line-height: 27px;
+    font-size: 1.0625rem;
+    line-height: 1.6875rem;
     color: #3d195b;
 
     &:link,
@@ -47,4 +47,4 @@ export const NavItem = styled.li`
       text-decoration: none;
     }
   }
-`;
+`
