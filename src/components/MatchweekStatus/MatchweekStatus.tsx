@@ -1,11 +1,25 @@
-import "./MatchweekStatus.css"
+import {
+  MatchweekDateContainer,
+  MatchweekNumberContainer,
+  MatchweekStatusContainer,
+} from "./MatchweekStatus.styled"
 
-const MatchweekStatus = () => {
+interface MatchweekStatusProps {
+  number: string
+  date: string
+}
+
+const MatchweekStatus = (props: MatchweekStatusProps) => {
   return (
-    <div className="matchweek-status">
-      <span id="matchweek-date">شنبه ۳۰ مرداد ۱۴۰۰ - ساعت ۱۷</span>
-      <span id="matchweek-number">هفته سوم</span>
-    </div>
+    <MatchweekStatusContainer>
+      <MatchweekNumberContainer>
+        <span>هفته سوم</span>
+      </MatchweekNumberContainer>
+
+      <MatchweekDateContainer>
+        <span>شنبه ۳۰ مرداد ۱۴۰۰ - ساعت ۱۷</span>
+      </MatchweekDateContainer>
+    </MatchweekStatusContainer>
   )
 }
 
