@@ -71,6 +71,9 @@ export const Input = styled.input`
   border: 0.0625rem solid #a057db;
   border-radius: 0.5rem;
   outline: none;
+  font-family: "Vazirmatn";
+  font-size: 1.25rem;
+  color: #edd8ff;
 `
 
 export const ButtonGroup = styled.div`

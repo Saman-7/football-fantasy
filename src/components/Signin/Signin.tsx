@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   ButtonGroup,
   Container,
@@ -16,6 +17,8 @@ import PurpleLineSVG from "../../svg/purple-line.svg"
 import PinkLineSVG from "../../svg/pink-line.svg"
 
 const Signin = () => {
+  const [signinState, setSigninState] = useState({ username: "", password: "" })
+
   return (
     <Container>
       <SigninFormContainer>
@@ -32,19 +35,45 @@ const Signin = () => {
             <InputContainer>
               <label htmlFor="username">نام کاربری</label>
 
-              <Input id="username" name="username" />
+              <Input
+                id="username"
+                name="username"
+                value={signinState.username}
+                onChange={(e) => {
+                  setSigninState({
+                    ...signinState,
+                    username: e.target.value,
+                    password: signinState.password,
+                  })
+                }}
+              />
             </InputContainer>
 
             <InputContainer>
               <label htmlFor="password">رمزعبور</label>
 
-              <Input type="password" id="password" name="password" />
+              <Input
+                type="password"
+                id="password"
+                name="password"
+                value={signinState.password}
+                onChange={(e) => {
+                  setSigninState({
+                    ...signinState,
+                    username: signinState.username,
+                    password: e.target.value,
+                  })
+                }}
+              />
             </InputContainer>
 
             <ButtonGroup>
-              <SigninButton value="ثبت نام" />
+              <SigninButton
+                value="ثبت نام"
+                onClick={(e) => e.preventDefault()}
+              />
 
-              <SignupButton value="ورود" />
+              <SignupButton value="ورود" onClick={(e) => e.preventDefault()} />
             </ButtonGroup>
           </form>
         </FormContainer>
