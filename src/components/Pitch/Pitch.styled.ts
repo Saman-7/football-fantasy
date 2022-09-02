@@ -54,10 +54,16 @@ export const LanePitch = styled.div`
       align-items: center;
     }
 
-    & .box .undress,
-    & .box .uniform {
+    & .box .undress {
       height: 100px;
       width: 81px;
+      filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
+    }
+
+    & .box .uniform {
+      height: 93px;
+      width: 73px;
+      filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
     }
 
     & .box .plus-icon {
@@ -71,6 +77,13 @@ export const LanePitch = styled.div`
       position: absolute;
       right: -10px;
       top: -10px;
+    }
+  }
+
+  & .GK {
+    justify-content: center;
+    & .box {
+      margin: 0px 45px;
     }
   }
 `;
