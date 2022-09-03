@@ -1,9 +1,9 @@
-import uniformPNG from "../../images/uniform.png";
+import uniform from "../../images/uniform.png";
 import {
   ButtonPopup,
   DeletePlayerPopupContainer,
   PopupBox,
-} from "./DeletePlayerPopupStyled";
+} from "./DeletePlayerPopup.styled";
 
 const DeletePlayerPopup = () => {
   return (
@@ -12,11 +12,11 @@ const DeletePlayerPopup = () => {
         <div className="head-text">
           <span>حذف بازیکن</span>
         </div>
-        <img className="uniform-img" src={uniformPNG} alt="uniform" />
-        <span className="question">آیا از حذف Henderson مطمين هستید؟</span>
+        <img className="uniform-img" src={uniform} alt="uniform" />
+        <span className="question">آیا از حذف Henderson مطمئن هستید؟</span>
         <ButtonPopup>
-          <button>لغو</button>
           <button className="delete">حذف</button>
+          <button>لغو</button>
         </ButtonPopup>
       </PopupBox>
     </DeletePlayerPopupContainer>

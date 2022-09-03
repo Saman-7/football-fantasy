@@ -44,12 +44,11 @@ export const PopupBox = styled.div`
   }
 
   & .question {
-    font-family: roboto;
+    font-family: vazirmatn;
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
     color: #3d195b;
-    direction: rtl;
   }
 `;
 
@@ -68,6 +67,7 @@ export const ButtonPopup = styled.div`
     line-height: 19px;
     color: #3d195b;
     cursor: pointer;
+    font-family: vazirmatn;
 
     &.delete {
       background-color: #ed1b5d;
