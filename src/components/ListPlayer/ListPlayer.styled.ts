@@ -4,7 +4,6 @@ export const ListPlayerContainer = styled.div`
   width: 869px;
   height: 768px;
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-between;
 `;
 
@@ -33,7 +32,7 @@ export const ListContainer = styled.div`
 export const BoxList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-top: 15px;
 
   & .title {
@@ -48,7 +47,7 @@ export const BoxList = styled.div`
       font-size: 14px;
       line-height: 22px;
       display: flex;
-      justify-content: end;
+      justify-content: start;
       align-items: center;
       color: #00ff87;
     }
@@ -57,7 +56,7 @@ export const BoxList = styled.div`
 
 export const HeaderList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 2fr 1fr 1fr;
   border-bottom: 1px solid #efefef;
 
   & div {
@@ -76,7 +75,7 @@ export const HeaderList = styled.div`
 
 export const RowList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 2fr 1fr 1fr;
   width: 100%;
   padding: 7px 0px;
   border-bottom: 1px solid #efefef;
@@ -88,7 +87,7 @@ export const RowList = styled.div`
 
     &.name-player {
       padding-right: 15px;
-      justify-content: end;
+      justify-content: start;
     }
 
     & span {
