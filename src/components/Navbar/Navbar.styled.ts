@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const NavbarContainer = styled.ul`
   width: 48.125rem;
@@ -12,7 +12,8 @@ export const NavbarContainer = styled.ul`
   z-index: 10;
   background-color: white;
   border-radius: 0.5rem;
-`
+  top: -40px;
+`;
 
 export const NavbarItem = styled.li`
   width: 8.875rem;
@@ -47,4 +48,4 @@ export const NavbarItem = styled.li`
       text-decoration: none;
     }
   }
-`
+`;

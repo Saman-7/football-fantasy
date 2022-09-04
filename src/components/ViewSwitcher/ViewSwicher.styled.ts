@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ViewSwitcherContainer = styled.div`
+  grid-area: switch;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -34,6 +35,7 @@ export const ViewSwitcherContainer = styled.div`
       color: #3d195b;
       border: none;
       background-color: inherit;
+      font-family: vazirmatn;
       &:first-child {
         background-color: white;
       }

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const SelectPlayerContainer = styled.div`
-  height: 876px;
+  height: 897px;
   width: 273px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
   border-radius: 16px 16px 0px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 24px;
 
   & .title-head {
     width: 100%;

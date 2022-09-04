@@ -1,6 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const RemainingPlayersContainer = styled.div`
+  grid-area: remain;
   width: 17.0625rem;
   height: 8.0625rem;
   display: flex;
@@ -15,7 +16,7 @@ export const RemainingPlayersContainer = styled.div`
     font-size: 36px;
     color: #3d195b;
   }
-`
+`;
 
 export const RemainingPlayersRightContainer = styled.div`
   display: flex;
@@ -27,6 +28,9 @@ export const RemainingPlayersRightContainer = styled.div`
   }
 
   & span {
-    margin-top: 0.3125rem;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    color: #3d195b;
   }
-`
+`;

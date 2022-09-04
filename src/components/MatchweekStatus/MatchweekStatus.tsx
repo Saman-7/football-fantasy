@@ -2,14 +2,9 @@ import {
   MatchweekDateContainer,
   MatchweekNumberContainer,
   MatchweekStatusContainer,
-} from "./MatchweekStatus.styled"
+} from "./MatchweekStatus.styled";
 
-interface MatchweekStatusProps {
-  number: string
-  date: string
-}
-
-const MatchweekStatus = (props: MatchweekStatusProps) => {
+const MatchweekStatus = () => {
   return (
     <MatchweekStatusContainer>
       <MatchweekNumberContainer>
@@ -20,7 +15,7 @@ const MatchweekStatus = (props: MatchweekStatusProps) => {
         <span>شنبه ۳۰ مرداد ۱۴۰۰ - ساعت ۱۷</span>
       </MatchweekDateContainer>
     </MatchweekStatusContainer>
-  )
-}
+  );
+};
 
-export default MatchweekStatus
+export default MatchweekStatus;

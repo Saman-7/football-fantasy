@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PitchContainer = styled.div`
+  grid-area: pitch;
   width: 869px;
   height: 768px;
   background-color: #29cb75;
