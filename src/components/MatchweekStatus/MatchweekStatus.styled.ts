@@ -11,6 +11,7 @@ export const MatchweekStatusContainer = styled.div`
   justify-content: space-around;
   margin: auto;
   margin-bottom: 40px;
+  word-spacing: 1px;
 `;
 
 export const MatchweekDateContainer = styled.div`
