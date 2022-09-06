@@ -38,81 +38,83 @@ const Signup = () => {
         </FormHeaderContainer>
 
         <FormContainer>
-          <InputRow>
-            <InputContainer>
-              <label htmlFor="fname">نام</label>
+          <form>
+            <InputRow>
+              <InputContainer>
+                <label htmlFor="fname">نام</label>
 
-              <Input
-                id="fname"
-                name="fname"
-                value={fname}
-                onChange={(e) => setFname(e.target.value)}
-              />
-            </InputContainer>
+                <Input
+                  id="fname"
+                  name="fname"
+                  value={fname}
+                  onChange={(e) => setFname(e.target.value)}
+                />
+              </InputContainer>
 
-            <InputContainer>
-              <label htmlFor="lname">نام خانوادگی</label>
+              <InputContainer>
+                <label htmlFor="lname">نام خانوادگی</label>
 
-              <Input
-                id="lname"
-                name="lname"
-                value={lname}
-                onChange={(e) => setLname(e.target.value)}
-              />
-            </InputContainer>
-          </InputRow>
+                <Input
+                  id="lname"
+                  name="lname"
+                  value={lname}
+                  onChange={(e) => setLname(e.target.value)}
+                />
+              </InputContainer>
+            </InputRow>
 
-          <InputRow>
-            <InputContainer>
-              <label htmlFor="email">ایمیل</label>
+            <InputRow>
+              <InputContainer>
+                <label htmlFor="email">ایمیل</label>
 
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </InputContainer>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </InputContainer>
 
-            <InputContainer>
-              <label htmlFor="country">کشور</label>
+              <InputContainer>
+                <label htmlFor="country">کشور</label>
 
-              <CountryInput
-                id="country"
-                name="country"
-                value={country}
-                handleChange={setCountry}
-              />
-            </InputContainer>
-          </InputRow>
+                <CountryInput
+                  id="country"
+                  name="country"
+                  value={country}
+                  handleChange={setCountry}
+                />
+              </InputContainer>
+            </InputRow>
 
-          <InputRow>
-            <InputContainer>
-              <label htmlFor="username">نام کاربری</label>
+            <InputRow>
+              <InputContainer>
+                <label htmlFor="username">نام کاربری</label>
 
-              <Input
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </InputContainer>
+                <Input
+                  id="username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </InputContainer>
 
-            <InputContainer>
-              <label htmlFor="password">رمز عبور</label>
+              <InputContainer>
+                <label htmlFor="password">رمز عبور</label>
 
-              <Input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </InputContainer>
-          </InputRow>
+                <Input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </InputContainer>
+            </InputRow>
 
-          <Button value={"ثبت نام"} />
+            <Button value={"ثبت نام"} />
+          </form>
         </FormContainer>
       </SignupFormContainer>
 
