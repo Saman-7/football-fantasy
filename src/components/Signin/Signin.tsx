@@ -17,7 +17,8 @@ import PurpleLineSVG from "../../svg/purple-line.svg"
 import PinkLineSVG from "../../svg/pink-line.svg"
 
 const Signin = () => {
-  const [signinState, setSigninState] = useState({ username: "", password: "" })
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <Container>
@@ -38,14 +39,8 @@ const Signin = () => {
               <Input
                 id="username"
                 name="username"
-                value={signinState.username}
-                onChange={(e) => {
-                  setSigninState({
-                    ...signinState,
-                    username: e.target.value,
-                    password: signinState.password,
-                  })
-                }}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </InputContainer>
 
@@ -56,14 +51,8 @@ const Signin = () => {
                 type="password"
                 id="password"
                 name="password"
-                value={signinState.password}
-                onChange={(e) => {
-                  setSigninState({
-                    ...signinState,
-                    username: signinState.username,
-                    password: e.target.value,
-                  })
-                }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </InputContainer>
 
