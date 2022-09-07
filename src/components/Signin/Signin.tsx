@@ -15,10 +15,21 @@ import LoginHeaderSVG from "../../svg/login-header.svg"
 import PLLogoSVG from "../../svg/white-pl-logo.svg"
 import PurpleLineSVG from "../../svg/purple-line.svg"
 import PinkLineSVG from "../../svg/pink-line.svg"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+
+interface SigninResponse {
+  data: {
+    managerId: string
+    token: string
+  }
+}
 
 const Signin = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+
+  const navigate = useNavigate()
 
   return (
     <Container>
@@ -58,11 +69,31 @@ const Signin = () => {
 
             <ButtonGroup>
               <SigninButton
-                value="ثبت نام"
-                onClick={(e) => e.preventDefault()}
+                value="ورود"
+                onClick={async (e) => {
+                  e.preventDefault()
+
+                  const response = await axios.post<SigninResponse>(
+                    "http://localhost:8080/api/v1/auth/login",
+                    { username, password }
+                  )
+
+                  const { data } = response.data
+
+                  if (data.managerId.length > 0 && data.token.length > 0) {
+                    navigate("../main-page")
+                  }
+                }}
               />
 
-              <SignupButton value="ورود" onClick={(e) => e.preventDefault()} />
+              <SignupButton
+                value="ثبت نام"
+                onClick={async (e) => {
+                  e.preventDefault()
+
+                  navigate("../signup")
+                }}
+              />
             </ButtonGroup>
           </form>
         </FormContainer>

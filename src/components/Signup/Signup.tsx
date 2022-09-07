@@ -17,6 +17,7 @@ import PurpleLineSVG from "../../svg/purple-line.svg"
 import PinkLineSVG from "../../svg/pink-line.svg"
 import CountryInput from "./CountryInput"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Signup = () => {
   const [fname, setFname] = useState("")
@@ -25,6 +26,8 @@ const Signup = () => {
   const [country, setCountry] = useState("AF")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+
+  const navigate = useNavigate()
 
   return (
     <Container>
@@ -113,7 +116,14 @@ const Signup = () => {
               </InputContainer>
             </InputRow>
 
-            <Button value={"ثبت نام"} />
+            <Button
+              value={"ثبت نام"}
+              onClick={(e) => {
+                e.preventDefault()
+
+                navigate("../main-page")
+              }}
+            />
           </form>
         </FormContainer>
       </SignupFormContainer>
