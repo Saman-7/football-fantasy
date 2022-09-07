@@ -5,7 +5,13 @@ import {
   PopupBox,
 } from "./DeletePlayerPopup.styled";
 
-const DeletePlayerPopup = () => {
+interface TypeDeletePlayerPopup {
+  playerId: number;
+  playerName: string;
+  deletePlayer: (status: boolean) => void;
+}
+
+const DeletePlayerPopup = (props: TypeDeletePlayerPopup) => {
   return (
     <DeletePlayerPopupContainer>
       <PopupBox>
@@ -13,10 +19,12 @@ const DeletePlayerPopup = () => {
           <span>حذف بازیکن</span>
         </div>
         <img className="uniform-img" src={uniform} alt="uniform" />
-        <span className="question">آیا از حذف Henderson مطمئن هستید؟</span>
+        <span className="question">{` آیا از حذف ${props.playerName} مطمئن هستید؟`}</span>
         <ButtonPopup>
-          <button className="delete">حذف</button>
-          <button>لغو</button>
+          <button className="delete" onClick={() => props.deletePlayer(true)}>
+            حذف
+          </button>
+          <button onClick={() => props.deletePlayer(false)}>لغو</button>
         </ButtonPopup>
       </PopupBox>
     </DeletePlayerPopupContainer>

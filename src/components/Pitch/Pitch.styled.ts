@@ -8,7 +8,6 @@ export const PitchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  overflow: hidden;
   position: relative;
 
   & .line-pitch {
@@ -59,12 +58,14 @@ export const LanePitch = styled.div`
       height: 100px;
       width: 81px;
       filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
+      cursor: pointer;
     }
 
     & .box .uniform {
       height: 93px;
       width: 73px;
       filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
+      cursor: pointer;
     }
 
     & .box .plus-icon {
@@ -72,12 +73,14 @@ export const LanePitch = styled.div`
       top: 34px;
       left: 50%;
       transform: translateX(-50%);
+      cursor: pointer;
     }
 
     & .box .delete-icon {
       position: absolute;
       right: -10px;
       top: -10px;
+      cursor: pointer;
     }
   }
 
