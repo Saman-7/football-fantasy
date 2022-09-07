@@ -57,12 +57,12 @@ const Signin = () => {
             </InputContainer>
 
             <ButtonGroup>
-              <SigninButton
+              <SigninButton value="ورود" onClick={(e) => e.preventDefault()} />
+
+              <SignupButton
                 value="ثبت نام"
                 onClick={(e) => e.preventDefault()}
               />
-
-              <SignupButton value="ورود" onClick={(e) => e.preventDefault()} />
             </ButtonGroup>
           </form>
         </FormContainer>
