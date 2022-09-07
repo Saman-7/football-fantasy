@@ -21,18 +21,20 @@ const MatchweekStatus = () => {
 
   const handleDateEpoch = (epoch: number) => {
     const arrDate = new Date(epoch).echoFa().replace("،", "").split("-");
+    console.log("arr", arrDate);
     const hour = `ساعت ${arrDate[1].split(":")[0]}`;
     const textDate = `${arrDate[0]} - ${hour}`;
     setDate(numberEnglishToPersian(textDate));
   };
 
   useEffect(() => {
-    axios.get("/week").then((res) => {
-      console.log(res.data);
-      const { week, date } = res.data;
-      handleWeekStatus(week);
-      handleDateEpoch(date);
-    });
+    axios
+      .get("http://178.216.248.37:8080/api/v1/events/current/info")
+      .then((res) => {
+        const { name, deadline_time_epoch } = res.data.data;
+        handleWeekStatus(name);
+        handleDateEpoch(parseInt(deadline_time_epoch));
+      });
   }, []);
 
   return (
