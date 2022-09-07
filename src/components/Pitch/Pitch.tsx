@@ -55,7 +55,35 @@ const Pitch = () => {
   };
 
   useEffect(() => {
-    axios.get("/pitch").then((res) => setListPlayers(res.data));
+    // axios
+    //   .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+    //     headers: {
+    //       token:
+    //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data.data);
+    //     setListPlayers(res.data);
+    //   });
+    const data = [
+      { name: "saman", form: 9, price: 7 },
+      { name: "saman", form: 9, price: 7 },
+      { name: "saman", form: 9, price: 7 },
+      null,
+      { name: "sohrab", form: 9, price: 7 },
+      null,
+      null,
+      { name: "parsa", form: 9, price: 7 },
+      { name: "parsa", form: 9, price: 7 },
+      null,
+      { name: "pegah", form: 9, price: 7 },
+      { name: "pegah", form: 9, price: 7 },
+      { name: "pegah", form: 9, price: 7 },
+      null,
+      null,
+    ];
+    setListPlayers(data);
   }, []);
 
   return (
