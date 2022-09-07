@@ -1,7 +1,8 @@
-import UniformPNG from "../../images/uniform.png";
-import { ReactComponent as LeagueSVG } from "../../svg/league.svg";
-import { ReactComponent as StripesSVG } from "../../svg/stripes.svg";
-import { convertLanesToPersian } from "../../utils/convertLanes";
+import { useEffect, useState } from "react"
+import UniformPNG from "../../images/uniform.png"
+import { ReactComponent as LeagueSVG } from "../../svg/league.svg"
+import { ReactComponent as StripesSVG } from "../../svg/stripes.svg"
+import { convertLanesToPersian } from "../../utils/convertLanes"
 import {
   BoxList,
   HeaderList,
@@ -9,25 +10,8 @@ import {
   ListPlayerContainer,
   RowList,
   Sidebar,
-} from "./ListPlayer.styled";
-
-const allPlayers = [
-  { id: 1, name: "Cancelo", rating: 7.5, price: 9 },
-  { id: 2 },
-  { id: 3, name: "Cancelo", rating: 7.5, price: 9 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-  { id: 12 },
-  { id: 13 },
-  { id: 14 },
-  { id: 15 },
-];
+} from "./ListPlayer.styled"
+import axios from "axios"
 
 const lanePlayersPitch = [
   {
@@ -46,9 +30,15 @@ const lanePlayersPitch = [
     lane: "ATT",
     players: [12, 13, 14],
   },
-];
+]
 
 const ListPlayer = () => {
+  const [listPlayers, setListPlayers] = useState<Array<any>>([])
+
+  useEffect(() => {
+    axios.get("/pitch").then((res) => setListPlayers(res.data))
+  }, [])
+
   return (
     <ListPlayerContainer>
       <ListContainer>
@@ -68,21 +58,20 @@ const ListPlayer = () => {
               <h3>{convertLanesToPersian(lane)}</h3>
             </div>
             {players.map((playerId) => {
-              const player = allPlayers.find((p) => p.id === playerId);
-
+              const player = listPlayers.find((_, index) => index === playerId)
               return (
                 <RowList>
                   <div className="name-player">
                     <span>{player?.name ? player.name : "none"}</span>
                   </div>
                   <div>
-                    <span>{player?.rating ? player.rating : 0}</span>
+                    <span>{player?.form ? player.form : 0}</span>
                   </div>
                   <div>
                     <span>{player?.price ? player.price : 0}</span>
                   </div>
                 </RowList>
-              );
+              )
             })}
           </BoxList>
         ))}
@@ -94,7 +83,7 @@ const ListPlayer = () => {
         <StripesSVG />
       </Sidebar>
     </ListPlayerContainer>
-  );
-};
+  )
+}
 
-export default ListPlayer;
+export default ListPlayer
