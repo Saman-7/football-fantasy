@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactComponent as LinePitchSVG } from "../../svg/line-pitch.svg";
 import { ReactComponent as PlusSVG } from "../../svg/plus.svg";
 import { ReactComponent as DeleteSVG } from "../../svg/delete.svg";
@@ -6,24 +6,8 @@ import undress from "../../images/undress.png";
 import uniform from "../../images/uniform.png";
 import blueDress from "../../images/blue-dress.png";
 import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled";
-
-const allPlayers = [
-  { id: 0, name: "Cancelo", rating: 7.5 },
-  { id: 1 },
-  { id: 2, name: "Cancelo", rating: 7.5 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-  { id: 12 },
-  { id: 13 },
-  { id: 14 },
-];
+import axios from "axios";
+import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup";
 
 const lanePlayersPitch = [
   {
@@ -45,7 +29,62 @@ const lanePlayersPitch = [
 ];
 
 const Pitch = () => {
-  const [activePlayer, setActivePlayer] = useState(1);
+  const [listPlayers, setListPlayers] = useState<Array<any>>([]);
+  const [activePlayerId, setActivePlayerId] = useState<number>();
+  const [deletePlayerId, setDeletePlayerId] = useState<number>();
+
+  const selectedPlayer = (playerId: number) => {
+    setActivePlayerId(playerId);
+  };
+
+  const selectedDeletePlayer = (playerId: number) => {
+    setDeletePlayerId(playerId);
+  };
+
+  const handleDeletePlayer = (status: boolean) => {
+    if (status && deletePlayerId) {
+      const newListPlayer = listPlayers.map((_, index) =>
+        index === deletePlayerId ? null : listPlayers[index]
+      );
+      setListPlayers(newListPlayer);
+      setDeletePlayerId(undefined);
+      setActivePlayerId(undefined);
+    } else {
+      setDeletePlayerId(undefined);
+    }
+  };
+
+  useEffect(() => {
+    // axios
+    //   .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+    //     headers: {
+    //       token:
+    //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data.data);
+    //     setListPlayers(res.data);
+    //   });
+    const data = [
+      { name: "saman", form: 9, price: 7 },
+      { name: "saman", form: 9, price: 7 },
+      { name: "saman", form: 9, price: 7 },
+      null,
+      { name: "sohrab", form: 9, price: 7 },
+      null,
+      null,
+      { name: "parsa", form: 9, price: 7 },
+      { name: "parsa", form: 9, price: 7 },
+      null,
+      { name: "pegah", form: 9, price: 7 },
+      { name: "pegah", form: 9, price: 7 },
+      { name: "pegah", form: 9, price: 7 },
+      null,
+      null,
+    ];
+    setListPlayers(data);
+  }, []);
 
   return (
     <PitchContainer>
@@ -54,37 +93,58 @@ const Pitch = () => {
         <div /> <div /> <div />
       </PaleGreen>
 
+      {deletePlayerId && (
+        <DeletePlayerPopup
+          playerId={deletePlayerId}
+          playerName={listPlayers[deletePlayerId].name}
+          deletePlayer={handleDeletePlayer}
+        />
+      )}
+
       <LanePitch>
         {lanePlayersPitch.map(({ lane, players }) => (
-          <div className={lane}>
+          <div key={lane} className={lane}>
             {players.map((playerId) => {
-              const player = allPlayers.find((p) => p.id === playerId);
+              const player = listPlayers.find((_, index) => index === playerId);
               if (!!player?.name) {
                 return (
-                  <div className="box">
-                    <DeleteSVG className="delete-icon" />
+                  <div
+                    key={playerId}
+                    className="box"
+                    onClick={() => selectedPlayer(playerId)}
+                  >
+                    <DeleteSVG
+                      className="delete-icon"
+                      onClick={() => selectedDeletePlayer(playerId)}
+                    />
                     <img src={uniform} className="uniform" alt="uniform" />
                     <BoxDress>
                       <div className="title">
                         <span>{player?.name}</span>
                       </div>
                       <div className="rating">
-                        <span>{player?.rating}</span>
+                        <span>{player?.form}</span>
                       </div>
                     </BoxDress>
                   </div>
                 );
-              } else if (playerId === activePlayer) {
+              } else if (playerId === activePlayerId) {
                 return (
-                  <div>
-                    <div className="box">
-                      <img src={blueDress} className="undress" alt="undress" />
-                    </div>
+                  <div
+                    key={playerId}
+                    className="box"
+                    onClick={() => selectedPlayer(playerId)}
+                  >
+                    <img src={blueDress} className="undress" alt="undress" />
                   </div>
                 );
               } else {
                 return (
-                  <div className="box">
+                  <div
+                    key={playerId}
+                    className="box"
+                    onClick={() => selectedPlayer(playerId)}
+                  >
                     <img src={undress} className="undress" alt="undress" />
                     <PlusSVG className="plus-icon" />
                   </div>
