@@ -45,4 +45,5 @@ export const Button = styled.input.attrs({
   font-weight: 400;
   font-size: 1.25rem;
   color: #ffffff;
+  cursor: pointer;
 `
