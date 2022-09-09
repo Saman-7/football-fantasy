@@ -55,7 +55,17 @@ const Pitch = () => {
   };
 
   useEffect(() => {
-    axios.get("/pitch").then((res) => setListPlayers(res.data));
+    axios
+      .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+        headers: {
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data.teamId.picks);
+        setListPlayers(res.data.data.teamId.picks);
+      });
   }, []);
 
   return (
@@ -77,8 +87,10 @@ const Pitch = () => {
         {lanePlayersPitch.map(({ lane, players }) => (
           <div key={lane} className={lane}>
             {players.map((playerId) => {
-              const player = listPlayers.find((_, index) => index === playerId);
-              if (!!player?.name) {
+              const dataPlayer = listPlayers.find(
+                (_, index) => index === playerId
+              );
+              if (!!dataPlayer?.player) {
                 return (
                   <div
                     key={playerId}
@@ -92,10 +104,10 @@ const Pitch = () => {
                     <img src={uniform} className="uniform" alt="uniform" />
                     <BoxDress>
                       <div className="title">
-                        <span>{player?.name}</span>
+                        <span>{dataPlayer.player.web_name}</span>
                       </div>
                       <div className="rating">
-                        <span>{player?.form}</span>
+                        <span>{dataPlayer.player.form}</span>
                       </div>
                     </BoxDress>
                   </div>
