@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { ReactComponent as LinePitchSVG } from "../../svg/line-pitch.svg";
-import { ReactComponent as PlusSVG } from "../../svg/plus.svg";
-import { ReactComponent as DeleteSVG } from "../../svg/delete.svg";
-import undress from "../../images/undress.png";
-import uniform from "../../images/uniform.png";
-import blueDress from "../../images/blue-dress.png";
-import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled";
-import axios from "axios";
-import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup";
+import { useEffect, useState } from "react"
+import { ReactComponent as LinePitchSVG } from "../../svg/line-pitch.svg"
+import { ReactComponent as PlusSVG } from "../../svg/plus.svg"
+import { ReactComponent as DeleteSVG } from "../../svg/delete.svg"
+import undress from "../../images/undress.png"
+import uniform from "../../images/uniform.png"
+import blueDress from "../../images/blue-dress.png"
+import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled"
+import axios from "axios"
+import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 
 const lanePlayersPitch = [
   {
@@ -26,65 +26,47 @@ const lanePlayersPitch = [
     lane: "ATT",
     players: [12, 13, 14],
   },
-];
+]
 
 const Pitch = () => {
-  const [listPlayers, setListPlayers] = useState<Array<any>>([]);
-  const [activePlayerId, setActivePlayerId] = useState<number>();
-  const [deletePlayerId, setDeletePlayerId] = useState<number>();
+  const [listPlayers, setListPlayers] = useState<Array<any>>([])
+  const [activePlayerId, setActivePlayerId] = useState<number>()
+  const [deletePlayerId, setDeletePlayerId] = useState<number>()
 
   const selectedPlayer = (playerId: number) => {
-    setActivePlayerId(playerId);
-  };
+    setActivePlayerId(playerId)
+  }
 
   const selectedDeletePlayer = (playerId: number) => {
-    setDeletePlayerId(playerId);
-  };
+    setDeletePlayerId(playerId)
+  }
 
   const handleDeletePlayer = (status: boolean) => {
     if (status && deletePlayerId) {
       const newListPlayer = listPlayers.map((_, index) =>
         index === deletePlayerId ? null : listPlayers[index]
-      );
-      setListPlayers(newListPlayer);
-      setDeletePlayerId(undefined);
-      setActivePlayerId(undefined);
+      )
+      setListPlayers(newListPlayer)
+      setDeletePlayerId(undefined)
+      setActivePlayerId(undefined)
     } else {
-      setDeletePlayerId(undefined);
+      setDeletePlayerId(undefined)
     }
-  };
+  }
 
   useEffect(() => {
-    // axios
-    //   .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
-    //     headers: {
-    //       token:
-    //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data.data);
-    //     setListPlayers(res.data);
-    //   });
-    const data = [
-      { name: "saman", form: 9, price: 7 },
-      { name: "saman", form: 9, price: 7 },
-      { name: "saman", form: 9, price: 7 },
-      null,
-      { name: "sohrab", form: 9, price: 7 },
-      null,
-      null,
-      { name: "parsa", form: 9, price: 7 },
-      { name: "parsa", form: 9, price: 7 },
-      null,
-      { name: "pegah", form: 9, price: 7 },
-      { name: "pegah", form: 9, price: 7 },
-      { name: "pegah", form: 9, price: 7 },
-      null,
-      null,
-    ];
-    setListPlayers(data);
-  }, []);
+    axios
+      .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+        headers: {
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data.teamId.picks)
+        setListPlayers(res.data.data.teamId.picks)
+      })
+  }, [])
 
   return (
     <PitchContainer>
@@ -105,8 +87,10 @@ const Pitch = () => {
         {lanePlayersPitch.map(({ lane, players }) => (
           <div key={lane} className={lane}>
             {players.map((playerId) => {
-              const player = listPlayers.find((_, index) => index === playerId);
-              if (!!player?.name) {
+              const dataPlayer = listPlayers.find(
+                (_, index) => index === playerId
+              )
+              if (!!dataPlayer?.player) {
                 return (
                   <div
                     key={playerId}
@@ -120,14 +104,14 @@ const Pitch = () => {
                     <img src={uniform} className="uniform" alt="uniform" />
                     <BoxDress>
                       <div className="title">
-                        <span>{player?.name}</span>
+                        <span>{dataPlayer.player.web_name}</span>
                       </div>
                       <div className="rating">
-                        <span>{player?.form}</span>
+                        <span>{dataPlayer.player.form}</span>
                       </div>
                     </BoxDress>
                   </div>
-                );
+                )
               } else if (playerId === activePlayerId) {
                 return (
                   <div
@@ -137,7 +121,7 @@ const Pitch = () => {
                   >
                     <img src={blueDress} className="undress" alt="undress" />
                   </div>
-                );
+                )
               } else {
                 return (
                   <div
@@ -148,14 +132,14 @@ const Pitch = () => {
                     <img src={undress} className="undress" alt="undress" />
                     <PlusSVG className="plus-icon" />
                   </div>
-                );
+                )
               }
             })}
           </div>
         ))}
       </LanePitch>
     </PitchContainer>
-  );
-};
+  )
+}
 
-export default Pitch;
+export default Pitch
