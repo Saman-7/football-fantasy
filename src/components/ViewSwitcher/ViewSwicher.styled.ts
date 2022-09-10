@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const ViewSwitcherContainer = styled.div`
   grid-area: switch;
@@ -36,9 +36,10 @@ export const ViewSwitcherContainer = styled.div`
       border: none;
       background-color: inherit;
       font-family: vazirmatn;
-      &:first-child {
+      cursor: pointer;
+      &.active {
         background-color: white;
       }
     }
   }
-`;
+`
