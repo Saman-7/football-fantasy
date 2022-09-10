@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const SelectPlayerContainer = styled.div`
   height: 897px;
@@ -25,7 +25,7 @@ export const SelectPlayerContainer = styled.div`
       color: white;
     }
   }
-`;
+`
 
 export const InputSearch = styled.div`
   width: 244px;
@@ -57,7 +57,7 @@ export const InputSearch = styled.div`
       border-bottom: 1px solid;
     }
   }
-`;
+`
 
 export const FilterButton = styled.div`
   margin: 20px 0px;
@@ -75,11 +75,12 @@ export const FilterButton = styled.div`
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
-    &:first-child {
+    cursor: pointer;
+    &.active {
       background: linear-gradient(269.48deg, #04f5ec -30.14%, #03fbb8 109.7%);
     }
   }
-`;
+`
 
 export const DisplayNumberPlayer = styled.div`
   width: 180px;
@@ -95,7 +96,7 @@ export const DisplayNumberPlayer = styled.div`
     font-size: 11px;
     line-height: 17px;
   }
-`;
+`
 
 export const ListPlayers = styled.div`
   width: 100%;
@@ -145,7 +146,7 @@ export const ListPlayers = styled.div`
       }
     }
   }
-`;
+`
 
 export const ChangePage = styled.div`
   display: flex;
@@ -163,4 +164,4 @@ export const ChangePage = styled.div`
     line-height: 19px;
     color: #3d195b;
   }
-`;
+`
