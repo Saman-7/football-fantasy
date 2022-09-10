@@ -1,3 +1,5 @@
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 import {
   ConfirmationFormContainer,
   InputContainer,
@@ -18,6 +20,8 @@ const Confirmation = (props: ConfirmationProps) => {
 
   const { handleChange } = props
 
+  const navigate = useNavigate()
+
   return (
     <ConfirmationFormContainer>
       <FormHeaderContainer>
@@ -37,7 +41,23 @@ const Confirmation = (props: ConfirmationProps) => {
             <Input id="code" name="code" value={code} onChange={handleChange} />
           </InputContainer>
 
-          <Button value={"تایید ثبت نام"} />
+          <Button
+            value={"تایید ثبت نام"}
+            onClick={async (e) => {
+              e.preventDefault()
+
+              const response = await axios.post(
+                "http://178.216.248.37:8080/api/v1/auth/verify",
+                { email, code }
+              )
+
+              const { token } = response.data.data
+
+              localStorage.setItem("token", token)
+
+              navigate("/main-page")
+            }}
+          />
         </form>
       </FormContainer>
     </ConfirmationFormContainer>

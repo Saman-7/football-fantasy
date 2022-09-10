@@ -1,3 +1,4 @@
+import axios from "axios"
 import CountryInput from "./CountryInput"
 import {
   SignupFormContainer,
@@ -120,10 +121,24 @@ const Signup = (props: SignupProps) => {
 
           <Button
             value={"ثبت نام"}
-            onClick={(e) => {
+            onClick={async (e) => {
               e.preventDefault()
 
-              setSubmitted(true)
+              const response = await axios.post(
+                "http://178.216.248.37:8080/api/v1/auth/signup",
+                {
+                  first_name: fname,
+                  last_name: lname,
+                  username,
+                  email,
+                  country,
+                  password,
+                }
+              )
+
+              if (response.data.msg === "ok") {
+                setSubmitted(true)
+              }
             }}
           />
         </form>
