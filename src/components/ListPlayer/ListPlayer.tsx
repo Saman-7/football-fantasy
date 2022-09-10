@@ -36,7 +36,18 @@ const ListPlayer = () => {
   const [listPlayers, setListPlayers] = useState<Array<any>>([])
 
   useEffect(() => {
-    axios.get("/pitch").then((res) => setListPlayers(res.data))
+    axios
+      .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+        headers: {
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data.teamId.picks)
+        setListPlayers(res.data.data.teamId.picks)
+      })
+      .catch((err) => console.log(err))
   }, [])
 
   return (
@@ -58,17 +69,29 @@ const ListPlayer = () => {
               <h3>{convertLanesToPersian(lane)}</h3>
             </div>
             {players.map((playerId) => {
-              const player = listPlayers.find((_, index) => index === playerId)
+              const dataPlayer = listPlayers.find(
+                (_, index) => index === playerId
+              )
               return (
                 <RowList>
                   <div className="name-player">
-                    <span>{player?.name ? player.name : "none"}</span>
+                    <span>
+                      {dataPlayer?.player?.web_name
+                        ? dataPlayer.player.web_name
+                        : "none"}
+                    </span>
                   </div>
                   <div>
-                    <span>{player?.form ? player.form : 0}</span>
+                    <span>
+                      {dataPlayer?.player?.form ? dataPlayer.player.form : 0}
+                    </span>
                   </div>
                   <div>
-                    <span>{player?.price ? player.price : 0}</span>
+                    <span>
+                      {dataPlayer?.player?.now_cost
+                        ? dataPlayer.player.now_cost
+                        : 0}
+                    </span>
                   </div>
                 </RowList>
               )
