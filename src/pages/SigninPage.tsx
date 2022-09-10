@@ -15,16 +15,14 @@ import PurpleLineSVG from "../svg/purple-line.svg"
 import PinkLineSVG from "../svg/pink-line.svg"
 
 const SigninPage = () => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [formData, setFormData] = useState({ username: "", password: "" })
+
+  const { username, password } = formData
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-
-    token && navigate("/main-page")
-  }, [])
 
   const handleSignin = async (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
@@ -33,7 +31,7 @@ const SigninPage = () => {
 
     const response = await axios.post(
       "http://178.216.248.37:8080/api/v1/auth/login",
-      { username, password }
+      formData
     )
 
     const { data } = response.data
@@ -42,6 +40,12 @@ const SigninPage = () => {
 
     navigate("/main-page")
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+
+    token && navigate("/main-page")
+  }, [])
 
   return (
     <SigninFormContainer>
@@ -62,7 +66,7 @@ const SigninPage = () => {
               id="username"
               name="username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleChange}
             />
           </InputContainer>
 
@@ -74,7 +78,7 @@ const SigninPage = () => {
               id="password"
               name="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
             />
           </InputContainer>
 

@@ -9,15 +9,14 @@ const CountryInput = ({
   id: string
   name: string
   value: string
-  handleChange: React.Dispatch<React.SetStateAction<string>>
+  handleChange: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => void
 }) => {
   return (
-    <CountryDropDown
-      id={id}
-      name={name}
-      value={value}
-      onChange={(e) => handleChange(e.target.value)}
-    >
+    <CountryDropDown id={id} name={name} value={value} onChange={handleChange}>
       {countries.map((country) => {
         return (
           <CountryItem value={country.code} key={country.code}>
