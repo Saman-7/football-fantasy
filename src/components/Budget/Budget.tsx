@@ -1,7 +1,10 @@
 import { BudgetContainer, BudgetRightContainer } from "./Budget.styled"
 import WalletSVG from "../../svg/wallet.svg"
+import useMainPageStore from "../../store"
 
 const Budget = () => {
+  const { budget } = useMainPageStore()
+
   return (
     <BudgetContainer>
       <BudgetRightContainer>
@@ -10,7 +13,7 @@ const Budget = () => {
         <span>باقی مانده پول</span>
       </BudgetRightContainer>
 
-      <span>۷۳</span>
+      <span>{budget}</span>
     </BudgetContainer>
   )
 }

@@ -29,9 +29,11 @@ const SignupPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = JSON.parse(localStorage.getItem("token") || "{}")
 
-    token && navigate("/main-page")
+    if (Object.keys(token).length !== 0 || token !== undefined) {
+      navigate("/main-page")
+    }
   }, [])
 
   if (submitted) {
