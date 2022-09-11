@@ -7,8 +7,8 @@ interface MainPageState {
   picks: []
   setPicks: (picks: []) => void
 
-  filter: string
-  setFilter: (filter: string) => void
+  filter: number
+  setFilter: (filter: number) => void
 }
 
 const useMainPageStore = create<MainPageState>((set) => ({
@@ -18,7 +18,7 @@ const useMainPageStore = create<MainPageState>((set) => ({
   picks: [],
   setPicks: (picks) => set((state) => ({ ...state, picks })),
 
-  filter: "All",
+  filter: 0,
   setFilter: (filter) => set((state) => ({ ...state, filter })),
 }))
 
