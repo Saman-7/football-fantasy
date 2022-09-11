@@ -16,19 +16,22 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { numberEnglishToPersian } from "../../utils/numberEnglishToPersion"
 import classNames from "classnames"
+import useMainPageStore from "../../store"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
 const SelectPlayer = () => {
   const [seach, setSearch] = useState("")
-  const [filter, setFilter] = useState(0)
   const [pagePlayers, setPagePlayers] = useState<Array<any>>([])
+  const [totalPlayer, setTotalPlayer] = useState(0)
   const [page, setPage] = useState(1)
   const [totalPage, setCountPage] = useState(1)
 
   const changeSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearch(e.target.value)
   }
+
+  const { filter, setFilter } = useMainPageStore()
 
   const handleFilter = (lane: string) => {
     let numberFilter
@@ -69,7 +72,7 @@ const SelectPlayer = () => {
       .then((res) => {
         setPagePlayers(res.data.data)
         setCountPage(res.data.pages)
-        console.log(res.data)
+        setTotalPlayer(res.data.total)
       })
       .catch((err) => console.log(err))
   }, [seach, filter, page])
@@ -98,7 +101,7 @@ const SelectPlayer = () => {
       </FilterButton>
 
       <DisplayNumberPlayer>
-        <span>۵۲۳ بازیکن نمایش داده شده است</span>
+        <span>{`${totalPlayer} بازیکن نمایش داده شده است`}</span>
       </DisplayNumberPlayer>
 
       <ListPlayers>
