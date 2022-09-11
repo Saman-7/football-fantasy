@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const PitchContainer = styled.div`
   grid-area: pitch;
@@ -13,7 +13,7 @@ export const PitchContainer = styled.div`
   & .line-pitch {
     position: absolute;
   }
-`;
+`
 
 export const PaleGreen = styled.div`
   width: 774px;
@@ -30,7 +30,7 @@ export const PaleGreen = styled.div`
     width: 774px;
     height: 115px;
   }
-`;
+`
 
 export const LanePitch = styled.div`
   display: flex;
@@ -80,6 +80,7 @@ export const LanePitch = styled.div`
       position: absolute;
       right: -10px;
       top: -10px;
+      z-index: 100;
       cursor: pointer;
     }
   }
@@ -90,7 +91,7 @@ export const LanePitch = styled.div`
       margin: 0px 45px;
     }
   }
-`;
+`
 
 export const BoxDress = styled.div`
   width: 120px;
@@ -132,4 +133,4 @@ export const BoxDress = styled.div`
       color: #38003c;
     }
   }
-`;
+`

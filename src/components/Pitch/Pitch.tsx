@@ -6,8 +6,8 @@ import undress from "../../images/undress.png"
 import uniform from "../../images/uniform.png"
 import blueDress from "../../images/blue-dress.png"
 import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled"
-import axios from "axios"
 import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
+import useMainPageStore from "../../store"
 
 const lanePlayersPitch = [
   {
@@ -54,19 +54,11 @@ const Pitch = () => {
     }
   }
 
+  const { picks } = useMainPageStore()
+
   useEffect(() => {
-    axios
-      .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
-        headers: {
-          token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg3MzRlMjA0MGNjYzRiNDAxODA0NCIsImlhdCI6MTY2MjU1MDI0Nn0.PAGGzig0lKebZDtpOlg4-cZge2DOLk5UIx-SEnMseT4",
-        },
-      })
-      .then((res) => {
-        console.log(res.data.data.teamId.picks)
-        setListPlayers(res.data.data.teamId.picks)
-      })
-  }, [])
+    setListPlayers(picks)
+  }, [picks])
 
   return (
     <PitchContainer>
