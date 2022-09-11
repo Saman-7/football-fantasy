@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import useMainPageStore from "../store"
 import styled from "styled-components"
 import Budget from "../components/Budget/Budget"
@@ -11,7 +12,6 @@ import Pitch from "../components/Pitch/Pitch"
 import RemainingPlayers from "../components/RemainingPlayers/RemainingPlayers"
 import SelectPlayer from "../components/SelectPlayer/SelectPlayer"
 import ViewSwitcher from "../components/ViewSwitcher/ViewSwitcher"
-import { useNavigate } from "react-router-dom"
 
 const MainPageContainer = styled.div`
   display: flex;
@@ -48,9 +48,12 @@ const MainPage = () => {
   const { setPicks, setBudget } = state
 
   useEffect(() => {
-    const token = localStorage.getItem("token") || ""
+    const token = JSON.parse(localStorage.getItem("token") || "{}")
 
-    if (token === "" || token === undefined) navigate("/signin")
+    console.log(token)
+
+    if (Object.keys(token).length === 0 || token === undefined)
+      navigate("/signin")
 
     axios
       .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
