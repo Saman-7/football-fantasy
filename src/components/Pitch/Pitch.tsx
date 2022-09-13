@@ -8,6 +8,7 @@ import blueDress from "../../images/blue-dress.png"
 import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled"
 import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 import useMainPageStore from "../../store"
+import { filterStringToNumber } from "../../utils/filterStringToNumber"
 
 const lanePlayersPitch = [
   {
@@ -29,36 +30,39 @@ const lanePlayersPitch = [
 ]
 
 const Pitch = () => {
-  const [listPlayers, setListPlayers] = useState<Array<any>>([])
   const [activePlayerId, setActivePlayerId] = useState<number>()
   const [deletePlayerId, setDeletePlayerId] = useState<number>()
-
-  const selectedPlayer = (playerId: number) => {
-    setActivePlayerId(playerId)
-  }
-
-  const selectedDeletePlayer = (playerId: number) => {
-    setDeletePlayerId(playerId)
-  }
-
-  const handleDeletePlayer = (status: boolean) => {
-    if (status && deletePlayerId) {
-      const newListPlayer = listPlayers.map((_, index) =>
-        index === deletePlayerId ? null : listPlayers[index]
-      )
-      setListPlayers(newListPlayer)
-      setDeletePlayerId(undefined)
-      setActivePlayerId(undefined)
-    } else {
-      setDeletePlayerId(undefined)
-    }
-  }
-
   const { picks } = useMainPageStore()
 
+  const handleDeletePlayer = (status: boolean) => {
+    // if (status && deletePlayerId) {
+    //   const newListPlayer = listPlayers.map((_, index) =>
+    //     index === deletePlayerId ? null : listPlayers[index]
+    //   )
+    //   setListPlayers(newListPlayer)
+    //   setDeletePlayerId(undefined)
+    //   setActivePlayerId(undefined)
+    // } else {
+    //   setDeletePlayerId(undefined)
+    // }
+  }
+
+  const { setPisition, setFilter } = useMainPageStore()
   useEffect(() => {
-    setListPlayers(picks)
-  }, [picks])
+    if (activePlayerId !== undefined) {
+      setPisition(activePlayerId)
+
+      const dataLane = lanePlayersPitch.find((dataLane) => {
+        const ret = dataLane.players.find(
+          (playerId) => playerId === activePlayerId
+        )
+        if (ret !== undefined) return true
+        else return false
+      })!
+
+      setFilter(filterStringToNumber(dataLane.lane))
+    }
+  }, [activePlayerId])
 
   return (
     <PitchContainer>
@@ -70,7 +74,7 @@ const Pitch = () => {
       {deletePlayerId && (
         <DeletePlayerPopup
           playerId={deletePlayerId}
-          playerName={listPlayers[deletePlayerId].name}
+          playerName={picks[deletePlayerId].name}
           deletePlayer={handleDeletePlayer}
         />
       )}
@@ -79,19 +83,13 @@ const Pitch = () => {
         {lanePlayersPitch.map(({ lane, players }) => (
           <div key={lane} className={lane}>
             {players.map((playerId) => {
-              const dataPlayer = listPlayers.find(
-                (_, index) => index === playerId
-              )
+              const dataPlayer = picks.find((_, index) => index === playerId)
               if (!!dataPlayer?.player) {
                 return (
-                  <div
-                    key={playerId}
-                    className="box"
-                    onClick={() => selectedPlayer(playerId)}
-                  >
+                  <div key={playerId} className="box">
                     <DeleteSVG
                       className="delete-icon"
-                      onClick={() => selectedDeletePlayer(playerId)}
+                      onClick={() => setDeletePlayerId(playerId)}
                     />
                     <img src={uniform} className="uniform" alt="uniform" />
                     <BoxDress>
@@ -109,7 +107,7 @@ const Pitch = () => {
                   <div
                     key={playerId}
                     className="box"
-                    onClick={() => selectedPlayer(playerId)}
+                    onClick={() => setActivePlayerId(playerId)}
                   >
                     <img src={blueDress} className="undress" alt="undress" />
                   </div>
@@ -119,7 +117,7 @@ const Pitch = () => {
                   <div
                     key={playerId}
                     className="box"
-                    onClick={() => selectedPlayer(playerId)}
+                    onClick={() => setActivePlayerId(playerId)}
                   >
                     <img src={undress} className="undress" alt="undress" />
                     <PlusSVG className="plus-icon" />

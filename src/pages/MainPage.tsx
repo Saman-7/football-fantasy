@@ -50,8 +50,6 @@ const MainPage = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || "{}")
 
-    console.log(token)
-
     if (Object.keys(token).length === 0 || token === undefined)
       navigate("/signin")
 
@@ -63,8 +61,8 @@ const MainPage = () => {
       })
       .then((res) => res.data.data)
       .then((data) => {
-        setPicks(data.teamId.picks)
-        setBudget(data.budget)
+        setPicks(data.manager.teamId.picks)
+        setBudget(data.manager.budget)
       })
   }, [])
 
