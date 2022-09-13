@@ -5,7 +5,7 @@ import {
   InputContainer,
 } from "./Confirmation.styled"
 import { FormHeaderContainer, Input } from "./Signin.styled"
-import { FormContainer, Button } from "../Signup/Signup.styled"
+import { FormContainer, Button } from "./Signup.styled"
 import PurpleLineSVG from "../../svg/purple-line.svg"
 import PinkLineSVG from "../../svg/pink-line.svg"
 
@@ -53,7 +53,7 @@ const Confirmation = (props: ConfirmationProps) => {
 
               const { token } = response.data.data
 
-              localStorage.setItem("token", token)
+              localStorage.setItem("token", JSON.parse(token))
 
               navigate("/main-page")
             }}
