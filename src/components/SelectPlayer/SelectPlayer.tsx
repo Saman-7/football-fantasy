@@ -28,8 +28,15 @@ const SelectPlayer = () => {
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
 
-  const { filter, setFilter, position, setPicks, setBudget, picks } =
-    useMainPageStore()
+  const {
+    filter,
+    setFilter,
+    position,
+    setPicks,
+    setBudget,
+    picks,
+    setRemainPlayer,
+  } = useMainPageStore()
 
   const handleChangePage = (num: number) => {
     if (num === +1 && page < totalPage) setPage(page + 1)
@@ -58,8 +65,10 @@ const SelectPlayer = () => {
               },
             })
             .then((res) => {
-              setPicks(res.data.data.manager.teamId.picks)
-              setBudget(res.data.data.manager.budget)
+              const data = res.data.data.manager
+              setPicks(data.teamId.picks)
+              setBudget(data.budget)
+              setRemainPlayer(res.data.data.nb)
             })
         })
         .catch((err) => console.log(err))

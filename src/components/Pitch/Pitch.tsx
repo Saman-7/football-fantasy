@@ -33,7 +33,7 @@ const lanePlayersPitch = [
 const Pitch = () => {
   const [activePlayerId, setActivePlayerId] = useState<number>()
   const [deletePlayerId, setDeletePlayerId] = useState<number>()
-  const { picks, setPicks, setBudget } = useMainPageStore()
+  const { picks, setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
   const handleDeletePlayer = (status: boolean) => {
     if (status && deletePlayerId !== undefined) {
@@ -63,6 +63,7 @@ const Pitch = () => {
               const data = res.data.data.manager
               setPicks(data.teamId.picks)
               setBudget(data.budget)
+              setRemainPlayer(res.data.data.nb)
             })
         })
         .catch((err) => {

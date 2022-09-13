@@ -45,7 +45,7 @@ const MainPage = () => {
 
   const state = useMainPageStore()
 
-  const { setPicks, setBudget } = state
+  const { setPicks, setBudget, setRemainPlayer } = state
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || "{}")
@@ -63,6 +63,7 @@ const MainPage = () => {
       .then((data) => {
         setPicks(data.manager.teamId.picks)
         setBudget(data.manager.budget)
+        setRemainPlayer(data.nb)
       })
   }, [])
 

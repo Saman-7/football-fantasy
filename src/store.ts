@@ -12,6 +12,9 @@ interface MainPageState {
 
   position: number | undefined
   setPisition: (position: number) => void
+
+  remainPlayer: number
+  setRemainPlayer: (remainPlayer: number) => void
 }
 
 const useMainPageStore = create<MainPageState>((set) => ({
@@ -26,6 +29,10 @@ const useMainPageStore = create<MainPageState>((set) => ({
 
   position: undefined,
   setPisition: (position) => set((state) => ({ ...state, position })),
+
+  remainPlayer: 0,
+  setRemainPlayer: (remainPlayer) =>
+    set((state) => ({ ...state, remainPlayer })),
 }))
 
 export default useMainPageStore
