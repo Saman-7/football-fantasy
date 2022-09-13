@@ -4,11 +4,14 @@ interface MainPageState {
   budget: number
   setBudget: (budget: number) => void
 
-  picks: []
-  setPicks: (picks: []) => void
+  picks: Array<any>
+  setPicks: (picks: Array<any>) => void
 
   filter: number
   setFilter: (filter: number) => void
+
+  position: number | undefined
+  setPisition: (position: number) => void
 }
 
 const useMainPageStore = create<MainPageState>((set) => ({
@@ -20,6 +23,9 @@ const useMainPageStore = create<MainPageState>((set) => ({
 
   filter: 0,
   setFilter: (filter) => set((state) => ({ ...state, filter })),
+
+  position: undefined,
+  setPisition: (position) => set((state) => ({ ...state, position })),
 }))
 
 export default useMainPageStore
