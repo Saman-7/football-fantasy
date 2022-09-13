@@ -36,7 +36,7 @@ const Pitch = () => {
   const { picks, setPicks, setBudget } = useMainPageStore()
 
   const handleDeletePlayer = (status: boolean) => {
-    if (status && deletePlayerId) {
+    if (status && deletePlayerId !== undefined) {
       const token = JSON.parse(localStorage.getItem("token") || "{}")
       const idPlayer = picks[deletePlayerId].player._id
 
@@ -60,8 +60,9 @@ const Pitch = () => {
               },
             })
             .then((res) => {
-              setPicks(res.data.data.manager.teamId.picks)
-              setBudget(res.data.data.manager.budget)
+              const data = res.data.data.manager
+              setPicks(data.teamId.picks)
+              setBudget(data.budget)
             })
         })
         .catch((err) => {
@@ -97,7 +98,7 @@ const Pitch = () => {
         <div /> <div /> <div />
       </PaleGreen>
 
-      {deletePlayerId && (
+      {deletePlayerId !== undefined && (
         <DeletePlayerPopup
           playerId={deletePlayerId}
           playerName={picks[deletePlayerId].player.web_name}
