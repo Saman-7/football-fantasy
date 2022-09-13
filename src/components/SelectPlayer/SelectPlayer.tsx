@@ -26,10 +26,15 @@ const SelectPlayer = () => {
   const [pagePlayers, setPagePlayers] = useState<Array<any>>([])
   const [totalPlayer, setTotalPlayer] = useState(0)
   const [page, setPage] = useState(1)
-  const [totalPage, setCountPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(1)
 
-  const { filter, setFilter, position, setPicks, setBudget } =
+  const { filter, setFilter, position, setPicks, setBudget, picks } =
     useMainPageStore()
+
+  const handleChangePage = (num: number) => {
+    if (num === +1 && page < totalPage) setPage(page + 1)
+    else if (num === -1 && page !== 1) setPage(page - 1)
+  }
 
   const addPlayerToPitch = (_id: string) => {
     if (position !== undefined) {
@@ -62,6 +67,10 @@ const SelectPlayer = () => {
   }
 
   useEffect(() => {
+    if (page !== 1) setPage(1)
+  }, [filter])
+
+  useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || "{}")
     axios
       .get("http://178.216.248.37:8080/api/v1/players/search", {
@@ -76,12 +85,15 @@ const SelectPlayer = () => {
         },
       })
       .then((res) => {
-        setPagePlayers(res.data.data)
-        setCountPage(res.data.pages)
-        setTotalPlayer(res.data.total)
+        const listPlayer = res.data.data
+        if (listPlayer.length !== 0) {
+          setTotalPlayer(res.data.total)
+          setPagePlayers(listPlayer)
+          setTotalPage(res.data.pages)
+        }
       })
       .catch((err) => console.log(err))
-  }, [seach, filter, page])
+  }, [seach, filter, page, picks])
 
   return (
     <SelectPlayerContainer>
@@ -147,12 +159,12 @@ const SelectPlayer = () => {
 
       <ChangePage>
         <DoubleArrowLeftSVG onClick={() => setPage(totalPage)} />
-        <SingleArrowLeftSVG onClick={() => setPage(page + 1)} />
+        <SingleArrowLeftSVG onClick={() => handleChangePage(1)} />
         <span>
           {`صفحه ${numberEnglishToPersian(page.toString())}
            از ${numberEnglishToPersian(totalPage.toString())}`}
         </span>
-        <SingleArrowRightSVG onClick={() => setPage(page - 1)} />
+        <SingleArrowRightSVG onClick={() => handleChangePage(-1)} />
         <DoubleArrowrRightSVG onClick={() => setPage(1)} />
       </ChangePage>
     </SelectPlayerContainer>

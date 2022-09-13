@@ -7,8 +7,10 @@ export const SelectPlayerContainer = styled.div`
   border-radius: 16px 16px 0px 0px;
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
   margin-left: 24px;
+  position: relative;
 
   & .title-head {
     width: 100%;
@@ -149,6 +151,8 @@ export const ListPlayers = styled.div`
 `
 
 export const ChangePage = styled.div`
+  position: absolute;
+  bottom: 5px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
