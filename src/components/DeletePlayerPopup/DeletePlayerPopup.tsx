@@ -1,14 +1,14 @@
-import uniform from "../../images/uniform.png";
+import uniform from "../../images/uniform.png"
 import {
   ButtonPopup,
   DeletePlayerPopupContainer,
   PopupBox,
-} from "./DeletePlayerPopup.styled";
+} from "./DeletePlayerPopup.styled"
 
 interface TypeDeletePlayerPopup {
-  playerId: number;
-  playerName: string;
-  deletePlayer: (status: boolean) => void;
+  playerId: number
+  playerName: string
+  deletePlayer: (status: boolean) => void
 }
 
 const DeletePlayerPopup = (props: TypeDeletePlayerPopup) => {
@@ -28,7 +28,7 @@ const DeletePlayerPopup = (props: TypeDeletePlayerPopup) => {
         </ButtonPopup>
       </PopupBox>
     </DeletePlayerPopupContainer>
-  );
-};
+  )
+}
 
-export default DeletePlayerPopup;
+export default DeletePlayerPopup
