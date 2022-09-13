@@ -16,43 +16,53 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { numberEnglishToPersian } from "../../utils/numberEnglishToPersion"
 import classNames from "classnames"
+import useMainPageStore from "../../store"
+import { filterStringToNumber } from "../../utils/filterStringToNumber"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
 const SelectPlayer = () => {
   const [seach, setSearch] = useState("")
-  const [filter, setFilter] = useState(0)
   const [pagePlayers, setPagePlayers] = useState<Array<any>>([])
+  const [totalPlayer, setTotalPlayer] = useState(0)
   const [page, setPage] = useState(1)
   const [totalPage, setCountPage] = useState(1)
 
-  const changeSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setSearch(e.target.value)
-  }
+  const { filter, setFilter, position, setPicks, setBudget } =
+    useMainPageStore()
 
-  const handleFilter = (lane: string) => {
-    let numberFilter
-    switch (lane) {
-      case "GK":
-        numberFilter = 1
-        break
-      case "DEF":
-        numberFilter = 2
-        break
-      case "MID":
-        numberFilter = 3
-        break
-      case "ATT":
-        numberFilter = 4
-        break
-      default:
-        numberFilter = 0
-        break
+  const addPlayerToPitch = (_id: string) => {
+    if (position !== undefined) {
+      const token = JSON.parse(localStorage.getItem("token") || "{}")
+      axios({
+        method: "patch",
+        url: "http://178.216.248.37:8080/api/v1/teams/add-player",
+        data: {
+          id: _id,
+          index: position,
+        },
+        headers: {
+          token: token,
+        },
+      })
+        .then((_) => {
+          axios
+            .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+              headers: {
+                token: token,
+              },
+            })
+            .then((res) => {
+              setPicks(res.data.data.manager.teamId.picks)
+              setBudget(res.data.data.manager.budget)
+            })
+        })
+        .catch((err) => console.log(err))
     }
-    setFilter(numberFilter)
   }
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token") || "{}")
     axios
       .get("http://178.216.248.37:8080/api/v1/players/search", {
         params: {
@@ -62,14 +72,13 @@ const SelectPlayer = () => {
           web_name: seach,
         },
         headers: {
-          token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTVlZjc5NjE4MzQ5MWM0MzdhMGMyOSIsImlhdCI6MTY2MjM4MTk0Nn0.iwiT5k4CN8_JXvYnw4fOV5B8kDFAbZyQVTIErYbhewk",
+          token: token,
         },
       })
       .then((res) => {
         setPagePlayers(res.data.data)
         setCountPage(res.data.pages)
-        console.log(res.data)
+        setTotalPlayer(res.data.total)
       })
       .catch((err) => console.log(err))
   }, [seach, filter, page])
@@ -82,7 +91,11 @@ const SelectPlayer = () => {
 
       <InputSearch>
         <SearchSVG className="search-icon" />
-        <input type="text" placeholder="جستجو" onChange={changeSearch} />
+        <input
+          type="text"
+          placeholder="جستجو"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </InputSearch>
 
       <FilterButton>
@@ -90,7 +103,7 @@ const SelectPlayer = () => {
           <button
             key={lane}
             className={classNames({ active: filter === index })}
-            onClick={() => handleFilter(lane)}
+            onClick={() => setFilter(filterStringToNumber(lane))}
           >
             {lane}
           </button>
@@ -98,7 +111,7 @@ const SelectPlayer = () => {
       </FilterButton>
 
       <DisplayNumberPlayer>
-        <span>۵۲۳ بازیکن نمایش داده شده است</span>
+        <span>{`${totalPlayer} بازیکن نمایش داده شده است`}</span>
       </DisplayNumberPlayer>
 
       <ListPlayers>
@@ -114,16 +127,22 @@ const SelectPlayer = () => {
           </span>
         </div>
 
-        {pagePlayers.map(({ web_name, plTeam, form, now_cost }, index) => (
-          <div key={index} className="row-player">
-            <div>
-              <span>{web_name}</span>
-              <span>{plTeam.short_name}</span>
+        {pagePlayers.map(
+          ({ _id, web_name, plTeam, form, now_cost, generalId }) => (
+            <div
+              key={generalId}
+              className="row-player"
+              onClick={() => addPlayerToPitch(_id)}
+            >
+              <div>
+                <span>{web_name}</span>
+                <span>{plTeam.short_name}</span>
+              </div>
+              <span>{form}</span>
+              <span>{now_cost}</span>
             </div>
-            <span>{form}</span>
-            <span>{now_cost}</span>
-          </div>
-        ))}
+          )
+        )}
       </ListPlayers>
 
       <ChangePage>
