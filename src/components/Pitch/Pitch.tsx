@@ -9,6 +9,7 @@ import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled"
 import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 import useMainPageStore from "../../store"
 import { filterStringToNumber } from "../../utils/filterStringToNumber"
+import axios from "axios"
 
 const lanePlayersPitch = [
   {
@@ -32,19 +33,44 @@ const lanePlayersPitch = [
 const Pitch = () => {
   const [activePlayerId, setActivePlayerId] = useState<number>()
   const [deletePlayerId, setDeletePlayerId] = useState<number>()
-  const { picks } = useMainPageStore()
+  const { picks, setPicks, setBudget } = useMainPageStore()
 
   const handleDeletePlayer = (status: boolean) => {
-    // if (status && deletePlayerId) {
-    //   const newListPlayer = listPlayers.map((_, index) =>
-    //     index === deletePlayerId ? null : listPlayers[index]
-    //   )
-    //   setListPlayers(newListPlayer)
-    //   setDeletePlayerId(undefined)
-    //   setActivePlayerId(undefined)
-    // } else {
-    //   setDeletePlayerId(undefined)
-    // }
+    if (status && deletePlayerId) {
+      const token = JSON.parse(localStorage.getItem("token") || "{}")
+      const idPlayer = picks[deletePlayerId].player._id
+
+      axios({
+        method: "patch",
+        url: "http://178.216.248.37:8080/api/v1/teams/delete-player",
+        headers: {
+          token: token,
+        },
+        data: {
+          id: idPlayer,
+          index: deletePlayerId,
+        },
+      })
+        .then((_) => {
+          setDeletePlayerId(undefined)
+          axios
+            .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
+              headers: {
+                token: token,
+              },
+            })
+            .then((res) => {
+              setPicks(res.data.data.manager.teamId.picks)
+              setBudget(res.data.data.manager.budget)
+            })
+        })
+        .catch((err) => {
+          setDeletePlayerId(undefined)
+          console.log(err)
+        })
+    } else {
+      setDeletePlayerId(undefined)
+    }
   }
 
   const { setPisition, setFilter } = useMainPageStore()
@@ -74,7 +100,7 @@ const Pitch = () => {
       {deletePlayerId && (
         <DeletePlayerPopup
           playerId={deletePlayerId}
-          playerName={picks[deletePlayerId].name}
+          playerName={picks[deletePlayerId].player.web_name}
           deletePlayer={handleDeletePlayer}
         />
       )}
