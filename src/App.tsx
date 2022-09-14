@@ -1,22 +1,27 @@
-import { Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import LoginLayout from "./components/Login/LoginLayout"
 import SigninPage from "./pages/SigninPage"
 import SignupPage from "./pages/SignupPage"
-import MainPage from "./pages/MainPage"
+import MainPageLayout from "./components/MainPage/MainPageLayout"
+import MyTeamPage from "./pages/MyTeamPage"
 import "./App.css"
 
 const App = () => {
   return (
-    <div className="app">
-      <Routes>
-        <Route element={<LoginLayout />}>
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-        </Route>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route element={<LoginLayout />}>
+            <Route path="/signin" element={<SigninPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+          </Route>
 
-        <Route path="main-page" element={<MainPage />} />
-      </Routes>
-    </div>
+          <Route element={<MainPageLayout />}>
+            <Route path="/main/my-team" element={<MyTeamPage />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

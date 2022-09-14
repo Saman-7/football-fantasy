@@ -31,8 +31,8 @@ const SignupPage = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || "{}")
 
-    if (Object.keys(token).length !== 0 && token !== undefined) {
-      navigate("/main-page")
+    if (Object.keys(token).length !== 0) {
+      navigate("/main/my-team")
     }
   }, [])
 

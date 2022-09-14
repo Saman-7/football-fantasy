@@ -1,4 +1,4 @@
-import uniform from "../../images/uniform.png"
+import uniform from "../../../../images/uniform.png"
 import {
   ButtonPopup,
   DeletePlayerPopupContainer,

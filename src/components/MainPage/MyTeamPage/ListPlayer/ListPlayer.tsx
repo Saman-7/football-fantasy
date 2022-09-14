@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import UniformPNG from "../../images/uniform.png"
-import { ReactComponent as LeagueSVG } from "../../svg/league.svg"
-import { ReactComponent as StripesSVG } from "../../svg/stripes.svg"
-import { convertLanesToPersian } from "../../utils/convertLanes"
+import UniformPNG from "../../../../images/uniform.png"
+import { ReactComponent as LeagueSVG } from "../../../../svg/league.svg"
+import { ReactComponent as StripesSVG } from "../../../../svg/stripes.svg"
+import { convertLanesToPersian } from "../../../../utils/convertLanes"
 import {
   BoxList,
   HeaderList,
@@ -12,7 +12,7 @@ import {
   Sidebar,
 } from "./ListPlayer.styled"
 import axios from "axios"
-import useMainPageStore from "../../store"
+import useMainPageStore from "../../../../store"
 
 const lanePlayersPitch = [
   {

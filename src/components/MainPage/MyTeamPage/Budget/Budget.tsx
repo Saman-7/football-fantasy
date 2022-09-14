@@ -1,6 +1,6 @@
 import { BudgetContainer, BudgetRightContainer } from "./Budget.styled"
-import WalletSVG from "../../svg/wallet.svg"
-import useMainPageStore from "../../store"
+import WalletSVG from "../../../../svg/wallet.svg"
+import useMainPageStore from "../../../../store"
 
 const Budget = () => {
   const { budget } = useMainPageStore()
