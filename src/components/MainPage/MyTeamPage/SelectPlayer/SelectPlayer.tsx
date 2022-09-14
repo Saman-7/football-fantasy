@@ -1,9 +1,9 @@
-import { ReactComponent as SearchSVG } from "../../svg/search.svg"
-import { ReactComponent as ArrowUpSVG } from "../../svg/arrow-up.svg"
-import { ReactComponent as DoubleArrowLeftSVG } from "../../svg/double-arrow-left.svg"
-import { ReactComponent as DoubleArrowrRightSVG } from "../../svg/double-arrow-right.svg"
-import { ReactComponent as SingleArrowLeftSVG } from "../../svg/single-arrow-left.svg"
-import { ReactComponent as SingleArrowRightSVG } from "../../svg/single-arrow-right.svg"
+import { ReactComponent as SearchSVG } from "../../../../svg/search.svg"
+import { ReactComponent as ArrowUpSVG } from "../../../../svg/arrow-up.svg"
+import { ReactComponent as DoubleArrowLeftSVG } from "../../../../svg/double-arrow-left.svg"
+import { ReactComponent as DoubleArrowrRightSVG } from "../../../../svg/double-arrow-right.svg"
+import { ReactComponent as SingleArrowLeftSVG } from "../../../../svg/single-arrow-left.svg"
+import { ReactComponent as SingleArrowRightSVG } from "../../../../svg/single-arrow-right.svg"
 import {
   ChangePage,
   FilterButton,
@@ -14,10 +14,10 @@ import {
 } from "./SelectPlayer.styled"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { numberEnglishToPersian } from "../../utils/numberEnglishToPersion"
+import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 import classNames from "classnames"
-import useMainPageStore from "../../store"
-import { filterStringToNumber } from "../../utils/filterStringToNumber"
+import useMainPageStore from "../../../../store"
+import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 

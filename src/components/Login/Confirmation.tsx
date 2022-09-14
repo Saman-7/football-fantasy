@@ -53,9 +53,9 @@ const Confirmation = (props: ConfirmationProps) => {
 
               const { token } = response.data.data
 
-              localStorage.setItem("token", JSON.parse(token))
+              localStorage.setItem("token", JSON.stringify(token))
 
-              navigate("/main-page")
+              navigate("/main/my-team")
             }}
           />
         </form>

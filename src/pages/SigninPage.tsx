@@ -38,13 +38,13 @@ const SigninPage = () => {
 
     localStorage.setItem("token", JSON.stringify(data.token))
 
-    navigate("/main-page")
+    navigate("/main/my-team")
   }
 
   useEffect(() => {
     const token = localStorage.getItem("token")
 
-    token && navigate("/main-page")
+    token && navigate("/main/my-team")
   }, [])
 
   return (

@@ -6,8 +6,8 @@ import {
   MatchweekStatusContainer,
 } from "./MatchweekStatus.styled"
 import "jdate.js"
-import { weekToStringPersian } from "../../utils/weekToStringPersion"
-import { numberEnglishToPersian } from "../../utils/numberEnglishToPersion"
+import { weekToStringPersian } from "../../../../utils/weekToStringPersion"
+import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 
 const MatchweekStatus = () => {
   const [week, setWeek] = useState<string>()

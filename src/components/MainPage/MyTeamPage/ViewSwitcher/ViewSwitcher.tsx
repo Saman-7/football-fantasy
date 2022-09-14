@@ -1,5 +1,5 @@
-import { PAGE_VIEW_SWITCHER } from "../../pages/MainPage"
-import { ReactComponent as RahnemaLogoSVG } from "../../svg/rahnema-logo.svg"
+import { PAGE_VIEW_SWITCHER } from "../../../../pages/MyTeamPage"
+import { ReactComponent as RahnemaLogoSVG } from "../../../../svg/rahnema-logo.svg"
 import { ViewSwitcherContainer } from "./ViewSwicher.styled"
 import classNames from "classnames"
 

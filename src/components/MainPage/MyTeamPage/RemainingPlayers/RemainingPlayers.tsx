@@ -3,9 +3,9 @@ import {
   RemainingPlayersContainer,
   RemainingPlayersRightContainer,
 } from "./RemainingPlayers.styled"
-import RemainingPlayersSVG from "../../svg/remaining-players.svg"
-import useMainPageStore from "../../store"
-import { numberEnglishToPersian } from "../../utils/numberEnglishToPersion"
+import RemainingPlayersSVG from "../../../../svg/remaining-players.svg"
+import useMainPageStore from "../../../../store"
+import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 
 const RemainingPlayers = () => {
   const { remainPlayer } = useMainPageStore()

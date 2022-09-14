@@ -1,6 +1,6 @@
 import { HeaderContainer, HeaderRightContainer, PLLogo } from "./Header.style"
-import ThreePlayersSVG from "../../svg/three-players.svg"
-import PLLogoSVG from "../../svg/pl-logo.svg"
+import ThreePlayersSVG from "../../../svg/three-players.svg"
+import PLLogoSVG from "../../../svg/pl-logo.svg"
 
 const Header = () => {
   return (
