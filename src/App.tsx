@@ -19,6 +19,9 @@ const App = () => {
           <Route element={<MainPageLayout />}>
             <Route path="/main/my-team" element={<MyTeamPage />} />
           </Route>
+
+          {/* Test route for components */}
+          <Route path="" element={<></>} />
         </Routes>
       </div>
     </Router>
