@@ -11,8 +11,8 @@ import {
   FollowProfileButton,
   FollowingsContainer,
 } from "./YourFriends.styled"
-import { ReactComponent as SearchSVG } from "../../svg/search.svg"
-import { ReactComponent as SampleProfileSVG } from "../../svg/sample-profile.svg"
+import { ReactComponent as SearchSVG } from "../../../../svg/search.svg"
+import { ReactComponent as SampleProfileSVG } from "../../../../svg/sample-profile.svg"
 
 const followers = [
   {

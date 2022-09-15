@@ -1,5 +1,5 @@
 import { Container } from "./FriendsSearchBar.styled"
-import { ReactComponent as SearchSVG } from "../../../svg/search.svg"
+import { ReactComponent as SearchSVG } from "../../../../svg/search.svg"
 
 const FriendsSearchBar = () => {
   return (
