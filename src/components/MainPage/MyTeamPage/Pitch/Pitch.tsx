@@ -10,6 +10,7 @@ import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 import axios from "axios"
+import Loading from "../../../loading/Loading"
 
 const lanePlayersPitch = [
   {
@@ -33,10 +34,14 @@ const lanePlayersPitch = [
 const Pitch = () => {
   const [activePlayerId, setActivePlayerId] = useState<number>()
   const [deletePlayerId, setDeletePlayerId] = useState<number>()
+  const [isLoading, setIsLoading] = useState(false)
+
   const { picks, setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
   const handleDeletePlayer = (status: boolean) => {
     if (status && deletePlayerId !== undefined) {
+      setIsLoading(true)
+
       const token = JSON.parse(localStorage.getItem("token") || "{}")
       const idPlayer = picks[deletePlayerId].player._id
 
@@ -52,7 +57,6 @@ const Pitch = () => {
         },
       })
         .then((_) => {
-          setDeletePlayerId(undefined)
           axios
             .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
               headers: {
@@ -64,11 +68,19 @@ const Pitch = () => {
               setPicks(data.teamId.picks)
               setBudget(data.budget)
               setRemainPlayer(res.data.data.nb)
+              setDeletePlayerId(undefined)
+              setIsLoading(false)
+            })
+            .catch((err) => {
+              console.log(err)
+              setDeletePlayerId(undefined)
+              setIsLoading(false)
             })
         })
         .catch((err) => {
-          setDeletePlayerId(undefined)
           console.log(err)
+          setDeletePlayerId(undefined)
+          setIsLoading(false)
         })
     } else {
       setDeletePlayerId(undefined)
@@ -94,6 +106,8 @@ const Pitch = () => {
 
   return (
     <PitchContainer>
+      {isLoading && <Loading />}
+
       <LinePitchSVG className="line-pitch" />
       <PaleGreen>
         <div /> <div /> <div />
