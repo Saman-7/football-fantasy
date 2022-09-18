@@ -23,7 +23,7 @@ import Loading from "../../../loading/Loading"
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
 const SelectPlayer = () => {
-  const [seach, setSearch] = useState("")
+  const [search, setSearch] = useState("")
   const [pagePlayers, setPagePlayers] = useState<Array<any>>([])
   const [totalPlayer, setTotalPlayer] = useState(0)
   const [page, setPage] = useState(1)
@@ -39,6 +39,12 @@ const SelectPlayer = () => {
     picks,
     setRemainPlayer,
   } = useMainPageStore()
+
+  const handleFilter = (lane: string) => {
+    if (position === undefined) {
+      setFilter(filterStringToNumber(lane))
+    }
+  }
 
   const handleChangePage = (num: number) => {
     if (num === +1 && page < totalPage) setPage(page + 1)
@@ -99,7 +105,7 @@ const SelectPlayer = () => {
           page: page,
           limit: 14,
           filter: filter,
-          web_name: seach,
+          web_name: search,
         },
         headers: {
           token: token,
@@ -114,7 +120,7 @@ const SelectPlayer = () => {
         }
       })
       .catch((err) => console.log(err))
-  }, [seach, filter, page, picks])
+  }, [search, filter, page, picks])
 
   return (
     <SelectPlayerContainer>
@@ -135,8 +141,11 @@ const SelectPlayer = () => {
         {lanesPitch.map((lane, index) => (
           <button
             key={lane}
-            className={classNames({ active: filter === index })}
-            onClick={() => setFilter(filterStringToNumber(lane))}
+            className={classNames({
+              active: filter === index,
+              block: position !== undefined && filter !== index,
+            })}
+            onClick={() => handleFilter(lane)}
           >
             {lane}
           </button>

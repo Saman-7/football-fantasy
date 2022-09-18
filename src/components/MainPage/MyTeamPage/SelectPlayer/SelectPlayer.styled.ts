@@ -80,6 +80,11 @@ export const FilterButton = styled.div`
     cursor: pointer;
     &.active {
       background: linear-gradient(269.48deg, #04f5ec -30.14%, #03fbb8 109.7%);
+      border: 2px solid gold;
+    }
+    &.block {
+      background-color: #ff9797;
+      cursor: no-drop;
     }
   }
 `
