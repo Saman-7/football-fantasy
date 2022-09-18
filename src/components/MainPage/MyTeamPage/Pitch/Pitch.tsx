@@ -87,10 +87,10 @@ const Pitch = () => {
     }
   }
 
-  const { setPisition, setFilter } = useMainPageStore()
+  const { setPosition: setPosition, setFilter } = useMainPageStore()
   useEffect(() => {
     if (activePlayerId !== undefined) {
-      setPisition(activePlayerId)
+      setPosition(activePlayerId)
 
       const dataLane = lanePlayersPitch.find((dataLane) => {
         const ret = dataLane.players.find(
@@ -149,7 +149,10 @@ const Pitch = () => {
                   <div
                     key={playerId}
                     className="box"
-                    onClick={() => setActivePlayerId(playerId)}
+                    onClick={() => {
+                      setActivePlayerId(undefined)
+                      setPosition(undefined)
+                    }}
                   >
                     <img src={blueDress} className="undress" alt="undress" />
                   </div>

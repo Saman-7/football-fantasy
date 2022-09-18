@@ -11,6 +11,7 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  cursor: progress;
 `
 
 export const Circle = styled.div`

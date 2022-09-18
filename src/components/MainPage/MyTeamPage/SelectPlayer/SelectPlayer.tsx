@@ -148,6 +148,7 @@ const SelectPlayer = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </InputSearch>
+
       <FilterButton>
         {lanesPitch.map((lane, index) => (
           <button
@@ -162,9 +163,11 @@ const SelectPlayer = () => {
           </button>
         ))}
       </FilterButton>
+
       <DisplayNumberPlayer>
         <span>{`${totalPlayer} بازیکن نمایش داده شده است`}</span>
       </DisplayNumberPlayer>
+
       <ListPlayers>
         <div className="row-player">
           <span className="header">نام بازیکن</span>
@@ -182,7 +185,9 @@ const SelectPlayer = () => {
           ({ _id, web_name, plTeam, form, now_cost, generalId }) => (
             <div
               key={generalId}
-              className="row-player"
+              className={classNames("row-player", {
+                active: position !== undefined,
+              })}
               onClick={() => addPlayerToPitch(_id)}
             >
               <div>

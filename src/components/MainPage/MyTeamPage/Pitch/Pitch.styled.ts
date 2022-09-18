@@ -98,6 +98,7 @@ export const BoxDress = styled.div`
   height: 45px;
   position: absolute;
   bottom: -40px;
+  user-select: none;
 
   & .title {
     width: 100%;
@@ -132,5 +133,9 @@ export const BoxDress = styled.div`
       line-height: 14px;
       color: #38003c;
     }
+  }
+
+  & img {
+    -webkit-user-drag: none;
   }
 `

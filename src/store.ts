@@ -11,7 +11,7 @@ interface MainPageState {
   setFilter: (filter: number) => void
 
   position: number | undefined
-  setPisition: (position: number) => void
+  setPosition: (position: number | undefined) => void
 
   remainPlayer: number
   setRemainPlayer: (remainPlayer: number) => void
@@ -28,7 +28,7 @@ const useMainPageStore = create<MainPageState>((set) => ({
   setFilter: (filter) => set((state) => ({ ...state, filter })),
 
   position: undefined,
-  setPisition: (position) => set((state) => ({ ...state, position })),
+  setPosition: (position) => set((state) => ({ ...state, position })),
 
   remainPlayer: 0,
   setRemainPlayer: (remainPlayer) =>

@@ -40,7 +40,7 @@ export const InputSearch = styled.div`
   align-items: center;
 
   & .search-icon {
-    padding: 0px 10px;
+    margin: 0px 10px;
   }
 
   & input {
@@ -80,11 +80,10 @@ export const FilterButton = styled.div`
     cursor: pointer;
     &.active {
       background: linear-gradient(269.48deg, #04f5ec -30.14%, #03fbb8 109.7%);
-      border: 2px solid gold;
     }
     &.block {
       background-color: #ff9797;
-      cursor: no-drop;
+      cursor: not-allowed;
     }
   }
 `
@@ -126,6 +125,11 @@ export const ListPlayers = styled.div`
       border-bottom: none;
     }
 
+    &.active:hover {
+      background-color: #fff09b;
+      cursor: pointer;
+    }
+
     & div span {
       display: flex;
       justify-content: start;
@@ -163,6 +167,7 @@ export const ChangePage = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 80%;
+  user-select: none;
 
   & svg {
     cursor: pointer;
