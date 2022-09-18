@@ -18,6 +18,7 @@ import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion
 import classNames from "classnames"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
+import Loading from "../../../loading/Loading"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
@@ -27,6 +28,7 @@ const SelectPlayer = () => {
   const [totalPlayer, setTotalPlayer] = useState(0)
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     filter,
@@ -45,6 +47,8 @@ const SelectPlayer = () => {
 
   const addPlayerToPitch = (_id: string) => {
     if (position !== undefined) {
+      setIsLoading(true)
+
       const token = JSON.parse(localStorage.getItem("token") || "{}")
       axios({
         method: "patch",
@@ -69,9 +73,17 @@ const SelectPlayer = () => {
               setPicks(data.teamId.picks)
               setBudget(data.budget)
               setRemainPlayer(res.data.data.nb)
+              setIsLoading(false)
+            })
+            .catch((err) => {
+              console.log(err)
+              setIsLoading(false)
             })
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.log(err)
+          setIsLoading(false)
+        })
     }
   }
 
@@ -106,10 +118,11 @@ const SelectPlayer = () => {
 
   return (
     <SelectPlayerContainer>
+      {isLoading && <Loading />}
+
       <div className="title-head">
         <span>انتخاب بازیکن</span>
       </div>
-
       <InputSearch>
         <SearchSVG className="search-icon" />
         <input
@@ -118,7 +131,6 @@ const SelectPlayer = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </InputSearch>
-
       <FilterButton>
         {lanesPitch.map((lane, index) => (
           <button
@@ -130,11 +142,9 @@ const SelectPlayer = () => {
           </button>
         ))}
       </FilterButton>
-
       <DisplayNumberPlayer>
         <span>{`${totalPlayer} بازیکن نمایش داده شده است`}</span>
       </DisplayNumberPlayer>
-
       <ListPlayers>
         <div className="row-player">
           <span className="header">نام بازیکن</span>
@@ -165,7 +175,6 @@ const SelectPlayer = () => {
           )
         )}
       </ListPlayers>
-
       <ChangePage>
         <DoubleArrowLeftSVG onClick={() => setPage(totalPage)} />
         <SingleArrowLeftSVG onClick={() => handleChangePage(1)} />
