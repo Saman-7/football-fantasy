@@ -11,8 +11,8 @@ const NavbarItemsTexts = [
 const Navbar = () => {
   return (
     <NavbarContainer>
-      {NavbarItemsTexts.map((text) => (
-        <NavbarItem>
+      {NavbarItemsTexts.map((text, index) => (
+        <NavbarItem key={index}>
           <a href="/#">{text}</a>
         </NavbarItem>
       ))}

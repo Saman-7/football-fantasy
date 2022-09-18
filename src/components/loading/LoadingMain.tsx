@@ -7,7 +7,7 @@ const Loading = () => {
     <LoadingContainer>
       <Content>
         {dotes.map((d) => (
-          <Dote dote={d}></Dote>
+          <Dote key={d} dote={d}></Dote>
         ))}
       </Content>
     </LoadingContainer>

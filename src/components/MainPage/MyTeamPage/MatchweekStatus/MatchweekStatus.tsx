@@ -21,7 +21,6 @@ const MatchweekStatus = () => {
 
   const handleDateEpoch = (epoch: number) => {
     const arrDate = new Date(epoch * 1000).echoFa().replace("،", "").split("-")
-    console.log("arr", arrDate)
     const hour = `ساعت ${arrDate[1].split(":")[0]}`
     const textDate = `${arrDate[0]} - ${hour}`
     setDate(numberEnglishToPersian(textDate))
