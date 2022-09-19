@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const NavbarContainer = styled.ul`
   width: 48.125rem;
@@ -13,7 +13,7 @@ export const NavbarContainer = styled.ul`
   background-color: white;
   border-radius: 0.5rem;
   top: -40px;
-`;
+`
 
 export const NavbarItem = styled.li`
   width: 8.875rem;
@@ -24,14 +24,9 @@ export const NavbarItem = styled.li`
   border-radius: 0.5rem;
   cursor: pointer;
 
-  &:first-child,
-  &:hover {
-    background: linear-gradient(262.49deg, #05f4f1 -27.69%, #00ff87 112.29%);
-  }
-
   & a {
-    width: 7.5rem;
-    height: 2.375rem;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,6 +35,11 @@ export const NavbarItem = styled.li`
     font-size: 1.0625rem;
     line-height: 1.6875rem;
     color: #3d195b;
+    border-radius: 0.5rem;
+
+    &.active {
+      background: linear-gradient(262.49deg, #05f4f1 -27.69%, #00ff87 112.29%);
+    }
 
     &:link,
     &:visited,
@@ -48,4 +48,4 @@ export const NavbarItem = styled.li`
       text-decoration: none;
     }
   }
-`;
+`
