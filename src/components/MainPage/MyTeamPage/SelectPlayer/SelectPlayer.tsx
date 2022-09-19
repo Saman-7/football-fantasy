@@ -19,6 +19,7 @@ import classNames from "classnames"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 import Loading from "../../../loading/Loading"
+import Warning from "../../../Warning/Warning"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
@@ -30,6 +31,7 @@ const SelectPlayer = () => {
   const [totalPage, setTotalPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [isloadingpage, setIsLoadingPage] = useState(false)
+  const [error, setError] = useState<string | undefined>()
 
   const {
     filter,
@@ -94,6 +96,8 @@ const SelectPlayer = () => {
         .catch((err) => {
           console.log(err)
           setIsLoading(false)
+          if (err.response.status === 403)
+            setError("شما نمیتوانید بیشتر از 3 بازیکن از یک تیم اضافه کنید !")
         })
     }
   }
@@ -136,6 +140,7 @@ const SelectPlayer = () => {
   return (
     <SelectPlayerContainer>
       {isLoading && <Loading />}
+      {error && <Warning text={error} display={setError} />}
 
       <div className="title-head">
         <span>انتخاب بازیکن</span>
