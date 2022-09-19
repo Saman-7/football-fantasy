@@ -68,6 +68,30 @@ export const LanePitch = styled.div`
       cursor: pointer;
     }
 
+    & .box .blue-dress {
+      height: 100px;
+      width: 81px;
+      filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
+      cursor: pointer;
+      animation: rotateDerss 1s linear infinite;
+      transition: 1s;
+    }
+
+    @keyframes rotateDerss {
+      0% {
+        transform: rotate(0deg) scale(1.1);
+      }
+      25% {
+        transform: rotate(-5deg) scale(1.1);
+      }
+      75% {
+        transform: rotate(5deg) scale(1.1);
+      }
+      100% {
+        transform: rotate(0deg) scale(1.1);
+      }
+    }
+
     & .box .plus-icon {
       position: absolute;
       top: 34px;

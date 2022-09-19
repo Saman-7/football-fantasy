@@ -154,7 +154,11 @@ const Pitch = () => {
                       setPosition(undefined)
                     }}
                   >
-                    <img src={blueDress} className="undress" alt="undress" />
+                    <img
+                      src={blueDress}
+                      className="blue-dress"
+                      alt="blueDress"
+                    />
                   </div>
                 )
               } else {
