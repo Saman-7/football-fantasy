@@ -1,8 +1,8 @@
-import profile1 from "../../images/profile1.png"
-import { ReactComponent as HeartLikeSVG } from "../../svg/heart-like.svg"
-import { ReactComponent as StarSVG } from "../../svg/star.svg"
-import { ReactComponent as ArrowUpGreenSVG } from "../../svg/arrow-up-green.svg"
-import { ReactComponent as ArrowDownRedSVG } from "../../svg/arrow-down-red.svg"
+import profile1 from "../../../../images/profile1.png"
+import { ReactComponent as HeartLikeSVG } from "../../../../svg/heart-like.svg"
+import { ReactComponent as StarSVG } from "../../../../svg/star.svg"
+import { ReactComponent as ArrowUpGreenSVG } from "../../../../svg/arrow-up-green.svg"
+import { ReactComponent as ArrowDownRedSVG } from "../../../../svg/arrow-down-red.svg"
 import {
   BoxEventContent,
   ChangesPlayerContent,
