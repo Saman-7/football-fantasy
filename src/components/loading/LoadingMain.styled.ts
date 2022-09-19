@@ -13,8 +13,8 @@ export const LoadingContainer = styled.div`
 
 export const Content = styled.div`
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   animation: rotate 20s linear infinite;
 
   &:hover span::before {
@@ -28,11 +28,11 @@ export const Content = styled.div`
 
   @keyframes rotate {
     0% {
-      transform: rotate(0deg);
+      transform: rotate(0deg) scale(0.9);
       filter: hue-rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+      transform: rotate(360deg) scale(0.9);
       filter: hue-rotate(360deg);
     }
   }
@@ -60,10 +60,10 @@ export const Dote = styled.span<TypeDote>`
     border: 4px solid #00dfff;
     border-radius: 50%;
     box-sizing: border-box;
-    box-shadow: 0 0 20px #00dfff, -30px -30px 0 #00dfff,
-      -30px -30px 20px #00dfff, 30px 30px 0 #00dfff, 30px 30px 20px #00dfff,
-      30px -30px 0 #00dfff, 30px -30px 20px #00dfff, -30px 30px 0 #00dfff,
-      -30px 30px 20px #00dfff;
+    box-shadow: 0 0 20px #00dfff, -23px -23px 0 #00dfff,
+      -23px -23px 20px #00dfff, 23px 23px 0 #00dfff, 23px 23px 20px #00dfff,
+      23px -23px 0 #00dfff, 23px -23px 20px #00dfff, -23px 23px 0 #00dfff,
+      -23px 23px 20px #00dfff;
     animation: rotate 4s linear infinite;
     animation-delay: ${({ dote }) => -0.25 * dote}s;
     transform-origin: 10px;
