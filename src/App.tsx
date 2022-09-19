@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react"
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import LoadingMain from "./components/loading/LoadingMain"
+import EventPage from "./pages/EventsPage"
 
 const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
 const MainPageLayout = lazy(
@@ -35,10 +36,11 @@ const App = () => {
             }
           >
             <Route path="/main/my-team" element={<MyTeamPage />} />
+            <Route path="/main/events" element={<EventPage />} />
           </Route>
 
           {/* Test route for components */}
-          <Route path="" element={<></>} />
+          <Route path="/event" element={<></>} />
         </Routes>
       </div>
     </Router>
