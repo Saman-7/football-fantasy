@@ -22,6 +22,16 @@ export const PopupWarning = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: white;
+  animation: scaleBox 0.3s ease-out 1;
+
+  @keyframes scaleBox {
+    0% {
+      transform: scale(0.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
   & .head-text {
     height: 60px;
