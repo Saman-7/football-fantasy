@@ -7,11 +7,13 @@ export const LatesEventsContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  overflow: auto;
 
   & .title {
     display: flex;
     justify-content: start;
     width: 100%;
+    margin-bottom: 20px;
     & h1 {
       font-weight: 800;
       font-size: 24px;
