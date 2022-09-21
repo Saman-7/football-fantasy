@@ -49,8 +49,6 @@ export const Lane = styled.div`
 `
 
 export const PlayerBox = styled.div`
-  width: 100px;
-  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
