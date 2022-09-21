@@ -10,13 +10,13 @@ import RemainingPlayers from "../components/MainPage/MyTeamPage/RemainingPlayers
 import SelectPlayer from "../components/MainPage/MyTeamPage/SelectPlayer/SelectPlayer"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
 
-export enum PAGE_VIEW_SWITCHER {
+export enum VIEW_MY_TEAM {
   pitch,
   list,
 }
 
 const MyTeamPage = () => {
-  const [page, setPage] = useState(PAGE_VIEW_SWITCHER.pitch)
+  const [page, setPage] = useState(VIEW_MY_TEAM.pitch)
 
   const navigate = useNavigate()
 
@@ -51,10 +51,13 @@ const MyTeamPage = () => {
         <MatchweekStatus />
         <div className="head-pitch">
           <Budget />
-          <ViewSwitcher typePage={page} changePage={setPage} />
+          <ViewSwitcher
+            setPitch={() => setPage(VIEW_MY_TEAM.pitch)}
+            setList={() => setPage(VIEW_MY_TEAM.list)}
+          />
           <RemainingPlayers />
         </div>
-        {page === PAGE_VIEW_SWITCHER.pitch ? <Pitch /> : <ListPlayer />}
+        {page === VIEW_MY_TEAM.pitch ? <Pitch /> : <ListPlayer />}
       </div>
     </div>
   )
