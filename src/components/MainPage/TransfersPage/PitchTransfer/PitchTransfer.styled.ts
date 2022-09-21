@@ -10,6 +10,7 @@ export const PitchTransferContainer = styled.div`
   align-items: flex-end;
   filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.2));
   border-radius: 16px;
+  margin-top: 14px;
 
   & .line-pitch {
     position: absolute;

@@ -3,6 +3,7 @@ import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import LoadingMain from "./components/loading/LoadingMain"
 import EventPage from "./pages/EventsPage"
+import TransfersPage from "./pages/TransfersPage"
 
 const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
 const MainPageLayout = lazy(
@@ -36,6 +37,7 @@ const App = () => {
             }
           >
             <Route path="/main/my-team" element={<MyTeamPage />} />
+            <Route path="/main/transfers" element={<TransfersPage />} />
             <Route path="/main/events" element={<EventPage />} />
           </Route>
 
