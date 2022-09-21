@@ -1,9 +1,10 @@
+import { useState } from "react"
 import styled from "styled-components"
+import ListPlayer from "../components/MainPage/MyTeamPage/ListPlayer/ListPlayer"
 import MatchweekStatus from "../components/MainPage/MyTeamPage/MatchweekStatus/MatchweekStatus"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
 import PitchTransfer from "../components/MainPage/TransfersPage/PitchTransfer/PitchTransfer"
 import SubstitutePlayers from "../components/MainPage/TransfersPage/SubstitutePlayers/SubstitutePlayers"
-import { PAGE_VIEW_SWITCHER } from "./MyTeamPage"
 
 const TransfersPageContainer = styled.div`
   display: flex;
@@ -26,7 +27,14 @@ const TransfersPageContainer = styled.div`
   }
 `
 
+enum VIEW_TRANSFERS {
+  pitch,
+  list,
+}
+
 const TransfersPage = () => {
+  const [page, setPage] = useState(VIEW_TRANSFERS.pitch)
+
   return (
     <TransfersPageContainer>
       <SubstitutePlayers />
@@ -36,10 +44,10 @@ const TransfersPage = () => {
           <MatchweekStatus />
         </div>
         <ViewSwitcher
-          typePage={PAGE_VIEW_SWITCHER.pitch}
-          changePage={() => {}}
+          setPitch={() => setPage(VIEW_TRANSFERS.pitch)}
+          setList={() => setPage(VIEW_TRANSFERS.list)}
         />
-        <PitchTransfer />
+        {page === VIEW_TRANSFERS.pitch ? <PitchTransfer /> : <ListPlayer />}
       </div>
     </TransfersPageContainer>
   )
