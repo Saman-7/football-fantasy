@@ -12,7 +12,6 @@ export const MatchweekStatusContainer = styled.div<TypePropsMatchweekStatusConta
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: auto;
   word-spacing: 1px;
 `
 
