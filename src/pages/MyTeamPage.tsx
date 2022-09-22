@@ -9,6 +9,29 @@ import Pitch from "../components/MainPage/MyTeamPage/Pitch/Pitch"
 import RemainingPlayers from "../components/MainPage/MyTeamPage/RemainingPlayers/RemainingPlayers"
 import SelectPlayer from "../components/MainPage/MyTeamPage/SelectPlayer/SelectPlayer"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
+import styled from "styled-components"
+
+const MyTeamPageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: 50px;
+
+  & .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & .head-pitch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+  }
+`
 
 export enum VIEW_MY_TEAM {
   pitch,
@@ -36,12 +59,9 @@ const lanePlayersId = [
 
 const MyTeamPage = () => {
   const [page, setPage] = useState(VIEW_MY_TEAM.pitch)
+  const { setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
   const navigate = useNavigate()
-
-  const state = useMainPageStore()
-
-  const { setPicks, setBudget, setRemainPlayer } = state
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || "{}")
@@ -63,11 +83,12 @@ const MyTeamPage = () => {
   }, [navigate, setBudget, setPicks, setRemainPlayer])
 
   return (
-    <div className="my-team">
+    <MyTeamPageContainer>
       <SelectPlayer />
 
       <div className="main">
         <MatchweekStatus width={472} />
+
         <div className="head-pitch">
           <Budget />
           <ViewSwitcher
@@ -76,13 +97,14 @@ const MyTeamPage = () => {
           />
           <RemainingPlayers />
         </div>
+
         {page === VIEW_MY_TEAM.pitch ? (
           <Pitch />
         ) : (
           <ListPlayer lanePlayersId={lanePlayersId} />
         )}
       </div>
-    </div>
+    </MyTeamPageContainer>
   )
 }
 
