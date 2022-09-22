@@ -18,7 +18,7 @@ import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion
 import classNames from "classnames"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
-import Loading from "../../../loading/Loading"
+import Loading from "../../../loading/AlternativeLoading/Loading"
 import Warning from "../../../Warning/Warning"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]

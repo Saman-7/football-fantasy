@@ -1,11 +1,13 @@
 import { lazy, Suspense } from "react"
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import LoadingMain from "./components/loading/LoadingMain"
+import LoadingMain from "./components/loading/LoadingMain/LoadingMain"
 import EventPage from "./pages/EventsPage"
 import TransfersPage from "./pages/TransfersPage"
 
-const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
+const LoginLayout = lazy(
+  () => import("./components/Login/LoginLayout/LoginLayout")
+)
 const MainPageLayout = lazy(
   () => import("./components/MainPage/MainPageLayout")
 )

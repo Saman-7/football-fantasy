@@ -10,7 +10,7 @@ import {
   SigninButton,
   SigninFormContainer,
   SignupButton,
-} from "../components/Login/Signin.styled"
+} from "../components/Login/Singin/Signin.styled"
 import PurpleLineSVG from "../svg/purple-line.svg"
 import PinkLineSVG from "../svg/pink-line.svg"
 

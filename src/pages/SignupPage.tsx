@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import Confirmation from "../components/Login/Confirmation"
-import Signup from "../components/Login/Signup"
+import Confirmation from "../components/Login/Confirmation/Confirmation"
+import Signup from "../components/Login/Signup/Signup"
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({

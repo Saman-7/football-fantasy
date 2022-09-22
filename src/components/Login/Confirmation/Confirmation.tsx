@@ -4,10 +4,10 @@ import {
   ConfirmationFormContainer,
   InputContainer,
 } from "./Confirmation.styled"
-import { FormHeaderContainer, Input } from "./Signin.styled"
-import { FormContainer, Button } from "./Signup.styled"
-import PurpleLineSVG from "../../svg/purple-line.svg"
-import PinkLineSVG from "../../svg/pink-line.svg"
+import { FormHeaderContainer, Input } from "../Singin/Signin.styled"
+import { FormContainer, Button } from "../Signup/Signup.styled"
+import PurpleLineSVG from "../../../svg/purple-line.svg"
+import PinkLineSVG from "../../../svg/pink-line.svg"
 
 interface ConfirmationProps {
   code: string

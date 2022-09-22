@@ -10,7 +10,7 @@ import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 import axios from "axios"
-import Loading from "../../../loading/Loading"
+import Loading from "../../../loading/AlternativeLoading/Loading"
 
 const lanePlayersPitch = [
   {

@@ -1,5 +1,5 @@
 import axios from "axios"
-import CountryInput from "./CountryInput"
+import CountryInput from "../CountryInput/CountryInput"
 import {
   SignupFormContainer,
   FormContainer,
@@ -7,9 +7,9 @@ import {
   Input,
   Button,
 } from "./Signup.styled"
-import { FormHeaderContainer, InputContainer } from "./Signin.styled"
-import PurpleLineSVG from "../../svg/purple-line.svg"
-import PinkLineSVG from "../../svg/pink-line.svg"
+import { FormHeaderContainer, InputContainer } from "../Singin/Signin.styled"
+import PurpleLineSVG from "../../../svg/purple-line.svg"
+import PinkLineSVG from "../../../svg/pink-line.svg"
 
 interface SignupProps {
   formData: {

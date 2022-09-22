@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import { Container, HeaderContainer } from "./LoginLayout.styled"
-import LoginHeaderSVG from "../../svg/login-header.svg"
-import PLLogoSVG from "../../svg/white-pl-logo.svg"
+import LoginHeaderSVG from "../../../svg/login-header.svg"
+import PLLogoSVG from "../../../svg/white-pl-logo.svg"
 
 const LoginLayout = () => {
   return (
