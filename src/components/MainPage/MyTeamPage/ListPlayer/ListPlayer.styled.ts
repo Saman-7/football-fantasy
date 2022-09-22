@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const ListPlayerContainer = styled.div`
   width: 869px;
   height: 768px;
   display: flex;
   justify-content: space-between;
-`;
+`
 
 export const Sidebar = styled.div`
   width: 274px;
@@ -22,12 +22,12 @@ export const Sidebar = styled.div`
     width: 202px;
     margin-top: 65px;
   }
-`;
+`
 
 export const ListContainer = styled.div`
   width: 100%;
   padding: 28px;
-`;
+`
 
 export const BoxList = styled.div`
   display: flex;
@@ -52,7 +52,7 @@ export const BoxList = styled.div`
       color: #00ff87;
     }
   }
-`;
+`
 
 export const HeaderList = styled.div`
   display: grid;
@@ -71,7 +71,7 @@ export const HeaderList = styled.div`
       color: #999999;
     }
   }
-`;
+`
 
 export const RowList = styled.div`
   display: grid;
@@ -96,4 +96,4 @@ export const RowList = styled.div`
       color: #3d195b;
     }
   }
-`;
+`
