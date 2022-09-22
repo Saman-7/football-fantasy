@@ -11,6 +11,12 @@ export const MainPageContainer = styled.div`
     align-items: flex-end;
     width: 100%;
     margin-bottom: 50px;
+
+    & .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   & .head-pitch {
@@ -18,5 +24,6 @@ export const MainPageContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
+    width: 100%;
   }
 `

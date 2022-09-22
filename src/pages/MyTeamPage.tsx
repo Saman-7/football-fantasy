@@ -66,7 +66,7 @@ const MyTeamPage = () => {
     <div className="my-team">
       <SelectPlayer />
 
-      <div>
+      <div className="main">
         <MatchweekStatus width={472} />
         <div className="head-pitch">
           <Budget />
