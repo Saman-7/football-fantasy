@@ -59,8 +59,8 @@ const TransfersPage = () => {
       <SubstitutePlayers />
       <div className="main">
         <div className="match-week-status">
-          <MatchweekStatus />
-          <MatchweekStatus />
+          <MatchweekStatus width={372} />
+          <MatchweekStatus width={372} />
         </div>
         <ViewSwitcher
           setPitch={() => setPage(VIEW_TRANSFERS.pitch)}
