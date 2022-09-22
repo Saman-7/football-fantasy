@@ -38,6 +38,7 @@ const SelectPlayer = () => {
     filter,
     setFilter,
     position,
+    setPosition,
     setPicks,
     setBudget,
     picks,
@@ -91,6 +92,7 @@ const SelectPlayer = () => {
               setBudget(data.budget)
               setRemainPlayer(res.data.data.nb)
               setIsLoading(false)
+              setPosition(undefined)
             })
             .catch((err) => {
               console.log(err)
@@ -108,8 +110,6 @@ const SelectPlayer = () => {
 
   useEffect(() => {
     setIsLoadingPage(true)
-
-    console.log("render")
 
     const token = JSON.parse(localStorage.getItem("token") || "{}")
     axios
