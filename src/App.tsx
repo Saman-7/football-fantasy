@@ -5,9 +5,7 @@ import LoadingMain from "./components/loading/LoadingMain/LoadingMain"
 import EventPage from "./pages/EventsPage"
 import TransfersPage from "./pages/TransfersPage"
 
-const LoginLayout = lazy(
-  () => import("./components/Login/LoginLayout/LoginLayout")
-)
+const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
 const MainPageLayout = lazy(
   () => import("./components/MainPage/MainPageLayout")
 )
