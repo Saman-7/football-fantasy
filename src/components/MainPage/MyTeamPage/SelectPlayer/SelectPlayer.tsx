@@ -46,6 +46,7 @@ const SelectPlayer = () => {
   const handleFilter = (lane: string) => {
     if (position === undefined) {
       setFilter(filterStringToNumber(lane))
+      if (page !== 1) setPage(1)
     }
   }
 
@@ -103,10 +104,6 @@ const SelectPlayer = () => {
   }
 
   useEffect(() => {
-    if (page !== 1) setPage(1)
-  }, [filter])
-
-  useEffect(() => {
     setIsLoadingPage(true)
 
     const token = JSON.parse(localStorage.getItem("token") || "{}")
@@ -150,6 +147,7 @@ const SelectPlayer = () => {
         <input
           type="text"
           placeholder="جستجو"
+          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </InputSearch>
