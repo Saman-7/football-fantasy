@@ -20,6 +20,7 @@ import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 import Loading from "../../../loading/AlternativeLoading/Loading"
 import Warning from "../../../Warning/Warning"
+import useDebounce from "../../../../utils/useDebounce"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
@@ -43,9 +44,12 @@ const SelectPlayer = () => {
     setRemainPlayer,
   } = useMainPageStore()
 
+  const debounce = useDebounce(search, 400)
+
   const handleFilter = (lane: string) => {
     if (position === undefined) {
       setFilter(filterStringToNumber(lane))
+      if (page !== 1) setPage(1)
     }
   }
 
@@ -103,11 +107,9 @@ const SelectPlayer = () => {
   }
 
   useEffect(() => {
-    if (page !== 1) setPage(1)
-  }, [filter])
-
-  useEffect(() => {
     setIsLoadingPage(true)
+
+    console.log("render")
 
     const token = JSON.parse(localStorage.getItem("token") || "{}")
     axios
@@ -116,7 +118,7 @@ const SelectPlayer = () => {
           page: page,
           limit: 14,
           filter: filter,
-          web_name: search,
+          web_name: debounce,
         },
         headers: {
           token: token,
@@ -135,7 +137,7 @@ const SelectPlayer = () => {
         console.log(err)
         setIsLoadingPage(false)
       })
-  }, [search, filter, page, picks])
+  }, [debounce, filter, page, picks])
 
   return (
     <SelectPlayerContainer>
@@ -150,6 +152,7 @@ const SelectPlayer = () => {
         <input
           type="text"
           placeholder="جستجو"
+          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </InputSearch>
