@@ -32,6 +32,25 @@ enum VIEW_TRANSFERS {
   list,
 }
 
+const lanePlayersId = [
+  {
+    lane: "GK",
+    players: [0],
+  },
+  {
+    lane: "DEF",
+    players: [1, 2, 3, 4],
+  },
+  {
+    lane: "MID",
+    players: [5, 6, 7, 8],
+  },
+  {
+    lane: "ATT",
+    players: [9, 10],
+  },
+]
+
 const TransfersPage = () => {
   const [page, setPage] = useState(VIEW_TRANSFERS.pitch)
 
@@ -47,7 +66,11 @@ const TransfersPage = () => {
           setPitch={() => setPage(VIEW_TRANSFERS.pitch)}
           setList={() => setPage(VIEW_TRANSFERS.list)}
         />
-        {page === VIEW_TRANSFERS.pitch ? <PitchTransfer /> : <ListPlayer />}
+        {page === VIEW_TRANSFERS.pitch ? (
+          <PitchTransfer />
+        ) : (
+          <ListPlayer lanePlayersId={lanePlayersId} />
+        )}
       </div>
     </TransfersPageContainer>
   )

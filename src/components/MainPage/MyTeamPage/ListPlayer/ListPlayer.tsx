@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import UniformPNG from "../../../../images/uniform.png"
 import { ReactComponent as LeagueSVG } from "../../../../svg/league.svg"
 import { ReactComponent as StripesSVG } from "../../../../svg/stripes.svg"
@@ -11,36 +10,14 @@ import {
   RowList,
   Sidebar,
 } from "./ListPlayer.styled"
-import axios from "axios"
 import useMainPageStore from "../../../../store"
 
-const lanePlayersPitch = [
-  {
-    lane: "GK",
-    players: [0, 1],
-  },
-  {
-    lane: "DEF",
-    players: [2, 3, 4, 5, 6],
-  },
-  {
-    lane: "MID",
-    players: [7, 8, 9, 10, 11],
-  },
-  {
-    lane: "ATT",
-    players: [12, 13, 14],
-  },
-]
+interface TypePropsListPlayer {
+  lanePlayersId: Array<any>
+}
 
-const ListPlayer = () => {
-  const [listPlayers, setListPlayers] = useState<Array<any>>([])
-
+const ListPlayer = (props: TypePropsListPlayer) => {
   const { picks } = useMainPageStore()
-
-  useEffect(() => {
-    setListPlayers(picks)
-  }, [picks])
 
   return (
     <ListPlayerContainer>
@@ -55,15 +32,13 @@ const ListPlayer = () => {
           </div>
         </HeaderList>
 
-        {lanePlayersPitch.map(({ lane, players }) => (
+        {props.lanePlayersId.map(({ lane, players }) => (
           <BoxList>
             <div className="title">
               <h3>{convertLanesToPersian(lane)}</h3>
             </div>
-            {players.map((playerId) => {
-              const dataPlayer = listPlayers.find(
-                (_, index) => index === playerId
-              )
+            {players.map((playerId: number) => {
+              const dataPlayer = picks.find((_, index) => index === playerId)
               return (
                 <RowList>
                   <div className="name-player">

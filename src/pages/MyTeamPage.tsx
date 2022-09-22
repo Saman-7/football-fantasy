@@ -15,6 +15,25 @@ export enum VIEW_MY_TEAM {
   list,
 }
 
+const lanePlayersId = [
+  {
+    lane: "GK",
+    players: [0, 1],
+  },
+  {
+    lane: "DEF",
+    players: [2, 3, 4, 5, 6],
+  },
+  {
+    lane: "MID",
+    players: [7, 8, 9, 10, 11],
+  },
+  {
+    lane: "ATT",
+    players: [12, 13, 14],
+  },
+]
+
 const MyTeamPage = () => {
   const [page, setPage] = useState(VIEW_MY_TEAM.pitch)
 
@@ -41,7 +60,7 @@ const MyTeamPage = () => {
         setBudget(data.manager.budget)
         setRemainPlayer(data.nb)
       })
-  }, [])
+  }, [navigate, setBudget, setPicks, setRemainPlayer])
 
   return (
     <div className="my-team">
@@ -57,7 +76,11 @@ const MyTeamPage = () => {
           />
           <RemainingPlayers />
         </div>
-        {page === VIEW_MY_TEAM.pitch ? <Pitch /> : <ListPlayer />}
+        {page === VIEW_MY_TEAM.pitch ? (
+          <Pitch />
+        ) : (
+          <ListPlayer lanePlayersId={lanePlayersId} />
+        )}
       </div>
     </div>
   )
