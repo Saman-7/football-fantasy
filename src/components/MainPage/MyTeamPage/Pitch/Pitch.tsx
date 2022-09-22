@@ -70,6 +70,7 @@ const Pitch = () => {
               setRemainPlayer(res.data.data.nb)
               setDeletePlayerId(undefined)
               setIsLoading(false)
+              setActivePlayerId(undefined)
             })
             .catch((err) => {
               console.log(err)
@@ -87,7 +88,7 @@ const Pitch = () => {
     }
   }
 
-  const { setPosition: setPosition, setFilter } = useMainPageStore()
+  const { setPosition, setFilter } = useMainPageStore()
   useEffect(() => {
     if (activePlayerId !== undefined) {
       setPosition(activePlayerId)
@@ -102,7 +103,7 @@ const Pitch = () => {
 
       setFilter(filterStringToNumber(dataLane.lane))
     }
-  }, [activePlayerId])
+  }, [activePlayerId, setFilter, setPosition])
 
   return (
     <PitchContainer>
