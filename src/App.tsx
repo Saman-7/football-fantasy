@@ -2,8 +2,6 @@ import { lazy, Suspense } from "react"
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import LoadingMain from "./components/loading/LoadingMain/LoadingMain"
-import EventPage from "./pages/EventsPage"
-import TransfersPage from "./pages/TransfersPage"
 
 const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
 const MainPageLayout = lazy(
@@ -12,6 +10,8 @@ const MainPageLayout = lazy(
 const SigninPage = lazy(() => import("./pages/SigninPage"))
 const SignupPage = lazy(() => import("./pages/SignupPage"))
 const MyTeamPage = lazy(() => import("./pages/MyTeamPage"))
+const EventPage = lazy(() => import("./pages/EventsPage"))
+const TransfersPage = lazy(() => import("./pages/TransfersPage"))
 
 const App = () => {
   return (
