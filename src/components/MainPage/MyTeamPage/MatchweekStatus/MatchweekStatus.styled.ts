@@ -1,11 +1,12 @@
 import styled from "styled-components"
 
-export const MatchweekStatusContainer = styled.div`
+interface TypePropsMatchweekStatusContainer {
+  width: number
+}
+export const MatchweekStatusContainer = styled.div<TypePropsMatchweekStatusContainer>`
   grid-area: week;
-  /* width: 29.5rem;
-  height: 2.1875rem; */
-  height: 35px;
-  width: 372px;
+  width: ${({ width }) => width}px;
+  height: 2.1875rem;
   background: #3d195b;
   border-radius: 0.5rem;
   display: flex;

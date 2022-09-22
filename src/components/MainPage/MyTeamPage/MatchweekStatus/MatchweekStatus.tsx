@@ -9,7 +9,11 @@ import "jdate.js"
 import { weekToStringPersian } from "../../../../utils/weekToStringPersion"
 import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 
-const MatchweekStatus = () => {
+interface TypePropsMatchWeekStatus {
+  width: number
+}
+
+const MatchweekStatus = (props: TypePropsMatchWeekStatus) => {
   const [week, setWeek] = useState<string>()
   const [date, setDate] = useState<string>()
 
@@ -37,7 +41,7 @@ const MatchweekStatus = () => {
   }, [])
 
   return (
-    <MatchweekStatusContainer>
+    <MatchweekStatusContainer width={props.width}>
       <MatchweekNumberContainer>
         <span>{week}</span>
       </MatchweekNumberContainer>
