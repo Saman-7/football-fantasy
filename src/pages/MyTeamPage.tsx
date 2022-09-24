@@ -10,6 +10,7 @@ import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwi
 import styled from "styled-components"
 import { axios } from "../api/axiosInstance"
 import useFetcher from "../api/useFetcher"
+import Warning from "../components/Warning/Warning"
 import Loading from "../components/loading/AlternativeLoading/Loading"
 
 const MyTeamPageContainer = styled.div`
@@ -60,22 +61,28 @@ const lanePlayersId = [
 
 const MyTeamPage = () => {
   const [page, setPage] = useState(VIEW_MY_TEAM.pitch)
+  const [errorText, setErrorText] = useState<string | undefined>()
   const { setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
-  const { isLoading, data } = useFetcher(() =>
+  const { isLoading, error, data } = useFetcher(() =>
     axios.get("/api/v1/managers/dashboard").then((res) => res.data.data)
   )
 
   useEffect(() => {
-    if (!data) return
-    setPicks(data.manager.teamId.picks)
-    setBudget(data.manager.budget)
-    setRemainPlayer(data.nb)
-  }, [data, setBudget, setPicks, setRemainPlayer])
+    if (!data) {
+      if (error)
+        setErrorText("سرور در درسترس نیست ، لطفا بعدا امتحان کنید ... !")
+    } else {
+      setPicks(data.manager.teamId.picks)
+      setBudget(data.manager.budget)
+      setRemainPlayer(data.nb)
+    }
+  }, [data, error, setBudget, setPicks, setRemainPlayer])
 
   return (
     <MyTeamPageContainer>
       {isLoading && <Loading />}
+      {errorText && <Warning text={errorText} display={setErrorText} />}
 
       <SelectPlayer />
 
