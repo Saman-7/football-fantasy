@@ -19,6 +19,7 @@ export const useAuthInterseptor = () => {
         ...request.headers,
         token,
       }
+      return request
     })
 
     const resId = axios.interceptors.response.use(undefined, (err) => {
