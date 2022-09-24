@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import { axios } from "../../../../api/axiosInstance"
 import {
   MatchweekDateContainer,
   MatchweekNumberContainer,
@@ -32,9 +32,7 @@ const MatchweekStatus = (props: TypePropsMatchWeekStatus) => {
   }
 
   const { data } = useFetcher(() =>
-    axios
-      .get("http://178.216.248.37:8080/api/v1/events/current/info")
-      .then((res) => res.data.data)
+    axios.get("/api/v1/events/current/info").then((res) => res.data.data)
   )
 
   useEffect(() => {
