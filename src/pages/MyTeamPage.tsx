@@ -10,6 +10,7 @@ import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwi
 import styled from "styled-components"
 import { axios } from "../api/axiosInstance"
 import useFetcher from "../api/useFetcher"
+import Loading from "../components/loading/AlternativeLoading/Loading"
 
 const MyTeamPageContainer = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ const MyTeamPage = () => {
   const [page, setPage] = useState(VIEW_MY_TEAM.pitch)
   const { setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
-  const { data } = useFetcher(() =>
+  const { isLoading, data } = useFetcher(() =>
     axios.get("/api/v1/managers/dashboard").then((res) => res.data.data)
   )
 
@@ -74,6 +75,8 @@ const MyTeamPage = () => {
 
   return (
     <MyTeamPageContainer>
+      {isLoading && <Loading />}
+
       <SelectPlayer />
 
       <div className="main">
