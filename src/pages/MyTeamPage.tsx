@@ -1,6 +1,4 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import useMainPageStore from "../store"
 import Budget from "../components/MainPage/MyTeamPage/Budget/Budget"
 import ListPlayer from "../components/MainPage/MyTeamPage/ListPlayer/ListPlayer"
@@ -10,6 +8,8 @@ import RemainingPlayers from "../components/MainPage/MyTeamPage/RemainingPlayers
 import SelectPlayer from "../components/MainPage/MyTeamPage/SelectPlayer/SelectPlayer"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
 import styled from "styled-components"
+import { axios } from "../api/axiosInstance"
+import useFetcher from "../api/useFetcher"
 
 const MyTeamPageContainer = styled.div`
   display: flex;
@@ -61,26 +61,16 @@ const MyTeamPage = () => {
   const [page, setPage] = useState(VIEW_MY_TEAM.pitch)
   const { setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
-  const navigate = useNavigate()
+  const { data } = useFetcher(() =>
+    axios.get("/api/v1/managers/dashboard").then((res) => res.data.data)
+  )
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}")
-
-    if (Object.keys(token).length === 0) navigate("/signin")
-
-    axios
-      .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
-        headers: {
-          token: token,
-        },
-      })
-      .then((res) => res.data.data)
-      .then((data) => {
-        setPicks(data.manager.teamId.picks)
-        setBudget(data.manager.budget)
-        setRemainPlayer(data.nb)
-      })
-  }, [navigate, setBudget, setPicks, setRemainPlayer])
+    if (!data) return
+    setPicks(data.manager.teamId.picks)
+    setBudget(data.manager.budget)
+    setRemainPlayer(data.nb)
+  }, [data, setBudget, setPicks, setRemainPlayer])
 
   return (
     <MyTeamPageContainer>
