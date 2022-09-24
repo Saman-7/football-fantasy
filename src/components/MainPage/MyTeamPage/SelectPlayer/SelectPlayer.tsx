@@ -13,7 +13,7 @@ import {
   SelectPlayerContainer,
 } from "./SelectPlayer.styled"
 import { useEffect, useState } from "react"
-import axios from "axios"
+import { axios } from "../../../../api/axiosInstance"
 import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 import classNames from "classnames"
 import useMainPageStore from "../../../../store"
@@ -67,25 +67,17 @@ const SelectPlayer = () => {
     if (position !== undefined) {
       setIsLoading(true)
 
-      const token = JSON.parse(localStorage.getItem("token") || "{}")
       axios({
         method: "patch",
-        url: "http://178.216.248.37:8080/api/v1/teams/add-player",
+        url: "/api/v1/teams/add-player",
         data: {
           id: _id,
           index: position,
         },
-        headers: {
-          token: token,
-        },
       })
         .then((_) => {
           axios
-            .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
-              headers: {
-                token: token,
-              },
-            })
+            .get("/api/v1/managers/dashboard")
             .then((res) => {
               const data = res.data.data.manager
               setPicks(data.teamId.picks)
@@ -111,17 +103,13 @@ const SelectPlayer = () => {
   useEffect(() => {
     setIsLoadingPage(true)
 
-    const token = JSON.parse(localStorage.getItem("token") || "{}")
     axios
-      .get("http://178.216.248.37:8080/api/v1/players/search", {
+      .get("/api/v1/players/search", {
         params: {
           page: page,
           limit: 14,
           filter: filter,
           web_name: debounce,
-        },
-        headers: {
-          token: token,
         },
       })
       .then((res) => {
