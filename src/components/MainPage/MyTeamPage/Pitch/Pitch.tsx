@@ -9,7 +9,7 @@ import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled"
 import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
-import axios from "axios"
+import { axios } from "../../../../api/axiosInstance"
 import Loading from "../../../loading/AlternativeLoading/Loading"
 
 const lanePlayersPitch = [
@@ -42,15 +42,11 @@ const Pitch = () => {
     if (status && deletePlayerId !== undefined) {
       setIsLoading(true)
 
-      const token = JSON.parse(localStorage.getItem("token") || "{}")
       const idPlayer = picks[deletePlayerId].player._id
 
       axios({
         method: "patch",
-        url: "http://178.216.248.37:8080/api/v1/teams/delete-player",
-        headers: {
-          token: token,
-        },
+        url: "/api/v1/teams/delete-player",
         data: {
           id: idPlayer,
           index: deletePlayerId,
@@ -58,11 +54,7 @@ const Pitch = () => {
       })
         .then((_) => {
           axios
-            .get("http://178.216.248.37:8080/api/v1/managers/dashboard", {
-              headers: {
-                token: token,
-              },
-            })
+            .get("/api/v1/managers/dashboard")
             .then((res) => {
               const data = res.data.data.manager
               setPicks(data.teamId.picks)
