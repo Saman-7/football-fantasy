@@ -13,7 +13,6 @@ import {
   SelectPlayerContainer,
 } from "./SelectPlayer.styled"
 import { useEffect, useState } from "react"
-import { axios } from "../../../../api/axiosInstance"
 import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 import classNames from "classnames"
 import useMainPageStore from "../../../../store"
@@ -21,6 +20,8 @@ import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 import Loading from "../../../loading/AlternativeLoading/Loading"
 import Warning from "../../../Warning/Warning"
 import useDebounce from "../../../../utils/useDebounce"
+import axiosMain from "axios"
+import { axios } from "../../../../api/axiosInstance"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
@@ -67,12 +68,18 @@ const SelectPlayer = () => {
     if (position !== undefined) {
       setIsLoading(true)
 
-      axios({
+      const localStorageToken = localStorage.getItem("token")
+      let token = localStorageToken && JSON.parse(localStorageToken)
+
+      axiosMain({
         method: "patch",
-        url: "/api/v1/teams/add-player",
+        url: "http://178.216.248.37:8080/api/v1/teams/add-player",
         data: {
           id: _id,
           index: position,
+        },
+        headers: {
+          token,
         },
       })
         .then((_) => {
