@@ -106,7 +106,7 @@ const Pitch = () => {
         <div /> <div /> <div />
       </PaleGreen>
 
-      {deletePlayerId !== undefined && (
+      {deletePlayerId !== undefined && !isLoading && (
         <DeletePlayerPopup
           playerId={deletePlayerId}
           playerName={picks[deletePlayerId].player.web_name}
