@@ -8,6 +8,7 @@ import {
 import "jdate.js"
 import { weekToStringPersian } from "../../../../utils/weekToStringPersion"
 import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
+import useFetcher from "../../../../api/useFetcher"
 
 interface TypePropsMatchWeekStatus {
   width: number
@@ -30,15 +31,18 @@ const MatchweekStatus = (props: TypePropsMatchWeekStatus) => {
     setDate(numberEnglishToPersian(textDate))
   }
 
-  useEffect(() => {
+  const { data } = useFetcher(() =>
     axios
       .get("http://178.216.248.37:8080/api/v1/events/current/info")
-      .then((res) => {
-        const { name, deadline_time_epoch } = res.data.data
-        handleWeekStatus(name)
-        handleDateEpoch(parseInt(deadline_time_epoch))
-      })
-  }, [])
+      .then((res) => res.data.data)
+  )
+
+  useEffect(() => {
+    if (!data) return
+
+    handleWeekStatus(data.name)
+    handleDateEpoch(parseInt(data.deadline_time_epoch))
+  }, [data])
 
   return (
     <MatchweekStatusContainer width={props.width}>
