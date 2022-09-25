@@ -20,3 +20,12 @@
   font-family: vazirmatn;
   direction: rtl;
 }
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #01e290, #00ecec);
+}
