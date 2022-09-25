@@ -8,17 +8,23 @@ export const useAuthInterseptor = () => {
   useEffect(() => {
     const reqId = axios.interceptors.request.use((request) => {
       const localStorageToken = localStorage.getItem("token")
-      let token
-      try {
-        token = localStorageToken && JSON.parse(localStorageToken)
-      } catch {
-        // failed to parse token
+
+      if (!localStorageToken) {
+        navigate("/signin")
+      } else {
+        let token
+        try {
+          token = localStorageToken && JSON.parse(localStorageToken)
+        } catch {
+          // failed to parse token
+        }
+
+        request.headers = {
+          ...request.headers,
+          token,
+        }
       }
 
-      request.headers = {
-        ...request.headers,
-        token,
-      }
       return request
     })
 
@@ -32,5 +38,5 @@ export const useAuthInterseptor = () => {
       axios.interceptors.request.eject(reqId)
       axios.interceptors.response.eject(resId)
     }
-  })
+  }, [])
 }
