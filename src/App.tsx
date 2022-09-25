@@ -1,6 +1,6 @@
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import "./App.css"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import LoadingMain from "./components/loading/LoadingMain/LoadingMain"
 import { useAuthInterseptor } from "./api/useAuthInterceptor"
 
@@ -16,6 +16,12 @@ const TransfersPage = lazy(() => import("./pages/TransfersPage"))
 
 const App = () => {
   useAuthInterseptor()
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (window.location.pathname === "/") navigate("/main/my-team")
+  }, [])
+
   return (
     <div className="app">
       <Routes>
