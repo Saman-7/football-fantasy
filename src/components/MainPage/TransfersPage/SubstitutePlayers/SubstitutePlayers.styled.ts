@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const SubstitutePlayersContainer = styled.div`
-  height: 764px;
+  height: 768px;
   width: 273px;
   border-radius: 16px 16px 0px 0px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
