@@ -12,7 +12,7 @@ const EventPageContainer = styled.div`
 
   & .main {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: flex-end;
     margin-top: 40px;
     margin-bottom: 50px;

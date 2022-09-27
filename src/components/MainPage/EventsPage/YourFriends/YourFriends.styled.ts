@@ -5,6 +5,7 @@ export const YourFriendsContainer = styled.div`
   width: 23.3125rem;
   display: flex;
   flex-direction: column;
+  margin-right: 24px;
 `
 
 export const YourFriendsTopContainer = styled.div`
