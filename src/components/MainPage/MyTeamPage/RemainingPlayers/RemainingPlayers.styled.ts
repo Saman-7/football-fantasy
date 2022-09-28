@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const RemainingPlayersContainer = styled.div`
   grid-area: remain;
   width: 17.0625rem;
-  height: 8.0625rem;
+  height: 6.875rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -13,10 +13,10 @@ export const RemainingPlayersContainer = styled.div`
 
   & > span {
     font-weight: 900;
-    font-size: 36px;
+    font-size: 2.25rem;
     color: #3d195b;
   }
-`;
+`
 
 export const RemainingPlayersRightContainer = styled.div`
   display: flex;
@@ -29,8 +29,8 @@ export const RemainingPlayersRightContainer = styled.div`
 
   & span {
     font-weight: 900;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
     color: #3d195b;
   }
-`;
+`

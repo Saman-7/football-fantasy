@@ -12,6 +12,10 @@
     url("font/roboto/roboto.ttf") format("truetype");
 }
 
+html {
+  font-size: 16px;
+}
+
 .app {
   position: absolute;
   width: 100%;

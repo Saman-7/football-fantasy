@@ -176,11 +176,11 @@ const SelectPlayer = () => {
           <span className="header">نام بازیکن</span>
           <span className="header">
             عملکرد
-            <ArrowUpSVG />
+            <ArrowUpSVG className="arrow-svg" />
           </span>
           <span className="header">
             قیمت
-            <ArrowUpSVG />
+            <ArrowUpSVG className="arrow-svg" />
           </span>
         </div>
 

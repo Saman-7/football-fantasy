@@ -18,7 +18,7 @@ const MyTeamPageContainer = styled.div`
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 
   & .main {
     display: flex;
@@ -29,8 +29,8 @@ const MyTeamPageContainer = styled.div`
   & .head-pitch {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
+    align-items: flex-end;
+    margin-top: 2.5rem;
     width: 100%;
   }
 `
@@ -87,7 +87,7 @@ const MyTeamPage = () => {
       <SelectPlayer />
 
       <div className="main">
-        <MatchweekStatus width={472} />
+        <MatchweekStatus width={29.5} />
 
         <div className="head-pitch">
           <Budget />
