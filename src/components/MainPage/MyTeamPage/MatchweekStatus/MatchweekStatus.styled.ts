@@ -5,7 +5,7 @@ interface TypePropsMatchweekStatusContainer {
 }
 export const MatchweekStatusContainer = styled.div<TypePropsMatchweekStatusContainer>`
   grid-area: week;
-  width: ${({ width }) => width}px;
+  width: ${({ width }) => width}rem;
   height: 2.1875rem;
   background: #3d195b;
   border-radius: 0.5rem;
@@ -18,7 +18,7 @@ export const MatchweekStatusContainer = styled.div<TypePropsMatchweekStatusConta
 export const MatchweekDateContainer = styled.div`
   & span {
     font-weight: 800;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #f7f7f7;
   }
 `

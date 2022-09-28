@@ -12,7 +12,7 @@ export const NavbarContainer = styled.ul`
   z-index: 10;
   background-color: white;
   border-radius: 0.5rem;
-  top: -40px;
+  top: -2.5rem;
 `
 
 export const NavbarItem = styled.li`
