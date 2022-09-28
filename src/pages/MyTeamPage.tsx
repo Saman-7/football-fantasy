@@ -19,6 +19,7 @@ const MyTeamPageContainer = styled.div`
   align-items: flex-end;
   width: 100%;
   margin-bottom: 3.125rem;
+  position: relative;
 
   & .main {
     display: flex;

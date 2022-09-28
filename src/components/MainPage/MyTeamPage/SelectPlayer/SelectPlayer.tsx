@@ -135,7 +135,9 @@ const SelectPlayer = () => {
   }, [debounce, filter, page, picks])
 
   return (
-    <SelectPlayerContainer>
+    <SelectPlayerContainer
+      className={classNames({ menu: position !== undefined })}
+    >
       {isLoading && <Loading />}
       {error && <Warning text={error} display={setError} />}
 
