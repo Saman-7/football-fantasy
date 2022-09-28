@@ -27,6 +27,48 @@ export const SelectPlayerContainer = styled.div`
       color: white;
     }
   }
+
+  @media (max-width: 480px) {
+    background-color: white;
+    width: 50%;
+    height: 90%;
+    position: fixed;
+    right: -50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    animation: hidenSelectPlayer 0.3s ease-in 1;
+
+    & .title-head {
+      height: 4.5rem;
+      & span {
+        font-size: 1.8rem;
+      }
+    }
+
+    &.menu {
+      display: flex;
+      right: 0;
+      animation: showSelectPlayer 0.5s ease-out 1;
+    }
+
+    @keyframes hidenSelectPlayer {
+      0% {
+        right: 0;
+      }
+      100% {
+        right: -50%;
+      }
+    }
+    @keyframes showSelectPlayer {
+      0% {
+        right: -50%;
+      }
+      100% {
+        right: 0;
+      }
+    }
+  }
 `
 
 export const InputSearch = styled.div`
@@ -60,6 +102,17 @@ export const InputSearch = styled.div`
       border-bottom: 0.0625rem solid;
     }
   }
+
+  @media (max-width: 480px) {
+    width: 90%;
+    height: 3rem;
+    & .search-icon {
+      width: 2.5rem;
+    }
+    & input {
+      font-size: 1.5rem;
+    }
+  }
 `
 
 export const FilterButton = styled.div`
@@ -79,12 +132,24 @@ export const FilterButton = styled.div`
     font-size: 0.75rem;
     line-height: 0.875rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     &.active {
       background: linear-gradient(269.48deg, #04f5ec -30.14%, #03fbb8 109.7%);
     }
     &.block {
       background-color: #ff9797;
       cursor: not-allowed;
+    }
+  }
+
+  @media (max-width: 480px) {
+    & button {
+      width: 3.8rem;
+      height: 2.8rem;
+      font-size: 1.2rem;
     }
   }
 `
@@ -102,6 +167,14 @@ export const DisplayNumberPlayer = styled.div`
     font-weight: 700;
     font-size: 0.6875rem;
     line-height: 1.0625rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 60%;
+    height: 2.5rem;
+    & span {
+      font-size: 1rem;
+    }
   }
 `
 
@@ -161,6 +234,18 @@ export const ListPlayers = styled.div`
       }
     }
   }
+
+  @media (max-width: 480px) {
+    & .row-player {
+      width: 90%;
+      & span {
+        font-size: 1.2rem;
+        &.header .arrow-svg {
+          width: 1rem;
+        }
+      }
+    }
+  }
 `
 
 export const ChangePage = styled.div`
@@ -183,5 +268,14 @@ export const ChangePage = styled.div`
     font-size: 0.75rem;
     line-height: 1.1875rem;
     color: #3d195b;
+  }
+
+  @media (max-width: 480px) {
+    & svg {
+      width: 2.7rem;
+    }
+    & span {
+      font-size: 1.5rem;
+    }
   }
 `
