@@ -3,6 +3,7 @@ import "./App.css"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import LoadingMain from "./components/loading/LoadingMain/LoadingMain"
 import { useAuthInterseptor } from "./api/useAuthInterceptor"
+import Loading from "./components/loading/AlternativeLoading/Loading"
 
 const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
 const MainPageLayout = lazy(
@@ -27,13 +28,27 @@ const App = () => {
       <Routes>
         <Route
           element={
-            <Suspense fallback={<LoadingMain />}>
+            <Suspense fallback={<Loading />}>
               <LoginLayout />
             </Suspense>
           }
         >
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route
+            path="/signin"
+            element={
+              <Suspense fallback={<Loading />}>
+                <SigninPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Suspense fallback={<Loading />}>
+                <SignupPage />
+              </Suspense>
+            }
+          />
         </Route>
 
         <Route
@@ -43,13 +58,34 @@ const App = () => {
             </Suspense>
           }
         >
-          <Route path="/main/my-team" element={<MyTeamPage />} />
-          <Route path="/main/transfers" element={<TransfersPage />} />
-          <Route path="/main/events" element={<EventPage />} />
+          <Route
+            path="/main/my-team"
+            element={
+              <Suspense fallback={<Loading />}>
+                <MyTeamPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/main/transfers"
+            element={
+              <Suspense fallback={<Loading />}>
+                <TransfersPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/main/events"
+            element={
+              <Suspense fallback={<Loading />}>
+                <EventPage />
+              </Suspense>
+            }
+          />
         </Route>
 
         {/* Test route for components */}
-        <Route path="/event" element={<></>} />
+        <Route path="/" element={<></>} />
       </Routes>
     </div>
   )

@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 export const LoadingContainer = styled.div`
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background: #001f25;

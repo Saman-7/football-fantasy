@@ -2,7 +2,7 @@ import { Content, Dote, LoadingContainer } from "./LoadingMain.styled"
 
 const dotes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-const Loading = () => {
+const LoadingMain = () => {
   return (
     <LoadingContainer>
       <Content>
@@ -14,4 +14,4 @@ const Loading = () => {
   )
 }
 
-export default Loading
+export default LoadingMain
