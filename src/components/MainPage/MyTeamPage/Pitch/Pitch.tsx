@@ -56,10 +56,10 @@ const Pitch = () => {
           axios
             .get("/api/v1/managers/dashboard")
             .then((res) => {
-              const data = res.data.data.manager
+              const data = res.data.data.data.manager
               setPicks(data.teamId.picks)
               setBudget(data.budget)
-              setRemainPlayer(res.data.data.nb)
+              setRemainPlayer(res.data.data.data.nb)
               setDeletePlayerId(undefined)
               setIsLoading(false)
               setActivePlayerId(undefined)

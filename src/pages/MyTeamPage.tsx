@@ -66,7 +66,9 @@ const MyTeamPage = () => {
   const { setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
   const { isLoading, error, data } = useFetcher(() =>
-    axios.get("/api/v1/managers/dashboard").then((res) => res.data.data)
+    axios.get("/api/v1/managers/dashboard").then((res) => {
+      return res.data.data.data
+    })
   )
 
   useEffect(() => {
