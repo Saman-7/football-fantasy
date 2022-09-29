@@ -37,7 +37,6 @@ export const SelectPlayerContainer = styled.div`
     top: 50%;
     transform: translateY(-50%);
     z-index: 100;
-    animation: hidenSelectPlayer 0.3s ease-in 1;
 
     & .title-head {
       height: 4.5rem;
@@ -52,14 +51,6 @@ export const SelectPlayerContainer = styled.div`
       animation: showSelectPlayer 0.5s ease-out 1;
     }
 
-    @keyframes hidenSelectPlayer {
-      0% {
-        right: 0;
-      }
-      100% {
-        right: -50%;
-      }
-    }
     @keyframes showSelectPlayer {
       0% {
         right: -50%;
@@ -238,11 +229,15 @@ export const ListPlayers = styled.div`
   @media (max-width: 480px) {
     & .row-player {
       width: 90%;
+      height: 3rem;
       & span {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         &.header .arrow-svg {
           width: 1rem;
         }
+      }
+      & div span:last-child {
+        font-size: 1rem;
       }
     }
   }
