@@ -32,5 +32,12 @@ export const RemainingPlayersRightContainer = styled.div`
     font-size: 0.875rem;
     line-height: 1.375rem;
     color: #3d195b;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    & span {
+      font-size: 1.2rem;
+    }
   }
 `
