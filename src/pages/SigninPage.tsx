@@ -34,9 +34,9 @@ const SigninPage = () => {
       formData
     )
 
-    const { data } = response.data
+    const { result } = response.data
 
-    localStorage.setItem("token", JSON.stringify(data.token))
+    localStorage.setItem("token", JSON.stringify(result.token))
 
     navigate("/main/my-team")
   }

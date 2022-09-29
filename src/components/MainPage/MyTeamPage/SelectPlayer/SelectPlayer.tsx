@@ -86,10 +86,10 @@ const SelectPlayer = () => {
           axios
             .get("/api/v1/managers/dashboard")
             .then((res) => {
-              const data = res.data.data.manager
+              const data = res.data.data.data.manager
               setPicks(data.teamId.picks)
               setBudget(data.budget)
-              setRemainPlayer(res.data.data.nb)
+              setRemainPlayer(res.data.data.data.nb)
               setIsLoading(false)
               setPosition(undefined)
             })
@@ -120,11 +120,12 @@ const SelectPlayer = () => {
         },
       })
       .then((res) => {
-        const listPlayer = res.data.data
-        if (listPlayer.length !== 0) {
-          setTotalPlayer(res.data.total)
-          setPagePlayers(listPlayer)
-          setTotalPage(res.data.pages)
+        const data = res.data.data
+
+        if (data.length !== 0) {
+          setTotalPlayer(data.total)
+          setPagePlayers(data.array)
+          setTotalPage(data.pages)
         }
         setIsLoadingPage(false)
       })
