@@ -32,6 +32,12 @@ export const BudgetRightContainer = styled.div`
     font-weight: 900;
     font-size: 0.875rem;
     color: #3d195b;
-    margin-top: 0.3125rem;
+    margin-top: 0.4125rem;
+  }
+
+  @media (max-width: 480px) {
+    span {
+      font-size: 1.2rem;
+    }
   }
 `
