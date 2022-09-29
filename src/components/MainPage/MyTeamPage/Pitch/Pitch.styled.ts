@@ -122,6 +122,34 @@ export const LanePitch = styled.div`
       margin: 0rem 2.8125rem;
     }
   }
+
+  @media (max-width: 480px) {
+    & .GK,
+    & .DEF,
+    & .MID,
+    & .ATT {
+      & .box .undress {
+        height: 7.25rem;
+        width: 6.0625rem;
+      }
+      & .box .uniform {
+        height: 6.8125rem;
+        width: 5.5625rem;
+      }
+      & .box .blue-dress {
+        height: 7.25rem;
+        width: 6.0625rem;
+      }
+      & .box .plus-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+      & .box .delete-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
 `
 
 export const BoxDress = styled.div`
@@ -153,7 +181,6 @@ export const BoxDress = styled.div`
     height: 1.25rem;
     background-color: rgba(204, 255, 228, 0.27);
     border-radius: 0rem 0rem 0.5rem 0.5rem;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,5 +195,21 @@ export const BoxDress = styled.div`
 
   & img {
     -webkit-user-drag: none;
+  }
+
+  @media (max-width: 480px) {
+    & .title {
+      height: 1.7rem;
+      & span {
+        font-size: 1rem;
+      }
+    }
+
+    & .rating {
+      height: 1.5rem;
+      & span {
+        font-size: 1rem;
+      }
+    }
   }
 `
