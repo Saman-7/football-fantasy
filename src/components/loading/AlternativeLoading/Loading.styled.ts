@@ -15,24 +15,24 @@ export const LoadingContainer = styled.div`
 `
 
 export const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border: 13px solid transparent;
-  border-bottom: 13px solid yellow;
-  border-top: 13px solid purple;
+  width: 12.5rem;
+  height: 12.5rem;
+  border: 0.8125rem solid transparent;
+  border-bottom: 0.8125rem solid yellow;
+  border-top: 0.8125rem solid purple;
   border-radius: 50%;
   animation: rotateCircle 2s linear infinite;
 
   &::before {
     content: "";
     position: absolute;
-    top: 20px;
-    right: 20px;
-    bottom: 20px;
-    left: 20px;
-    border: 13px solid transparent;
-    border-bottom: 13px solid red;
-    border-top: 13px solid aqua;
+    top: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    border: 0.8125rem solid transparent;
+    border-bottom: 0.8125rem solid red;
+    border-top: 0.8125rem solid aqua;
     border-radius: 50%;
     animation: rotateCircle 2s linear infinite;
   }
@@ -40,13 +40,13 @@ export const Circle = styled.div`
   &::after {
     content: "";
     position: absolute;
-    top: 50px;
-    right: 50px;
-    bottom: 50px;
-    left: 50px;
-    border: 13px solid transparent;
-    border-bottom: 13px solid lawngreen;
-    border-top: 13px solid hotpink;
+    top: 3.125rem;
+    right: 3.125rem;
+    bottom: 3.125rem;
+    left: 3.125rem;
+    border: 0.8125rem solid transparent;
+    border-bottom: 0.8125rem solid lawngreen;
+    border-top: 0.8125rem solid hotpink;
     border-radius: 50%;
     animation: rotateCircle 4s linear infinite;
   }
