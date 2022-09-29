@@ -13,10 +13,10 @@ export const WarningContainer = styled.div`
   top: 0;
 `
 export const PopupWarning = styled.div`
-  height: 416px;
-  width: 770px;
-  border-radius: 16px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  height: 26rem;
+  width: 48.125rem;
+  border-radius: 1rem;
+  box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,50 +34,71 @@ export const PopupWarning = styled.div`
   }
 
   & .head-text {
-    height: 60px;
-    width: 770px;
+    height: 3.75rem;
+    width: 48.125rem;
     background: #3d195b;
-    border-radius: 16px 16px 0px 0px;
+    border-radius: 1rem 1rem 0rem 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     & span {
       font-weight: 900;
-      font-size: 24px;
-      line-height: 38px;
+      font-size: 1.5rem;
+      line-height: 2.375rem;
       color: #00ff87;
     }
   }
 
   & .warning-svg {
-    width: 130px;
-    filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
+    width: 8.125rem;
+    filter: drop-shadow(0rem 0.125rem 0.625rem rgba(0, 0, 0, 0.25));
   }
 
   & .text {
     font-family: vazirmatn;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
+    font-size: 1.25rem;
+    line-height: 1.4375rem;
     color: #3d195b;
   }
 
   & button {
-    border: 1px solid #3d195b;
-    border-radius: 4px;
-    height: 40px;
-    width: 173px;
-    border-radius: 4px;
-    margin: 0px 11px;
+    border: 0.0625rem solid #3d195b;
+    border-radius: 0.25rem;
+    height: 2.5rem;
+    width: 10.8125rem;
+    border-radius: 0.25rem;
+    margin: 0rem 0.6875rem;
     font-family: roboto;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1rem;
+    line-height: 1.1875rem;
     background-color: #ed1b5d;
     border: none;
     color: white;
     cursor: pointer;
     font-family: vazirmatn;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
+  }
+
+  @media (max-width: 480px) {
+    & .head-text {
+      height: 4rem;
+      & span {
+        font-size: 2rem;
+      }
+    }
+    & .warning-svg {
+      width: 9rem;
+    }
+    & .text {
+      font-size: 1.5rem;
+    }
+    & button {
+      font-size: 1.5rem;
+      margin-bottom: 2.7rem;
+      height: 3rem;
+      width: 11rem;
+    }
   }
 `
