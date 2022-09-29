@@ -69,8 +69,8 @@ const ListPlayer = (props: TypePropsListPlayer) => {
 
       <Sidebar>
         <img src={UniformPNG} alt="uniform" className="uniform-img" />
-        <LeagueSVG />
-        <StripesSVG />
+        <LeagueSVG className="league-svg" />
+        <StripesSVG className="stripes-svg" />
       </Sidebar>
     </ListPlayerContainer>
   )
