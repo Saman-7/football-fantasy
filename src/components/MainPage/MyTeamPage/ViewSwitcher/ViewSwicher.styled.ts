@@ -43,4 +43,12 @@ export const ViewSwitcherContainer = styled.div`
       }
     }
   }
+
+  @media (max-width: 480px) {
+    & .button-switch button {
+      font-size: 1.1rem;
+      height: 2.5rem;
+      width: 8.1875rem;
+    }
+  }
 `
