@@ -175,6 +175,12 @@ export const ListPlayers = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: auto;
+  &.pending {
+    pointer-events: none;
+    & .row-player {
+      opacity: 0.5;
+    }
+  }
 
   & .row-player {
     width: 15rem;
@@ -245,7 +251,7 @@ export const ListPlayers = styled.div`
 
 export const ChangePage = styled.div`
   position: absolute;
-  bottom: 1.75rem;
+  bottom: 1.5rem;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
