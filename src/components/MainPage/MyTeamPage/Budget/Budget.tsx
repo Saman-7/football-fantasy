@@ -1,6 +1,7 @@
 import { BudgetContainer, BudgetRightContainer } from "./Budget.styled"
 import WalletSVG from "../../../../svg/wallet.svg"
 import useMainPageStore from "../../../../store"
+import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 
 const Budget = () => {
   const { budget } = useMainPageStore()
@@ -13,7 +14,7 @@ const Budget = () => {
         <span>باقی مانده پول</span>
       </BudgetRightContainer>
 
-      <span>{budget}</span>
+      <span>{numberEnglishToPersian(budget.toString())}</span>
     </BudgetContainer>
   )
 }
