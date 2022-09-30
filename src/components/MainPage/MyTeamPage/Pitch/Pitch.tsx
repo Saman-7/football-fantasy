@@ -9,8 +9,8 @@ import { BoxDress, LanePitch, PaleGreen, PitchContainer } from "./Pitch.styled"
 import DeletePlayerPopup from "../DeletePlayerPopup/DeletePlayerPopup"
 import useMainPageStore from "../../../../store"
 import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
-import { axios } from "../../../../api/axiosInstance"
 import Loading from "../../../loading/AlternativeLoading/Loading"
+import { deletePlayerApi, getDashboardApi } from "../../../../api/requests"
 
 const lanePlayersPitch = [
   {
@@ -44,25 +44,17 @@ const Pitch = () => {
 
       const idPlayer = picks[deletePlayerId].player._id
 
-      axios({
-        method: "patch",
-        url: "/api/v1/teams/delete-player",
-        data: {
-          id: idPlayer,
-          index: deletePlayerId,
-        },
-      })
+      deletePlayerApi(idPlayer, deletePlayerId)
         .then((_) => {
-          axios
-            .get("/api/v1/managers/dashboard")
+          getDashboardApi()
             .then((res) => {
-              const data = res.data.data.data.manager
-              setPicks(data.teamId.picks)
-              setBudget(data.budget)
-              setRemainPlayer(res.data.data.data.nb)
+              const { manager, nb } = res.data.data.data
+              setPicks(manager.teamId.picks)
+              setBudget(manager.budget)
+              setRemainPlayer(nb)
               setDeletePlayerId(undefined)
-              setIsLoading(false)
               setActivePlayerId(undefined)
+              setIsLoading(false)
             })
             .catch((err) => {
               console.log(err)

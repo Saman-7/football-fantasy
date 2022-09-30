@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { axios } from "../../../../api/axiosInstance"
 import {
   MatchweekDateContainer,
   MatchweekNumberContainer,
@@ -9,6 +8,7 @@ import "jdate.js"
 import { weekToStringPersian } from "../../../../utils/weekToStringPersion"
 import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 import useFetcher from "../../../../api/useFetcher"
+import { getMatchWeekStatus } from "../../../../api/requests"
 
 interface TypePropsMatchWeekStatus {
   width: number
@@ -32,7 +32,7 @@ const MatchweekStatus = (props: TypePropsMatchWeekStatus) => {
   }
 
   const { data } = useFetcher(() =>
-    axios.get("/api/v1/events/current/info").then((res) => res.data.data)
+    getMatchWeekStatus().then((res) => res.data.data)
   )
 
   useEffect(() => {
