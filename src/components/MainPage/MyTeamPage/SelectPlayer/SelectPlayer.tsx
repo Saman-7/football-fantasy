@@ -155,7 +155,7 @@ const SelectPlayer = () => {
         <span>{`${totalPlayer} بازیکن نمایش داده شده است`}</span>
       </DisplayNumberPlayer>
 
-      <ListPlayers>
+      <ListPlayers className={classNames({ pending: isloadingPage })}>
         <div className="row-player">
           <span className="header">نام بازیکن</span>
           <span className="header">
