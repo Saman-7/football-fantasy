@@ -8,10 +8,10 @@ import RemainingPlayers from "../components/MainPage/MyTeamPage/RemainingPlayers
 import SelectPlayer from "../components/MainPage/MyTeamPage/SelectPlayer/SelectPlayer"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
 import styled from "styled-components"
-import { axios } from "../api/axiosInstance"
 import useFetcher from "../api/useFetcher"
 import Warning from "../components/Warning/Warning"
 import Loading from "../components/loading/AlternativeLoading/Loading"
+import { getDashboardApi } from "../api/requests"
 
 const MyTeamPageContainer = styled.div`
   display: flex;
@@ -66,7 +66,7 @@ const MyTeamPage = () => {
   const { setPicks, setBudget, setRemainPlayer } = useMainPageStore()
 
   const { isLoading, error, data } = useFetcher(() =>
-    axios.get("/api/v1/managers/dashboard").then((res) => {
+    getDashboardApi().then((res) => {
       return res.data.data.data
     })
   )

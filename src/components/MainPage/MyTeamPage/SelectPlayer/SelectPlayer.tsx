@@ -20,8 +20,11 @@ import { filterStringToNumber } from "../../../../utils/filterStringToNumber"
 import Loading from "../../../loading/AlternativeLoading/Loading"
 import Warning from "../../../Warning/Warning"
 import useDebounce from "../../../../utils/useDebounce"
-import axiosMain from "axios"
-import { axios } from "../../../../api/axiosInstance"
+import {
+  addPlayerApi,
+  searchPlayerApi,
+  getDashboardApi,
+} from "../../../../api/requests"
 
 const lanesPitch = ["All", "GK", "DEF", "MID", "ATT"]
 
@@ -32,7 +35,7 @@ const SelectPlayer = () => {
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
-  const [isloadingpage, setIsLoadingPage] = useState(false)
+  const [isloadingPage, setIsLoadingPage] = useState(false)
   const [error, setError] = useState<string | undefined>()
 
   const {
@@ -56,7 +59,7 @@ const SelectPlayer = () => {
   }
 
   const handleChangePage = (num: number) => {
-    if (!isloadingpage) {
+    if (!isloadingPage) {
       if (num === 0) setPage(1)
       else if (num === +1 && page < totalPage) setPage(page + 1)
       else if (num === -1 && page !== 1) setPage(page - 1)
@@ -68,28 +71,14 @@ const SelectPlayer = () => {
     if (position !== undefined) {
       setIsLoading(true)
 
-      const localStorageToken = localStorage.getItem("token")
-      let token = localStorageToken && JSON.parse(localStorageToken)
-
-      axiosMain({
-        method: "patch",
-        url: "http://178.216.248.37:8080/api/v1/teams/add-player",
-        data: {
-          id: _id,
-          index: position,
-        },
-        headers: {
-          token,
-        },
-      })
+      addPlayerApi(_id, position)
         .then((_) => {
-          axios
-            .get("/api/v1/managers/dashboard")
+          getDashboardApi()
             .then((res) => {
-              const data = res.data.data.data.manager
-              setPicks(data.teamId.picks)
-              setBudget(data.budget)
-              setRemainPlayer(res.data.data.data.nb)
+              const { manager, nb } = res.data.data.data
+              setPicks(manager.teamId.picks)
+              setBudget(manager.budget)
+              setRemainPlayer(nb)
               setIsLoading(false)
               setPosition(undefined)
             })
@@ -110,15 +99,7 @@ const SelectPlayer = () => {
   useEffect(() => {
     setIsLoadingPage(true)
 
-    axios
-      .get("/api/v1/players/search", {
-        params: {
-          page: page,
-          limit: 14,
-          filter: filter,
-          web_name: debounce,
-        },
-      })
+    searchPlayerApi(page, filter, debounce)
       .then((res) => {
         const data = res.data.data
 
