@@ -16,6 +16,17 @@ export const RemainingPlayersContainer = styled.div`
     font-size: 2.25rem;
     color: #3d195b;
   }
+
+  @media (max-width: 480px) {
+    width: 45%;
+    height: 8.75rem;
+
+    & > span {
+      font-weight: 900;
+      font-size: 3rem;
+      color: #3d195b;
+    }
+  }
 `
 
 export const RemainingPlayersRightContainer = styled.div`
@@ -36,8 +47,12 @@ export const RemainingPlayersRightContainer = styled.div`
   }
 
   @media (max-width: 480px) {
+    & img {
+      width: 3rem;
+      height: 3rem;
+    }
     & span {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 `
