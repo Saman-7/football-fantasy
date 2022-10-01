@@ -45,10 +45,27 @@ export const ViewSwitcherContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    & .button-switch button {
-      font-size: 1.1rem;
-      height: 2.5rem;
-      width: 8.1875rem;
+    width: 80%;
+    margin-top: 3.125rem;
+    height: auto;
+
+    & .rahnema-logo {
+      width: 9.375rem;
+      height: 8rem;
+    }
+
+    & .button-switch {
+      width: 80%;
+      height: 40px;
+      border-radius: 1rem;
+
+      & button {
+        font-size: 1.1rem;
+        width: 49%;
+        height: 3.75rem;
+        font-weight: 700;
+        font-size: 14px;
+      }
     }
   }
 `

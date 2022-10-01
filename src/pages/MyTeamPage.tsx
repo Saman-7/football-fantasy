@@ -12,6 +12,7 @@ import useFetcher from "../api/useFetcher"
 import Warning from "../components/Warning/Warning"
 import Loading from "../components/loading/AlternativeLoading/Loading"
 import { getDashboardApi } from "../api/requests"
+import useMediaQuery from "../utils/useMediaQuery"
 
 const MyTeamPageContainer = styled.div`
   display: flex;
@@ -82,6 +83,8 @@ const MyTeamPage = () => {
     }
   }, [data, error, setBudget, setPicks, setRemainPlayer])
 
+  const mobileMedia = useMediaQuery("(max-width:480px)")
+
   return (
     <MyTeamPageContainer>
       {isLoading && <Loading />}
@@ -92,12 +95,21 @@ const MyTeamPage = () => {
       <div className="main">
         <MatchweekStatus width={29.5} />
 
-        <div className="head-pitch">
-          <Budget />
+        {mobileMedia && (
           <ViewSwitcher
             setPitch={() => setPage(VIEW_MY_TEAM.pitch)}
             setList={() => setPage(VIEW_MY_TEAM.list)}
           />
+        )}
+
+        <div className="head-pitch">
+          <Budget />
+          {!mobileMedia && (
+            <ViewSwitcher
+              setPitch={() => setPage(VIEW_MY_TEAM.pitch)}
+              setList={() => setPage(VIEW_MY_TEAM.list)}
+            />
+          )}
           <RemainingPlayers />
         </div>
 
