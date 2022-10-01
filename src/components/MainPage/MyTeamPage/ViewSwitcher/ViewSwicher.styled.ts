@@ -46,7 +46,7 @@ export const ViewSwitcherContainer = styled.div`
 
   @media (max-width: 480px) {
     width: 80%;
-    margin-top: 3.125rem;
+    margin-top: 2rem;
     height: auto;
 
     & .rahnema-logo {
