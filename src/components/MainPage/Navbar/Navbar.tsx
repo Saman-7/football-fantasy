@@ -1,5 +1,7 @@
-import { NavLink } from "react-router-dom"
-import { NavbarItem, NavbarContainer } from "./Navbar.styled"
+import { useState } from "react"
+import { NavLink, useLocation } from "react-router-dom"
+import { NavbarItem, NavbarContainer, MenuNavbar } from "./Navbar.styled"
+import { ReactComponent as MenuSVG } from "../../../svg/menu.svg"
 
 const NavbarItemsTexts = [
   { text: "تیم من", path: "/main/my-team" },
@@ -10,14 +12,35 @@ const NavbarItemsTexts = [
 ]
 
 const Navbar = () => {
+  const [isMenu, setIsMenu] = useState(false)
+
+  const { pathname } = useLocation()
+  const valueMenu = () => {
+    return NavbarItemsTexts.find((link) => link.path === pathname)?.text
+  }
+
+  const selectedItemMenu = () => {
+    if (isMenu) {
+      setIsMenu(false)
+    }
+  }
+
   return (
-    <NavbarContainer>
-      {NavbarItemsTexts.map(({ text, path }, index) => (
-        <NavbarItem key={index}>
-          <NavLink to={path}>{text}</NavLink>
-        </NavbarItem>
-      ))}
-    </NavbarContainer>
+    <>
+      <MenuNavbar onClick={() => setIsMenu((isMenu) => !isMenu)}>
+        <MenuSVG />
+        <span>{valueMenu()}</span>
+      </MenuNavbar>
+      {isMenu && (
+        <NavbarContainer>
+          {NavbarItemsTexts.map(({ text, path }, index) => (
+            <NavbarItem key={index} onClick={selectedItemMenu}>
+              <NavLink to={path}>{text}</NavLink>
+            </NavbarItem>
+          ))}
+        </NavbarContainer>
+      )}
+    </>
   )
 }
 
