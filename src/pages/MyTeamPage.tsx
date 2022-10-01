@@ -67,7 +67,7 @@ const MyTeamPage = () => {
 
   const { isLoading, error, data } = useFetcher(() =>
     getDashboardApi().then((res) => {
-      return res.data.data.data
+      return res.data.data
     })
   )
 

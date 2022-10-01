@@ -75,7 +75,7 @@ const SelectPlayer = () => {
         .then((_) => {
           getDashboardApi()
             .then((res) => {
-              const { manager, nb } = res.data.data.data
+              const { manager, nb } = res.data.data
               setPicks(manager.teamId.picks)
               setBudget(manager.budget)
               setRemainPlayer(nb)
