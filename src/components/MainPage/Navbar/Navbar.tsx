@@ -2,6 +2,7 @@ import { useState } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import { NavbarItem, NavbarContainer, MenuNavbar } from "./Navbar.styled"
 import { ReactComponent as MenuSVG } from "../../../svg/menu.svg"
+import useMediaQuery from "../../../utils/useMediaQuery"
 
 const NavbarItemsTexts = [
   { text: "تیم من", path: "/main/my-team" },
@@ -25,13 +26,17 @@ const Navbar = () => {
     }
   }
 
+  const mobileMedia = useMediaQuery("(max-width:480px)")
+
   return (
     <>
-      <MenuNavbar onClick={() => setIsMenu((isMenu) => !isMenu)}>
-        <MenuSVG />
-        <span>{valueMenu()}</span>
-      </MenuNavbar>
-      {isMenu && (
+      {mobileMedia && (
+        <MenuNavbar onClick={() => setIsMenu((isMenu) => !isMenu)}>
+          <MenuSVG />
+          <span>{valueMenu()}</span>
+        </MenuNavbar>
+      )}
+      {(!mobileMedia || isMenu) && (
         <NavbarContainer>
           {NavbarItemsTexts.map(({ text, path }, index) => (
             <NavbarItem key={index} onClick={selectedItemMenu}>
