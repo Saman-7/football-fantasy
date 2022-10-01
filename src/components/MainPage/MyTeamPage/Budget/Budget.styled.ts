@@ -21,6 +21,17 @@ export const BudgetContainer = styled.div`
     width: 3rem;
     height: 3rem;
   }
+
+  @media (max-width: 480px) {
+    width: 45%;
+    height: 8.75rem;
+
+    & > span {
+      font-weight: 900;
+      font-size: 3rem;
+      color: #3d195b;
+    }
+  }
 `
 
 export const BudgetRightContainer = styled.div`
@@ -36,8 +47,12 @@ export const BudgetRightContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    span {
-      font-size: 1.2rem;
+    & img {
+      width: 3rem;
+      height: 3rem;
+    }
+    & span {
+      font-size: 1.3rem;
     }
   }
 `
