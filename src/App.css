@@ -75,3 +75,18 @@
     font-size: 8px;
   }
 }
+@media (max-width: 440px) {
+  html {
+    font-size: 7px;
+  }
+}
+@media (max-width: 390px) {
+  html {
+    font-size: 6px;
+  }
+}
+@media (max-width: 330px) {
+  html {
+    font-size: 5px;
+  }
+}

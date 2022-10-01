@@ -60,11 +60,9 @@ export const ViewSwitcherContainer = styled.div`
       border-radius: 1rem;
 
       & button {
-        font-size: 1.1rem;
-        width: 49%;
-        height: 3.75rem;
-        font-weight: 700;
-        font-size: 14px;
+        font-size: 1.8rem;
+        width: 48%;
+        height: 80%;
       }
     }
   }
