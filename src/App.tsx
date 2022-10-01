@@ -11,6 +11,7 @@ const MainPageLayout = lazy(
 )
 const SigninPage = lazy(() => import("./pages/SigninPage"))
 const SignupPage = lazy(() => import("./pages/SignupPage"))
+const ConfirmationPage = lazy(() => import("./pages/ConfirmationPage"))
 const MyTeamPage = lazy(() => import("./pages/MyTeamPage"))
 const EventPage = lazy(() => import("./pages/EventsPage"))
 const TransfersPage = lazy(() => import("./pages/TransfersPage"))
@@ -46,6 +47,14 @@ const App = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <SignupPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/signup/confirmation"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ConfirmationPage />
               </Suspense>
             }
           />

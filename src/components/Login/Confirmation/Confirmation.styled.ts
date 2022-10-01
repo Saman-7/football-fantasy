@@ -22,3 +22,8 @@ export const InputContainer = styled.div`
     margin-bottom: 1rem;
   }
 `
+
+export const ValidationError = styled.div`
+  color: red;
+  margin-top: 0.5rem;
+`

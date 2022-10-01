@@ -95,3 +95,8 @@ export const SignupButton = styled.input.attrs({
   color: #ffffff;
   cursor: pointer;
 `
+
+export const ValidationError = styled.p`
+  color: red;
+  margin-top: 0.5rem;
+`

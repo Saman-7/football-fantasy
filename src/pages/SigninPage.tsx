@@ -1,6 +1,8 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+import useAxios from "axios-hooks"
 import { useNavigate } from "react-router-dom"
+import { checkToken, getToken, setToken } from "../utils/token"
 import {
   ButtonGroup,
   FormContainer,
@@ -10,42 +12,63 @@ import {
   SigninButton,
   SigninFormContainer,
   SignupButton,
-} from "../components/Login/Singin/Signin.styled"
+  ValidationError,
+} from "../components/Login/Signin/Signin.styled"
 import PurpleLineSVG from "../svg/purple-line.svg"
 import PinkLineSVG from "../svg/pink-line.svg"
+import axios from "axios"
 
 const SigninPage = () => {
-  const [formData, setFormData] = useState({ username: "", password: "" })
+  const [tokenIsSet, setTokenIsSet] = useState<boolean>(false)
 
-  const { username, password } = formData
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISigninInput>()
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  const [{ data, error }, execute] = useAxios(
+    {
+      url: `${process.env.REACT_APP_BASE_URL}/api/v1/auth/login`,
+      method: "post",
+    },
+    { manual: true }
+  )
 
   const navigate = useNavigate()
 
-  const handleSignin = async (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>
-  ) => {
-    e.preventDefault()
-
-    const response = await axios.post(
-      "http://178.216.248.37:8080/api/v1/auth/login",
-      formData
-    )
-
-    const { data } = response.data
-
-    localStorage.setItem("token", JSON.stringify(data.token))
-
-    navigate("/main/my-team")
-  }
-
+  // Effect to check if there is a token already set
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = getToken()
 
-    token && navigate("/main/my-team")
+    checkToken(token) && setTokenIsSet(true)
   }, [])
+
+  // Effect to redirect to main page if token is already set
+  useEffect(() => {
+    tokenIsSet && navigate("/main/my-team")
+  }, [tokenIsSet])
+
+  // Effect to set token
+  useEffect(() => {
+    if (data) {
+      const { token } = data.result
+
+      if (token) {
+        setToken(token)
+        setTokenIsSet(true)
+      }
+    }
+  }, [data])
+
+  // Effect to display login errors
+  useEffect(() => {
+    error && alert(error.code)
+  }, [error])
+
+  const onSubmit: SubmitHandler<ISigninInput> = (formData) => {
+    execute({ data: { ...formData } })
+  }
 
   return (
     <SigninFormContainer>
@@ -58,32 +81,38 @@ const SigninPage = () => {
       </FormHeaderContainer>
 
       <FormContainer>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <InputContainer>
             <label htmlFor="username">نام کاربری</label>
 
             <Input
               id="username"
-              name="username"
-              value={username}
-              onChange={handleChange}
+              {...register("username", {
+                required: "نام کاربری حتما وارد شود",
+              })}
             />
+
+            <ValidationError>
+              {errors && errors.username?.message}
+            </ValidationError>
           </InputContainer>
 
           <InputContainer>
             <label htmlFor="password">رمزعبور</label>
 
             <Input
-              type="password"
               id="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
+              type="password"
+              {...register("password", { required: "رمز عبور حتما وارد شود" })}
             />
+
+            <ValidationError>
+              {errors && errors.password?.message}
+            </ValidationError>
           </InputContainer>
 
           <ButtonGroup>
-            <SigninButton value="ورود" onClick={handleSignin} />
+            <SigninButton value="ورود" />
 
             <SignupButton
               value="ثبت نام"
