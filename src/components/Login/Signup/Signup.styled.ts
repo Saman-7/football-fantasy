@@ -24,12 +24,31 @@ export const InputRow = styled.div`
 export const Input = styled.input`
   box-sizing: border-box;
   width: 17.125rem;
+  height: 3rem;
   outline: none;
   color: #ffffff;
   height: 3rem;
   background: #3d185b;
   border: 0.0625rem solid #a057db;
   border-radius: 0.5rem;
+  outline: none;
+  font-family: "Vazirmatn";
+  font-size: 1.25rem;
+  color: #edd8ff;
+`
+
+export const CountrySelect = styled.select`
+  box-sizing: border-box;
+  width: 17.125rem;
+  height: 3rem;
+  background: #3d185b;
+  border: 0.0625rem solid #a057db;
+  border-radius: 0.5rem;
+  color: #edd8ff;
+`
+
+export const CountryOption = styled.option`
+  color: #ffffff;
 `
 
 export const Button = styled.input.attrs({
@@ -46,4 +65,9 @@ export const Button = styled.input.attrs({
   font-size: 1.25rem;
   color: #ffffff;
   cursor: pointer;
+`
+
+export const ValidationError = styled.p`
+  color: red;
+  margin-top: 0.5rem;
 `
