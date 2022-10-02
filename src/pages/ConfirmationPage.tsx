@@ -47,7 +47,7 @@ const ConfirmationPage = () => {
 
   useEffect(() => {
     if (data) {
-      const { token } = data.result
+      const { token } = data.data
 
       if (token) {
         setToken(token)
