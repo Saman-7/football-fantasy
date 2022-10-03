@@ -54,9 +54,12 @@ const SelectPlayer = () => {
   const handleFilter = (lane: string) => {
     if (position === undefined) {
       setFilter(filterStringToNumber(lane))
-      if (page !== 1) setPage(1)
     }
   }
+
+  useEffect(() => {
+    if (page !== 1) setPage(1)
+  }, [filter])
 
   const handleChangePage = (num: number) => {
     if (!isloadingPage) {
