@@ -33,14 +33,14 @@ const ListPlayer = (props: TypePropsListPlayer) => {
         </HeaderList>
 
         {props.lanePlayersId.map(({ lane, players }) => (
-          <BoxList>
+          <BoxList key={lane}>
             <div className="title">
               <h3>{convertLanesToPersian(lane)}</h3>
             </div>
             {players.map((playerId: number) => {
               const dataPlayer = picks.find((_, index) => index === playerId)
               return (
-                <RowList>
+                <RowList key={playerId}>
                   <div className="name-player">
                     <span>
                       {dataPlayer?.player?.web_name
