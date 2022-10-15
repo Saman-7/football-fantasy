@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import LoadingMain from "./components/loading/LoadingMain/LoadingMain"
 import { useAuthInterseptor } from "./api/useAuthInterceptor"
 import Loading from "./components/loading/AlternativeLoading/Loading"
+import ProfilePage from "./pages/ProfilePage"
 
 const LoginLayout = lazy(() => import("./components/Login/LoginLayout"))
 const MainPageLayout = lazy(
@@ -88,6 +89,14 @@ const App = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <EventPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/main/profile"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ProfilePage />
               </Suspense>
             }
           />
