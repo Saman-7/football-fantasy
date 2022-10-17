@@ -17,6 +17,7 @@ export const MatchweekStatusContainer = styled.div<TypePropsMatchweekStatusConta
   @media (max-width: 480px) {
     height: 4.375rem;
     width: 52rem;
+    margin: 0.625rem 0rem;
   }
 `
 

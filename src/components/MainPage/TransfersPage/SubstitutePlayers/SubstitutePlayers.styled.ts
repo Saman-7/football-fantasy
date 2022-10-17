@@ -31,6 +31,22 @@ export const SubstitutePlayersContainer = styled.div`
     height: 44.625rem;
     padding-bottom: 2.5rem;
   }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    margin-top: 1rem;
+
+    & .title-head {
+      width: 50%;
+      margin: auto;
+    }
+    & .content {
+      flex-direction: row;
+      height: 11.5rem;
+    }
+  }
 `
 
 export const PlayerBox = styled.div`
@@ -42,7 +58,14 @@ export const PlayerBox = styled.div`
 
   .uniform {
     height: 6.25rem;
-    width: 81;
+    width: 5.0625rem;
+  }
+
+  @media (max-width: 480px) {
+    & .uniform {
+      height: 7.25rem;
+      width: 6.0625rem;
+    }
   }
 `
 
@@ -68,6 +91,14 @@ export const NameBox = styled.div`
     background-color: #05f1ff;
     & span {
       color: #3d185b;
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 1.6rem;
+    width: 8rem;
+    & span {
+      font-size: 1rem;
     }
   }
 `
