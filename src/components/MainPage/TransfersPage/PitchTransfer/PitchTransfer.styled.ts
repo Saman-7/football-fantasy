@@ -2,25 +2,29 @@ import styled from "styled-components"
 
 export const PitchTransferContainer = styled.div`
   grid-area: pitch;
-  width: 869px;
-  height: 768px;
+  width: 54.3125rem;
+  height: 48rem;
   background-color: #29cb75;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.2));
-  border-radius: 16px;
-  margin-top: 14px;
+  filter: drop-shadow(0rem 0rem 0.25rem rgba(0, 0, 0, 0.2));
+  border-radius: 1rem;
+  margin-top: 0.875rem;
+  position: relative;
 
   & .line-pitch {
     position: absolute;
+    height: 98%;
+    width: 91%;
+    top: 1.25rem;
   }
 `
 
 export const PaleGreen = styled.div`
-  width: 774px;
-  height: 580px;
-  margin-bottom: 30px;
+  width: 48.375rem;
+  height: 36.25rem;
+  margin-bottom: 1.875rem;
   opacity: 0.2;
   display: flex;
   flex-direction: column;
@@ -29,8 +33,8 @@ export const PaleGreen = styled.div`
 
   & div {
     background-color: white;
-    width: 774px;
-    height: 115px;
+    width: 48.375rem;
+    height: 7.1875rem;
   }
 `
 
@@ -43,7 +47,7 @@ export const LanesPitch = styled.div`
 `
 export const Lane = styled.div`
   width: 100%;
-  height: 100px;
+  height: 6.25rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -57,32 +61,34 @@ export const PlayerBox = styled.div`
   position: relative;
 
   .uniform {
-    height: 100px;
-    width: 81;
+    height: 6.25rem;
+    width: 5.0625rem;
   }
 
   .arrow-up-down-box {
+    width: 1.5rem;
+    height: 1.5rem;
     position: absolute;
-    right: -10px;
-    bottom: 5px;
+    right: -0.625rem;
+    bottom: 0.3125rem;
   }
 `
 
 export const NameBox = styled.div`
-  height: 25px;
-  width: 120px;
-  border-radius: 4px;
+  height: 1.5625rem;
+  width: 7.5rem;
+  border-radius: 0.25rem;
   background: #37013b;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: -25px;
+  bottom: -1.5625rem;
 
   & span {
     font-weight: 700;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 0.8125rem;
+    line-height: 0.9375rem;
     color: white;
   }
 
