@@ -1,24 +1,24 @@
 import styled from "styled-components"
 
 export const SubstitutePlayersContainer = styled.div`
-  height: 768px;
-  width: 273px;
-  border-radius: 16px 16px 0px 0px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
-  margin-left: 24px;
+  height: 48rem;
+  width: 17.0625rem;
+  border-radius: 1rem 1rem 0rem 0rem;
+  box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.12);
+  margin-left: 1.5rem;
 
   & .title-head {
-    height: 50px;
+    height: 3.125rem;
     background: #3d195b;
-    border-radius: 16px 16px 0px 0px;
+    border-radius: 1rem 1rem 0rem 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
 
     & span {
       font-weight: 800;
-      font-size: 18px;
-      line-height: 28px;
+      font-size: 1.125rem;
+      line-height: 1.75rem;
       color: white;
     }
   }
@@ -28,8 +28,8 @@ export const SubstitutePlayersContainer = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 714px;
-    padding-bottom: 40px;
+    height: 44.625rem;
+    padding-bottom: 2.5rem;
   }
 `
 
@@ -41,26 +41,26 @@ export const PlayerBox = styled.div`
   position: relative;
 
   .uniform {
-    height: 100px;
+    height: 6.25rem;
     width: 81;
   }
 `
 
 export const NameBox = styled.div`
-  height: 25px;
-  width: 120px;
-  border-radius: 4px;
+  height: 1.5625rem;
+  width: 7.5rem;
+  border-radius: 0.25rem;
   background: #37013b;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: -25px;
+  bottom: -1.5625rem;
 
   & span {
     font-weight: 700;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 0.8125rem;
+    line-height: 0.9375rem;
     color: white;
   }
 
