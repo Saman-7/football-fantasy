@@ -72,6 +72,17 @@ export const PlayerBox = styled.div`
     right: -0.625rem;
     bottom: 0.3125rem;
   }
+
+  @media (max-width: 480px) {
+    & .uniform {
+      height: 7.25rem;
+      width: 6.0625rem;
+    }
+    .arrow-up-down-box {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
 `
 
 export const NameBox = styled.div`
@@ -96,6 +107,14 @@ export const NameBox = styled.div`
     background-color: #ebff00;
     & span {
       color: #3d185b;
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 1.6rem;
+    width: 8rem;
+    & span {
+      font-size: 1rem;
     }
   }
 `

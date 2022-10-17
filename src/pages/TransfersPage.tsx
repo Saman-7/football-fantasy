@@ -10,7 +10,7 @@ const TransfersPageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 
   & .main {
     display: flex;
@@ -18,11 +18,24 @@ const TransfersPageContainer = styled.div`
     justify-content: space-between;
 
     & .match-week-status {
-      margin-bottom: 22px;
-      margin-top: 20px;
+      margin-bottom: 1.375rem;
+      margin-top: 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+    justify-content: end;
+    align-items: center;
+
+    & .main {
+      align-items: center;
+    }
+    & .match-week-status {
+      flex-direction: column;
     }
   }
 `
