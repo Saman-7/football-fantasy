@@ -83,7 +83,7 @@ const YourFriends = () => {
         </FilterContainer>
 
         <SearchBarContainer>
-          <SearchSVG />
+          <SearchSVG className="search-svg" />
 
           <input placeholder="جستجو" />
         </SearchBarContainer>
@@ -93,7 +93,7 @@ const YourFriends = () => {
             return (
               <FollowersContainer key={follower.managerId}>
                 <div>
-                  <SampleProfileSVG />
+                  <SampleProfileSVG className="profile-img" />
 
                   <span>{`${follower.fname} ${follower.lname}`}</span>
                 </div>

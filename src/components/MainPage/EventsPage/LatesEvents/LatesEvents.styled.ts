@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 export const LatesEventsContainer = styled.div`
-  height: 936px;
-  width: 670px;
+  height: 58.5rem;
+  width: 41.875rem;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -13,26 +13,26 @@ export const LatesEventsContainer = styled.div`
     display: flex;
     justify-content: start;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     & h1 {
       font-weight: 800;
-      font-size: 24px;
-      line-height: 38px;
+      font-size: 1.5rem;
+      line-height: 2.375rem;
       color: #3d195b;
     }
   }
 `
 
 export const BoxEventContent = styled.div`
-  height: 180px;
-  width: 640px;
-  border-radius: 8px;
+  height: 11.25rem;
+  width: 40rem;
+  border-radius: 0.5rem;
   background-color: #fbfbfb;
-  margin: 12px 0px;
+  margin: 0.75rem 0rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem;
   box-sizing: border-box;
 `
 
@@ -43,30 +43,32 @@ export const PictureEvent = styled.div`
   align-items: center;
 
   & img {
-    height: 80px;
-    width: 80px;
-    border-radius: 250px;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 15.625rem;
   }
 
   & span {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 19px;
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
     color: #3d195b;
-    margin-top: 3px;
+    margin-top: 0.1875rem;
   }
 
-  & svg {
-    margin-top: 10px;
+  & .heart-like-svg {
+    margin-top: 0.625rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 `
 
 export const MainBoxEvent = styled.div`
-  height: 160px;
-  width: 484px;
-  border-radius: 8px;
+  height: 10rem;
+  width: 30.25rem;
+  border-radius: 0.5rem;
   background-color: white;
-  padding: 15px;
+  padding: 0.9375rem;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -77,27 +79,32 @@ export const HeadBoxEvent = styled.div`
   align-items: center;
 
   & > span {
-    font-size: 12px;
-    line-height: 19px;
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
     color: #3d195b;
   }
 
   & .rating {
-    width: 66px;
-    height: 30px;
+    width: 4.125rem;
+    height: 1.875rem;
     background: linear-gradient(269.48deg, #04f5ec -30.14%, #03fbb8 109.7%);
-    border-radius: 4px;
-    margin-right: 10px;
+    border-radius: 0.25rem;
+    margin-right: 0.625rem;
     display: flex;
     justify-content: center;
     align-items: center;
     & span {
       font-weight: 800;
-      font-size: 16px;
-      line-height: 25px;
+      font-size: 1rem;
+      line-height: 1.5625rem;
       color: #3d195b;
-      margin-right: 2px;
+      margin-right: 0.125rem;
     }
+  }
+
+  & .star-svg {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 `
 
@@ -106,16 +113,16 @@ export const ChangesPlayerContent = styled.div`
   flex-direction: column;
 
   & > span {
-    font-size: 12px;
-    line-height: 19px;
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
     color: #3d195b;
-    margin: 5px 0px;
+    margin: 0.3125rem 0rem;
   }
 
   & .items-content {
     display: flex;
     & .item {
-      margin-left: 14px;
+      margin-left: 0.875rem;
     }
   }
 `
@@ -123,33 +130,38 @@ export const ChangesPlayerContent = styled.div`
 export const ItemEvent = styled.div`
   display: flex;
   align-items: center;
-  margin: 5px 0px;
+  margin: 0.3125rem 0rem;
 
   & span {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 19px;
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
     color: #3d195b;
-    margin-right: 3px;
+    margin-right: 0.1875rem;
+  }
+
+  & .arrow-svg {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 `
 
 export const MatchWeek = styled.div`
-  width: 30px;
-  height: 106px;
+  width: 1.875rem;
+  height: 6.625rem;
   background: rgba(61, 25, 91, 0.06);
-  border-radius: 4px;
+  border-radius: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 10px;
+  left: 0.625rem;
   top: 50%;
   transform: translateY(-50%);
 
   & span {
-    font-size: 12px;
-    line-height: 19px;
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
     color: #3d195b;
     transform: rotate(-90deg);
   }
