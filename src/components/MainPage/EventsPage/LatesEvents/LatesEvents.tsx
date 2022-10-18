@@ -28,14 +28,14 @@ const LatesEvents = () => {
         <PictureEvent>
           <img src={profile1} alt="profile-1" />
           <span>شایان رضایی</span>
-          <HeartLikeSVG />
+          <HeartLikeSVG className="heart-like-svg" />
         </PictureEvent>
 
         <MainBoxEvent>
           <HeadBoxEvent>
             <span>امتیاز هفته</span>
             <div className="rating">
-              <StarSVG />
+              <StarSVG className="star-svg" />
               <span>۱۰۴</span>
             </div>
           </HeadBoxEvent>
@@ -47,7 +47,7 @@ const LatesEvents = () => {
               <div className="item">
                 {enterData.map((name) => (
                   <ItemEvent>
-                    <ArrowUpGreenSVG />
+                    <ArrowUpGreenSVG className="arrow-svg" />
                     <span>{name}</span>
                   </ItemEvent>
                 ))}
@@ -55,7 +55,7 @@ const LatesEvents = () => {
               <div className="item">
                 {exitData.map((name) => (
                   <ItemEvent>
-                    <ArrowDownRedSVG />
+                    <ArrowDownRedSVG className="arrow-svg" />
                     <span>{name}</span>
                   </ItemEvent>
                 ))}

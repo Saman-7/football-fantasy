@@ -5,7 +5,7 @@ export const YourFriendsContainer = styled.div`
   width: 23.3125rem;
   display: flex;
   flex-direction: column;
-  margin-right: 24px;
+  margin-right: 1.5rem;
 `
 
 export const YourFriendsTopContainer = styled.div`
@@ -96,9 +96,9 @@ export const SearchBarContainer = styled.div`
     width: 100%;
     outline: none;
     font-family: Vazirmatn;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 500;
-    line-height: 19px;
+    line-height: 1.1875rem;
     letter-spacing: 0em;
     text-align: right;
     color: rgba(61, 25, 91, 1);
@@ -106,14 +106,16 @@ export const SearchBarContainer = styled.div`
 
   & input::placeholder {
     font-family: Vazirmatn;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 300;
     text-align: right;
   }
 
-  & svg {
+  & .search-svg {
     margin-right: 1.25rem;
     margin-left: 0.9375rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 `
 
@@ -139,6 +141,11 @@ export const FollowersContainer = styled.div`
     font-size: 0.75rem;
     color: #3d195b;
   }
+
+  & .profile-img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 `
 
 export const ViewProfileButton = styled.button`
@@ -148,7 +155,7 @@ export const ViewProfileButton = styled.button`
   background: #ffffff;
   border: 0.0625rem solid #e8e8e8;
   border-radius: 0.25rem;
-  font-family: "Vazirmatn";
+  font-family: vazirmatn;
   font-weight: 300;
   font-size: 0.75rem;
   color: #555555;
@@ -163,8 +170,13 @@ export const FollowProfileButton = styled.button`
   border-radius: 0.25rem;
   font-family: "Vazirmatn";
   font-weight: 500;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #05d6e2;
+  text-decoration: dotted;
+
+  @media (max-width: 960px) {
+    width: 5.5rem;
+  }
 `
 
 export const FollowingsContainer = styled.div``

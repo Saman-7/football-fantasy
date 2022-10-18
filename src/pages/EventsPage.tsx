@@ -14,8 +14,8 @@ const EventPageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-top: 40px;
-    margin-bottom: 50px;
+    margin-top: 2.5rem;
+    margin-bottom: 3.125rem;
     width: 100%;
   }
 `
