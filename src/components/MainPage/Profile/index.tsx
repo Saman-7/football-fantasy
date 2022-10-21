@@ -11,9 +11,10 @@ import {
   HeadTitle,
   InputForm,
   ProfileContainer,
-  SelectForm,
+  SelectCountry,
   UploadBotton,
 } from "./Profile.styled"
+import useMediaQuery from "../../../utils/useMediaQuery"
 
 const dataForm = {
   name: "محمد حسین",
@@ -42,22 +43,26 @@ const Profile = () => {
     else if (name === "password") setPassword(value)
   }
 
+  const isMobile = useMediaQuery("(max-width:480px)")
+
   return (
     <ProfileContainer>
-      <HeadTitle>
-        <div className="line right" />
-        <div className="title">
-          <span>اطلاعات فردی</span>
-        </div>
-        <div className="line left" />
-      </HeadTitle>
+      {!isMobile && (
+        <HeadTitle>
+          <div className="line right" />
+          <div className="title">
+            <span>اطلاعات فردی</span>
+          </div>
+          <div className="line left" />
+        </HeadTitle>
+      )}
 
       <div className="profile-img">
         <img src={profilePNG} />
         {isEdit && (
           <UploadBotton>
             بارگزاری تصویر
-            <UploadLogoSVG />
+            <UploadLogoSVG className="upload-logo-svg" />
           </UploadBotton>
         )}
       </div>
@@ -92,7 +97,7 @@ const Profile = () => {
           {!isEdit ? (
             <span>{country}</span>
           ) : (
-            <SelectForm
+            <SelectCountry
               name="country"
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -101,7 +106,7 @@ const Profile = () => {
                   {country.name}
                 </option>
               ))}
-            </SelectForm>
+            </SelectCountry>
           )}
         </div>
         <div className="box">
@@ -115,19 +120,19 @@ const Profile = () => {
         <div className="box">
           <span>رمزعبور</span>
           {!isEdit ? (
-            <PasswordDotSvg />
+            <PasswordDotSvg className="password-dot-svg" />
           ) : (
             <InputForm name="password" onChange={changeForm} />
           )}
         </div>
       </FormContainer>
       <ButtonEddit
-        className={classNames({ editing: isEdit })}
+        className={classNames("edit-btn", { editing: isEdit })}
         onClick={() => setIsEdit((isEdit) => !isEdit)}
       >
         {!isEdit ? (
           <>
-            <EditLogoSvg />
+            <EditLogoSvg className="edit-logo-svg" />
             ویرایش
           </>
         ) : (
