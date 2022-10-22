@@ -131,7 +131,7 @@ const SignupPage = () => {
               <CountrySelect {...register("country")}>
                 {countries.map((country) => {
                   return (
-                    <CountryOption value={country.code} key={country.code}>
+                    <CountryOption value={country.name} key={country.code}>
                       {country.name}
                     </CountryOption>
                   )
