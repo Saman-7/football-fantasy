@@ -6,6 +6,7 @@ import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwi
 import Composition from "../components/MainPage/TransfersPage/Composition"
 import PitchTransfer from "../components/MainPage/TransfersPage/PitchTransfer/PitchTransfer"
 import SubstitutePlayers from "../components/MainPage/TransfersPage/SubstitutePlayers/SubstitutePlayers"
+import TransferDeadline from "../components/MainPage/TransfersPage/TransferDeadline/TransferDeadline"
 
 const TransfersPageContainer = styled.div`
   display: flex;
@@ -76,7 +77,7 @@ const TransfersPage = () => {
       <div className="main">
         <div className="match-week-status">
           <MatchweekStatus width={23.25} />
-          <MatchweekStatus width={23.25} />
+          <TransferDeadline width={23.25} />
         </div>
 
         <ViewSwitcher

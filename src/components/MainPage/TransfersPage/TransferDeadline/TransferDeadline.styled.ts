@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const MatchweekStatusContainer = styled.div<{ width: number }>`
+export const TransferDeadlineContainer = styled.div<{ width: number }>`
   grid-area: week;
   width: ${({ width }) => width}rem;
   height: 2.1875rem;
@@ -18,7 +18,7 @@ export const MatchweekStatusContainer = styled.div<{ width: number }>`
   }
 `
 
-export const MatchweekDateContainer = styled.div`
+export const TransferDeadlineLeftContainer = styled.div`
   & span {
     font-weight: 800;
     font-size: 0.875rem;
@@ -32,7 +32,7 @@ export const MatchweekDateContainer = styled.div`
   }
 `
 
-export const MatchweekNumberContainer = styled.div`
+export const TransferDeadlineRightContainer = styled.div`
   & span {
     font-weight: 800;
     font-size: 1rem;
