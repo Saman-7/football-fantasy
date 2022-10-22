@@ -3,6 +3,7 @@ import styled from "styled-components"
 import ListPlayer from "../components/MainPage/MyTeamPage/ListPlayer/ListPlayer"
 import MatchweekStatus from "../components/MainPage/MyTeamPage/MatchweekStatus/MatchweekStatus"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
+import Composition from "../components/MainPage/TransfersPage/Composition"
 import PitchTransfer from "../components/MainPage/TransfersPage/PitchTransfer/PitchTransfer"
 import SubstitutePlayers from "../components/MainPage/TransfersPage/SubstitutePlayers/SubstitutePlayers"
 
@@ -16,6 +17,7 @@ const TransfersPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 
     & .match-week-status {
       margin-bottom: 1.375rem;
@@ -66,6 +68,7 @@ const lanePlayersId = [
 
 const TransfersPage = () => {
   const [page, setPage] = useState(VIEW_TRANSFERS.pitch)
+  const [PlayerFormat, setPlayerFormat] = useState<Array<number>>([4, 4, 2])
 
   return (
     <TransfersPageContainer>
@@ -75,12 +78,16 @@ const TransfersPage = () => {
           <MatchweekStatus width={23.25} />
           <MatchweekStatus width={23.25} />
         </div>
+
         <ViewSwitcher
           setPitch={() => setPage(VIEW_TRANSFERS.pitch)}
           setList={() => setPage(VIEW_TRANSFERS.list)}
         />
+
+        <Composition setPlayerFormat={setPlayerFormat} />
+
         {page === VIEW_TRANSFERS.pitch ? (
-          <PitchTransfer />
+          <PitchTransfer playerFormat={PlayerFormat} />
         ) : (
           <ListPlayer lanePlayersId={lanePlayersId} />
         )}

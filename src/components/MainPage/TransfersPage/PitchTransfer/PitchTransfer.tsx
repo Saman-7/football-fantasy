@@ -13,7 +13,6 @@ import {
   PlayerBox,
 } from "./PitchTransfer.styled"
 
-const composition = [1, 4, 4, 2]
 const players = [
   {
     player: {
@@ -72,7 +71,11 @@ const players = [
   },
 ]
 
-const PitchTransfer = () => {
+interface TypePitchTransferProps {
+  playerFormat: Array<number>
+}
+
+const PitchTransfer = (props: TypePitchTransferProps) => {
   const [pitchPlayers, setPitchPlayers] = useState<Array<any>>()
 
   const createComposition = (
@@ -84,8 +87,10 @@ const PitchTransfer = () => {
   }
 
   useEffect(() => {
-    setPitchPlayers(createComposition(composition, players))
-  }, [])
+    const format = [...props.playerFormat]
+    format.unshift(1)
+    setPitchPlayers(createComposition(format, players))
+  }, [props.playerFormat])
 
   return (
     <PitchTransferContainer>
