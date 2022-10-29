@@ -60,6 +60,9 @@ export const PictureEvent = styled.div`
     margin-top: 0.625rem;
     width: 1.25rem;
     height: 1.25rem;
+    &.isLike path {
+      fill: red;
+    }
   }
 `
 
