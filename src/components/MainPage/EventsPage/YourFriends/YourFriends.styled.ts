@@ -179,4 +179,31 @@ export const FollowProfileButton = styled.button`
   }
 `
 
-export const FollowingsContainer = styled.div``
+export const FollowingsContainer = styled.div`
+  box-sizing: border-box;
+  width: 20.1875rem;
+  height: 3.125rem;
+  margin-top: 0.9375rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.0625rem solid #efefef;
+
+  & div:nth-child(1) {
+    display: flex;
+    align-items: center;
+  }
+
+  & span {
+    margin-right: 0.9375rem;
+    font-size: 0.75rem;
+    color: #3d195b;
+  }
+
+  & .profile-img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+`

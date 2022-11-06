@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   FilterContainer,
   Filter,
@@ -6,49 +6,69 @@ import {
   YourFriendsContainer,
   YourFriendsTopContainer,
   SearchBarContainer,
-  FollowersContainer,
-  ViewProfileButton,
-  FollowProfileButton,
-  FollowingsContainer,
 } from "./YourFriends.styled"
 import { ReactComponent as SearchSVG } from "../../../../svg/search.svg"
-import { ReactComponent as SampleProfileSVG } from "../../../../svg/sample-profile.svg"
-
-const followers = [
-  {
-    managerId: "ndkzmlkcdnfkhgbkjvfnjklnvnfjcbfhb",
-    fname: "سهراب",
-    lname: "چگینی",
-    following: true,
-  },
-  {
-    managerId: "9renjgvfnjbgknhjnecss",
-    fname: "سامان",
-    lname: "عبیری",
-    following: false,
-  },
-  {
-    managerId: "ks8wnfknjkbgnjknkjbnjk91029839",
-    fname: "پارسا",
-    lname: "پورسیستانی",
-    following: true,
-  },
-  {
-    managerId: "0293kmklfgmtlkfnjbgknlmxm",
-    fname: "پوریا",
-    lname: "ملک خیاط",
-    following: true,
-  },
-  {
-    managerId: "9874920934854938457yhfvbgjbhvnf",
-    fname: "سارا",
-    lname: "زاهدی",
-    following: false,
-  },
-]
+import FollowersList from "./FollowersList"
+import useAxios from "axios-hooks"
+import { getToken } from "../../../../utils/token"
+import FollowingsList from "./FollowingsList"
 
 const YourFriends = () => {
   const [viewingFollowers, setViewingFollowers] = useState<boolean>(true)
+  const [followers, setFollowers] = useState<
+    {
+      managerId: string
+      first_name: string
+      last_name: string
+      following: boolean
+      img?: string
+    }[]
+  >()
+  const [followings, setFollowings] = useState<
+    {
+      managerId: string
+      first_name: string
+      last_name: string
+      following: boolean
+      img?: string
+    }[]
+  >()
+
+  const [{ data: followersData }, getFollowersData] = useAxios(
+    {
+      url: `${process.env.REACT_APP_BASE_URL}/api/v1/connections/followers`,
+      method: "get",
+      headers: { token: getToken() },
+    },
+    { manual: true }
+  )
+
+  const [{ data: followingData }, getFollowingData] = useAxios(
+    {
+      url: `${process.env.REACT_APP_BASE_URL}/api/v1/connections/followings`,
+      method: "get",
+      headers: { token: getToken() },
+    },
+    { manual: true }
+  )
+
+  useEffect(() => {
+    if (viewingFollowers) {
+      setFollowings(undefined)
+      getFollowersData()
+    } else {
+      setFollowers(undefined)
+      getFollowingData()
+    }
+  }, [getFollowersData, getFollowingData, viewingFollowers])
+
+  useEffect(() => {
+    if (followersData) setFollowers(followersData.data)
+  }, [followersData])
+
+  useEffect(() => {
+    if (followingData) setFollowings(followingData.data)
+  }, [followingData])
 
   const handleFilterClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -89,31 +109,9 @@ const YourFriends = () => {
         </SearchBarContainer>
 
         {viewingFollowers ? (
-          followers.map((follower) => {
-            return (
-              <FollowersContainer key={follower.managerId}>
-                <div>
-                  <SampleProfileSVG className="profile-img" />
-
-                  <span>{`${follower.fname} ${follower.lname}`}</span>
-                </div>
-
-                {follower.following ? (
-                  <ViewProfileButton>مشاهده</ViewProfileButton>
-                ) : (
-                  <FollowProfileButton
-                    onClick={(e) => {
-                      e.preventDefault()
-                    }}
-                  >
-                    دنبال کردن
-                  </FollowProfileButton>
-                )}
-              </FollowersContainer>
-            )
-          })
+          <FollowersList followers={followers} />
         ) : (
-          <FollowingsContainer></FollowingsContainer>
+          <FollowingsList followings={followings} />
         )}
       </YourFriendsBottomContainer>
     </YourFriendsContainer>
