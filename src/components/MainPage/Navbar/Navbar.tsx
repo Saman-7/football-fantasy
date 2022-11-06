@@ -10,6 +10,7 @@ const NavbarItemsTexts = [
   { text: "آخرین رویداد‌ها", path: "/main/events" },
   { text: "پروفایل", path: "/main/profile" },
   { text: "جوایز", path: "/main/awards" },
+  { text: "خروج", path: "/signin" },
 ]
 
 const Navbar = () => {
@@ -38,11 +39,23 @@ const Navbar = () => {
       )}
       {(!mobileMedia || isMenu) && (
         <NavbarContainer>
-          {NavbarItemsTexts.map(({ text, path }, index) => (
-            <NavbarItem key={index} onClick={selectedItemMenu}>
-              <NavLink to={path}>{text}</NavLink>
-            </NavbarItem>
-          ))}
+          {NavbarItemsTexts.map(({ text, path }, index) =>
+            text === "خروج" ? (
+              <NavbarItem
+                key={index}
+                onClick={(e) => {
+                  e.preventDefault()
+                  localStorage.removeItem("token")
+                }}
+              >
+                <NavLink to={path}>{text}</NavLink>
+              </NavbarItem>
+            ) : (
+              <NavbarItem key={index} onClick={selectedItemMenu}>
+                <NavLink to={path}>{text}</NavLink>
+              </NavbarItem>
+            )
+          )}
         </NavbarContainer>
       )}
     </>

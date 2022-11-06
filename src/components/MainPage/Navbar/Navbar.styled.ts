@@ -31,7 +31,7 @@ export const MenuNavbar = styled.div`
 `
 
 export const NavbarContainer = styled.ul`
-  width: 48.125rem;
+  width: 58.75rem;
   height: 5rem;
   display: flex;
   justify-content: space-evenly;
