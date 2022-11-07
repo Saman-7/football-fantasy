@@ -69,3 +69,35 @@ export const changePlayerPitch = (
     },
   })
 }
+
+export const getProfile = () => {
+  return axios.get("/api/v1/managers/profile")
+}
+
+export const updateProfile = (form: { [key: string]: string }) => {
+  const localStorageToken = localStorage.getItem("token")
+  const token = localStorageToken && JSON.parse(localStorageToken)
+  const {
+    first_name,
+    last_name,
+    username,
+    country,
+    password = "1234",
+    email,
+  } = form
+  return axiosMain({
+    method: "patch",
+    url: "http://178.216.248.37:8080/api/v1/managers/update",
+    data: {
+      first_name,
+      last_name,
+      username,
+      country,
+      password,
+      email,
+    },
+    headers: {
+      token,
+    },
+  })
+}

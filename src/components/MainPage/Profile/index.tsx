@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import profilePNG from "../../../images/profile1.png"
 import { ReactComponent as PasswordDotSvg } from "../../../svg/password-dot.svg"
 import { ReactComponent as EditLogoSvg } from "../../../svg/edit-logo.svg"
@@ -15,38 +15,71 @@ import {
   UploadBotton,
 } from "./Profile.styled"
 import useMediaQuery from "../../../utils/useMediaQuery"
+import { getProfile, updateProfile } from "../../../api/requests"
+import Loading from "../../loading/AlternativeLoading/Loading"
+import Warning from "../../Warning/Warning"
 
 const dataForm = {
-  name: "محمد حسین",
-  lastName: "مرادیان",
-  email: "MohammadHossein@gmail.com",
-  country: "Iran",
-  usename: "Mhfplplayer",
+  first_name: "",
+  last_name: "",
+  email: "",
+  country: "",
+  username: "",
+  password: "",
 }
 
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false)
-  const [name, setName] = useState(dataForm.name)
-  const [lastName, setLastName] = useState(dataForm.lastName)
-  const [email, setEmail] = useState(dataForm.email)
-  const [country, setCountry] = useState(dataForm.country)
-  const [usename, setusername] = useState(dataForm.usename)
-  const [password, setPassword] = useState("")
+  const [form, setForm] = useState(dataForm)
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorText, setErrorText] = useState<string | undefined>()
+
+  useEffect(() => {
+    setIsLoading(true)
+    getProfile()
+      .then((res) => {
+        setForm(res.data.data.manager)
+      })
+      .catch((err) => {
+        console.log(err)
+        setErrorText("سرور در درسترس نیست ، لطفا بعدا امتحان کنید ... !")
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [])
 
   const changeForm: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target
-    if (name === "name") setName(value)
-    else if (name === "lastName") setLastName(value)
-    else if (name === "email") setEmail(value)
-    else if (name === "country") setCountry(value)
-    else if (name === "username") setusername(value)
-    else if (name === "password") setPassword(value)
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const saveProfile = (form: { [key: string]: string }) => {
+    if (isEdit) {
+      setIsLoading(true)
+      updateProfile(form)
+        .then((_) => {
+          setIsEdit(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          setErrorText("ثبت اطلاعات با خطا مواجه شد !")
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+    } else {
+      setIsEdit(true)
+    }
   }
 
   const isMobile = useMediaQuery("(max-width:480px)")
 
   return (
     <ProfileContainer>
+      {isLoading && <Loading />}
+      {errorText && <Warning text={errorText} display={setErrorText} />}
+
       {!isMobile && (
         <HeadTitle>
           <div className="line right" />
@@ -71,35 +104,44 @@ const Profile = () => {
         <div className="box">
           <span>نام</span>
           {!isEdit ? (
-            <span>{name}</span>
+            <span>{form.first_name}</span>
           ) : (
-            <InputForm name="name" value={name} onChange={changeForm} />
+            <InputForm
+              name="first_name"
+              value={form.first_name}
+              onChange={changeForm}
+            />
           )}
         </div>
         <div className="box">
           <span>نام خانوادگی</span>
           {!isEdit ? (
-            <span>{lastName}</span>
+            <span>{form.last_name}</span>
           ) : (
-            <InputForm name="lastName" value={lastName} onChange={changeForm} />
+            <InputForm
+              name="last_name"
+              value={form.last_name}
+              onChange={changeForm}
+            />
           )}
         </div>
         <div className="box">
           <span>ایمیل</span>
           {!isEdit ? (
-            <span>{email}</span>
+            <span>{form.email}</span>
           ) : (
-            <InputForm name="email" value={email} onChange={changeForm} />
+            <InputForm name="email" value={form.email} onChange={changeForm} />
           )}
         </div>
         <div className="box">
           <span>کشور</span>
           {!isEdit ? (
-            <span>{country}</span>
+            <span>{form.country}</span>
           ) : (
             <SelectCountry
               name="country"
-              onChange={(e) => setCountry(e.target.value)}
+              value={form.country}
+              onChange={(e) => setForm({ ...form, country: e.target.value })}
             >
               {countries.map((country) => (
                 <option key={country.code} value={country.code}>
@@ -112,9 +154,13 @@ const Profile = () => {
         <div className="box">
           <span>نام کاربری</span>
           {!isEdit ? (
-            <span>{usename}</span>
+            <span>{form.username}</span>
           ) : (
-            <InputForm name="username" value={usename} onChange={changeForm} />
+            <InputForm
+              name="username"
+              value={form.username}
+              onChange={changeForm}
+            />
           )}
         </div>
         <div className="box">
@@ -128,7 +174,7 @@ const Profile = () => {
       </FormContainer>
       <ButtonEddit
         className={classNames("edit-btn", { editing: isEdit })}
-        onClick={() => setIsEdit((isEdit) => !isEdit)}
+        onClick={() => saveProfile(form)}
       >
         {!isEdit ? (
           <>
