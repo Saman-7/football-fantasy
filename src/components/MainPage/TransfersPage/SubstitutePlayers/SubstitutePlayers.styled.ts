@@ -67,6 +67,19 @@ export const PlayerBox = styled.div`
       width: 6.0625rem;
     }
   }
+
+  &.active {
+    cursor: pointer;
+    .uniform {
+      filter: drop-shadow(0px 0px 20px #00ff00);
+    }
+  }
+  &.inActive {
+    cursor: not-allowed;
+    .uniform {
+      filter: drop-shadow(0px 0px 20px #f40009);
+    }
+  }
 `
 
 export const NameBox = styled.div`
