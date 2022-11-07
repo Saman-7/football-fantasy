@@ -10,8 +10,6 @@ RUN npm i -g serve
 
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
-
 # build image with "docker build --network=host -t rahnema-fantasy-web-image ." command
 
-# container should run with the name rahnema-fantasy-web-container
+# container should run with "docker run -dit --name rahnema-fantasy-web-container -p 3000:3000 rahnema-fantasy-web-image"
