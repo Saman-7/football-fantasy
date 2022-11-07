@@ -33,7 +33,7 @@ const PitchTransfer = ({
   }
 
   useEffect(() => {
-    setPitchPlayers(createComposition(playerFormat))
+    setPitchPlayers(createComposition([1, ...playerFormat]))
   }, [playerFormat])
 
   const selectOutPlayer = (indexPlayer: number) => {
@@ -68,7 +68,7 @@ const PitchTransfer = ({
                         active: indexPlayer === outPlayer,
                       })}
                     >
-                      <span>{picks[indexPlayer].player.web_name}</span>
+                      <span>{picks[indexPlayer].player?.web_name}</span>
                     </NameBox>
                   </PlayerBox>
                 )

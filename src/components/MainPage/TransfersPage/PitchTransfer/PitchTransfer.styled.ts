@@ -66,6 +66,7 @@ export const PlayerBox = styled.div`
   }
 
   .arrow-up-down-box {
+    cursor: pointer;
     width: 1.5rem;
     height: 1.5rem;
     position: absolute;

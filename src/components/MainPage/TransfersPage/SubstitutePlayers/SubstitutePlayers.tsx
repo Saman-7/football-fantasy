@@ -61,8 +61,8 @@ const SubstitutePlayers = ({
         {picks[0] &&
           [...picks].splice(11).map(({ player }, index) => (
             <PlayerBox
-              key={player.generalId}
-              onClick={() => changePlayer(index + 11, player._id)}
+              key={index}
+              onClick={() => changePlayer(index + 11, player?._id)}
               className={classNames({
                 active: isChangeablePlayer(index + 11, outPlayer),
                 inActive:
@@ -76,7 +76,7 @@ const SubstitutePlayers = ({
                   active: isChangeablePlayer(index + 11, outPlayer),
                 })}
               >
-                <span>{player.web_name}</span>
+                <span>{player?.web_name}</span>
               </NameBox>
             </PlayerBox>
           ))}

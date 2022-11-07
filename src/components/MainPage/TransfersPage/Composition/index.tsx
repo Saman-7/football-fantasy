@@ -23,8 +23,10 @@ const Composition = (props: TypeCompositionProps) => {
 
   return (
     <CompositionContainer onChange={changeFormat}>
-      {playerFormat.map((format) => (
-        <option value={format}>{format}</option>
+      {playerFormat.map((format, index) => (
+        <option key={index} value={format}>
+          {format}
+        </option>
       ))}
     </CompositionContainer>
   )
