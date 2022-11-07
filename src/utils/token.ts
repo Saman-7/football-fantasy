@@ -7,5 +7,5 @@ export const setToken = (token: string) => {
 }
 
 export const checkToken = (token: any) => {
-  return typeof token === "string" && token
+  return typeof token === "string" && !!token
 }

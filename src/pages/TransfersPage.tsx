@@ -6,6 +6,7 @@ import Loading from "../components/loading/AlternativeLoading/Loading"
 import ListPlayer from "../components/MainPage/MyTeamPage/ListPlayer/ListPlayer"
 import MatchweekStatus from "../components/MainPage/MyTeamPage/MatchweekStatus/MatchweekStatus"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
+import Composition from "../components/MainPage/TransfersPage/Composition"
 import PitchTransfer from "../components/MainPage/TransfersPage/PitchTransfer/PitchTransfer"
 import SubstitutePlayers from "../components/MainPage/TransfersPage/SubstitutePlayers/SubstitutePlayers"
 import Warning from "../components/Warning/Warning"
@@ -15,19 +16,33 @@ const TransfersPageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 
   & .main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 
     & .match-week-status {
-      margin-bottom: 22px;
-      margin-top: 20px;
+      margin-bottom: 1.375rem;
+      margin-top: 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+    justify-content: end;
+    align-items: center;
+
+    & .main {
+      align-items: center;
+    }
+    & .match-week-status {
+      flex-direction: column;
     }
   }
 `
@@ -87,12 +102,16 @@ const TransfersPage = () => {
       <div className="main">
         <div className="match-week-status">
           <MatchweekStatus width={23.25} />
-          <MatchweekStatus width={23.25} />
+          <TransferDeadline width={23.25} />
         </div>
+
         <ViewSwitcher
           setPitch={() => setPage(VIEW_TRANSFERS.pitch)}
           setList={() => setPage(VIEW_TRANSFERS.list)}
         />
+
+        <Composition setPlayerFormat={setPlayerFormat} />
+
         {page === VIEW_TRANSFERS.pitch ? (
           <PitchTransfer outPlayer={outPlayer} setOutPlayer={setOutPlayer} />
         ) : (

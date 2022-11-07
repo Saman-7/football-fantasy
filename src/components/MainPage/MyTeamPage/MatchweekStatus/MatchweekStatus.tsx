@@ -10,11 +10,7 @@ import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion
 import useFetcher from "../../../../api/useFetcher"
 import { getMatchWeekStatus } from "../../../../api/requests"
 
-interface TypePropsMatchWeekStatus {
-  width: number
-}
-
-const MatchweekStatus = (props: TypePropsMatchWeekStatus) => {
+const MatchweekStatus = ({ width }: { width: number }) => {
   const [week, setWeek] = useState<string>()
   const [date, setDate] = useState<string>()
 
@@ -43,7 +39,7 @@ const MatchweekStatus = (props: TypePropsMatchWeekStatus) => {
   }, [data])
 
   return (
-    <MatchweekStatusContainer width={props.width}>
+    <MatchweekStatusContainer width={width}>
       <MatchweekNumberContainer>
         <span>{week}</span>
       </MatchweekNumberContainer>
