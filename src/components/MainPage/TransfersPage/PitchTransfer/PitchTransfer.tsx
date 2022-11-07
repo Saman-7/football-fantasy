@@ -13,14 +13,17 @@ import {
 } from "./PitchTransfer.styled"
 import useMainPageStore from "../../../../store"
 
-const composition = [1, 4, 4, 2]
-
 interface TypePropsPitchTransfer {
   outPlayer: number | undefined
   setOutPlayer: (index: number | undefined) => void
+  playerFormat: Array<number>
 }
 
-const PitchTransfer = ({ outPlayer, setOutPlayer }: TypePropsPitchTransfer) => {
+const PitchTransfer = ({
+  outPlayer,
+  setOutPlayer,
+  playerFormat,
+}: TypePropsPitchTransfer) => {
   const [pitchPlayers, setPitchPlayers] = useState<Array<any>>([])
   const { picks } = useMainPageStore()
 
@@ -30,8 +33,8 @@ const PitchTransfer = ({ outPlayer, setOutPlayer }: TypePropsPitchTransfer) => {
   }
 
   useEffect(() => {
-    setPitchPlayers(createComposition(composition))
-  }, [composition])
+    setPitchPlayers(createComposition(playerFormat))
+  }, [playerFormat])
 
   const selectOutPlayer = (indexPlayer: number) => {
     if (indexPlayer === outPlayer) {

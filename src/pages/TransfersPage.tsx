@@ -9,6 +9,7 @@ import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwi
 import Composition from "../components/MainPage/TransfersPage/Composition"
 import PitchTransfer from "../components/MainPage/TransfersPage/PitchTransfer/PitchTransfer"
 import SubstitutePlayers from "../components/MainPage/TransfersPage/SubstitutePlayers/SubstitutePlayers"
+import TransferDeadline from "../components/MainPage/TransfersPage/TransferDeadline/TransferDeadline"
 import Warning from "../components/Warning/Warning"
 import useMainPageStore from "../store"
 
@@ -75,6 +76,7 @@ const TransfersPage = () => {
   const [page, setPage] = useState(VIEW_TRANSFERS.pitch)
   const [outPlayer, setOutPlayer] = useState<number | undefined>()
   const [errorText, setErrorText] = useState<string | undefined>()
+  const [playerFormat, setPlayerFormat] = useState<Array<number>>([4, 4, 2])
 
   const { isLoading, error, data } = useFetcher(() =>
     getDashboardApi().then((res) => {
@@ -113,7 +115,11 @@ const TransfersPage = () => {
         <Composition setPlayerFormat={setPlayerFormat} />
 
         {page === VIEW_TRANSFERS.pitch ? (
-          <PitchTransfer outPlayer={outPlayer} setOutPlayer={setOutPlayer} />
+          <PitchTransfer
+            outPlayer={outPlayer}
+            setOutPlayer={setOutPlayer}
+            playerFormat={playerFormat}
+          />
         ) : (
           <ListPlayer lanePlayersId={lanePlayersId} />
         )}
