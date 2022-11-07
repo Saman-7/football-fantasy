@@ -51,3 +51,21 @@ export const searchPlayerApi = (
     },
   })
 }
+
+export const changePlayerPitch = (
+  inIndex: number,
+  inId: string,
+  outIndex: number,
+  outId: number
+) => {
+  const localStorageToken = localStorage.getItem("token")
+  const token = localStorageToken && JSON.parse(localStorageToken)
+  return axiosMain({
+    method: "patch",
+    url: "http://178.216.248.37:8080/api/v1/teams/substitution",
+    data: { inIndex, inId, outIndex, outId },
+    headers: {
+      token: token,
+    },
+  })
+}

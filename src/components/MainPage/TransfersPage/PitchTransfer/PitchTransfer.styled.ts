@@ -65,6 +65,7 @@ export const PlayerBox = styled.div`
     position: absolute;
     right: -10px;
     bottom: 5px;
+    cursor: pointer;
   }
 `
 

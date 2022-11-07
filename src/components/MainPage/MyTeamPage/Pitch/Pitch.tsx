@@ -15,19 +15,19 @@ import { deletePlayerApi, getDashboardApi } from "../../../../api/requests"
 const lanePlayersPitch = [
   {
     lane: "GK",
-    players: [0, 1],
+    players: [0, 11],
   },
   {
     lane: "DEF",
-    players: [2, 3, 4, 5, 6],
+    players: [1, 2, 3, 4, 12],
   },
   {
     lane: "MID",
-    players: [7, 8, 9, 10, 11],
+    players: [5, 6, 7, 8, 13],
   },
   {
     lane: "ATT",
-    players: [12, 13, 14],
+    players: [9, 10, 14],
   },
 ]
 

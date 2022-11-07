@@ -44,6 +44,19 @@ export const PlayerBox = styled.div`
     height: 100px;
     width: 81;
   }
+
+  &.active {
+    cursor: pointer;
+    .uniform {
+      filter: drop-shadow(0px 0px 20px #00ff00);
+    }
+  }
+  &.inActive {
+    cursor: not-allowed;
+    .uniform {
+      filter: drop-shadow(0px 0px 20px #f40009);
+    }
+  }
 `
 
 export const NameBox = styled.div`

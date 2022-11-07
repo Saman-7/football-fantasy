@@ -1,10 +1,15 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styled from "styled-components"
+import { getDashboardApi } from "../api/requests"
+import useFetcher from "../api/useFetcher"
+import Loading from "../components/loading/AlternativeLoading/Loading"
 import ListPlayer from "../components/MainPage/MyTeamPage/ListPlayer/ListPlayer"
 import MatchweekStatus from "../components/MainPage/MyTeamPage/MatchweekStatus/MatchweekStatus"
 import ViewSwitcher from "../components/MainPage/MyTeamPage/ViewSwitcher/ViewSwitcher"
 import PitchTransfer from "../components/MainPage/TransfersPage/PitchTransfer/PitchTransfer"
 import SubstitutePlayers from "../components/MainPage/TransfersPage/SubstitutePlayers/SubstitutePlayers"
+import Warning from "../components/Warning/Warning"
+import useMainPageStore from "../store"
 
 const TransfersPageContainer = styled.div`
   display: flex;
@@ -53,10 +58,32 @@ const lanePlayersId = [
 
 const TransfersPage = () => {
   const [page, setPage] = useState(VIEW_TRANSFERS.pitch)
+  const [outPlayer, setOutPlayer] = useState<number | undefined>()
+  const [errorText, setErrorText] = useState<string | undefined>()
+
+  const { isLoading, error, data } = useFetcher(() =>
+    getDashboardApi().then((res) => {
+      return res.data.data
+    })
+  )
+
+  const { setPicks } = useMainPageStore()
+
+  useEffect(() => {
+    if (!data) {
+      if (error)
+        setErrorText("سرور در درسترس نیست ، لطفا بعدا امتحان کنید ... !")
+    } else {
+      setPicks(data.manager.teamId.picks)
+    }
+  }, [data, error, setPicks])
 
   return (
     <TransfersPageContainer>
-      <SubstitutePlayers />
+      {isLoading && <Loading />}
+      {errorText && <Warning text={errorText} display={setErrorText} />}
+
+      <SubstitutePlayers outPlayer={outPlayer} setOutPlayer={setOutPlayer} />
       <div className="main">
         <div className="match-week-status">
           <MatchweekStatus width={23.25} />
@@ -67,7 +94,7 @@ const TransfersPage = () => {
           setList={() => setPage(VIEW_TRANSFERS.list)}
         />
         {page === VIEW_TRANSFERS.pitch ? (
-          <PitchTransfer />
+          <PitchTransfer outPlayer={outPlayer} setOutPlayer={setOutPlayer} />
         ) : (
           <ListPlayer lanePlayersId={lanePlayersId} />
         )}
