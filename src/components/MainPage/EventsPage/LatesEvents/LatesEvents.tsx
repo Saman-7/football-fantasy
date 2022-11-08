@@ -17,15 +17,28 @@ import { axios } from "../../../../api/axiosInstance"
 import { useEffect, useState } from "react"
 import { numberEnglishToPersian } from "../../../../utils/numberEnglishToPersion"
 import classNames from "classnames"
+import { updateToDislike, updateToLike } from "../../../../api/requests"
 
 const LatesEvents = () => {
   const [events, setEvents] = useState<Array<any>>([])
+  const [isLike, setIsLike] = useState(false)
 
   useEffect(() => {
     axios.get("/api/v1/feeds").then((res) => {
       setEvents(res.data.data)
     })
   }, [])
+
+  const handleLike = (feedId: string, is_liked: boolean) => {
+    if (is_liked) {
+      // updateToDislike(feedId)
+      setIsLike(false)
+    } else {
+      // updateToLike(feedId)
+      setIsLike(true)
+    }
+  }
+  console.log(isLike)
 
   return (
     <LatesEventsContainer>
@@ -40,8 +53,9 @@ const LatesEvents = () => {
             <span>{`${user.first_name} ${user.last_name}`}</span>
             <HeartLikeSVG
               className={classNames("heart-like-svg", {
-                isLike: user.is_liked,
+                isLike: isLike || user.is_liked,
               })}
+              onClick={() => handleLike(user.feedId, user.is_liked)}
             />
           </PictureEvent>
 
