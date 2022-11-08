@@ -70,6 +70,26 @@ export const changePlayerPitch = (
   })
 }
 
+export const updateToLike = (feedId: string) => {
+  axios({
+    method: "post",
+    url: "http://178.216.248.37:8080/api/v1/feeds/like",
+    data: {
+      feedId,
+    },
+  })
+}
+
+export const updateToDislike = (feedId: string) => {
+  axios({
+    method: "post",
+    url: "http://178.216.248.37:8080/api/v1/feeds/dislike",
+    data: {
+      feedId,
+    },
+  })
+}
+
 export const getProfile = () => {
   return axios.get("/api/v1/managers/profile")
 }
