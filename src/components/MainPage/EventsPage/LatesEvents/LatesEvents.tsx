@@ -27,18 +27,19 @@ const LatesEvents = () => {
     axios.get("/api/v1/feeds").then((res) => {
       setEvents(res.data.data)
     })
-  }, [])
+  }, [isLike])
 
   const handleLike = (feedId: string, is_liked: boolean) => {
     if (is_liked) {
-      // updateToDislike(feedId)
-      setIsLike(false)
+      updateToDislike(feedId).then((_) => {
+        setIsLike(false)
+      })
     } else {
-      // updateToLike(feedId)
-      setIsLike(true)
+      updateToLike(feedId).then((_) => {
+        setIsLike(true)
+      })
     }
   }
-  console.log(isLike)
 
   return (
     <LatesEventsContainer>
@@ -53,7 +54,7 @@ const LatesEvents = () => {
             <span>{`${user.first_name} ${user.last_name}`}</span>
             <HeartLikeSVG
               className={classNames("heart-like-svg", {
-                isLike: isLike || user.is_liked,
+                isLike: user.is_liked,
               })}
               onClick={() => handleLike(user.feedId, user.is_liked)}
             />

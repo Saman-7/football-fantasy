@@ -71,7 +71,7 @@ export const changePlayerPitch = (
 }
 
 export const updateToLike = (feedId: string) => {
-  axios({
+  return axios({
     method: "post",
     url: "http://178.216.248.37:8080/api/v1/feeds/like",
     data: {
@@ -81,7 +81,7 @@ export const updateToLike = (feedId: string) => {
 }
 
 export const updateToDislike = (feedId: string) => {
-  axios({
+  return axios({
     method: "post",
     url: "http://178.216.248.37:8080/api/v1/feeds/dislike",
     data: {
