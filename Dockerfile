@@ -1,4 +1,4 @@
-FROM node:latest
+FROM hub.hamdocker.ir/node:latest
 
 WORKDIR /rahnema-fantasy-web
 
