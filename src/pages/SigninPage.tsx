@@ -1,153 +1,131 @@
-import styled from "styled-components"
-import Header from "../svg/EPL Players 2 1.svg"
-import LineSVG from "../svg/Line 1.svg"
-
-const MainContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background-color: #3d185b;
-`
-
-const HeaderContainer = styled.div`
-  width: 574px;
-  height: 100vh;
-  display: flex;
-`
-
-const SigninFormContainer = styled.div`
-  width: 792px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-const FormHeaderContainer = styled.div`
-  display: flex;
-  margin-top: 149px;
-  margin-bottom: 9px;
-`
-
-const FormHeader = styled.span`
-  margin-left: 24px;
-  margin-right: 24px;
-  font-family: "Vazirmatn";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  color: #ffffff;
-`
-
-const FormContainer = styled.div``
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 16px;
-`
-
-const Label = styled.label`
-  margin-bottom: 16px;
-  font-family: "Vazirmatn";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  color: #edd8ff;
-  text-align: right;
-`
-
-const Input = styled.input`
-  width: 572px;
-  height: 48px;
-  box-sizing: border-box;
-  background: #3d185b;
-  border: 1px solid #a057db;
-  border-radius: 8px;
-  outline: none;
-`
-
-const ButtonGroup = styled.div`
-  width: 572px;
-  height: 48px;
-  margin-top: 56px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const SignupButton = styled.input.attrs({
-  type: "submit",
-})`
-  box-sizing: border-box;
-  width: 273px;
-  height: 48px;
-  background: #3d185b;
-  border: 2px solid;
-  border-radius: 8px;
-  border-image-source: linear-gradient(90deg, #c847af 1.65%, #9b3af9 43.98%);
-  border-image-slice: 1;
-  font-family: "Vazirmatn";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  color: #ffffff;
-`
-
-const SigninButton = styled.input.attrs({
-  type: "submit",
-})`
-  box-sizing: border-box;
-  width: 273px;
-  height: 48px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #cf31b9 0%, #9b3af9 73.44%);
-  font-family: "Vazirmatn";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  color: #ffffff;
-`
+import { useEffect, useState } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+import useAxios from "axios-hooks"
+import { useNavigate } from "react-router-dom"
+import { checkToken, getToken, setToken } from "../utils/token"
+import {
+  ButtonGroup,
+  FormContainer,
+  FormHeaderContainer,
+  Input,
+  InputContainer,
+  SigninButton,
+  SigninFormContainer,
+  SignupButton,
+  ValidationError,
+} from "../components/Login/Signin/Signin.styled"
+import PurpleLineSVG from "../svg/purple-line.svg"
+import PinkLineSVG from "../svg/pink-line.svg"
+import axios from "axios"
 
 const SigninPage = () => {
+  const [tokenIsSet, setTokenIsSet] = useState<boolean>(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISigninInput>()
+
+  const [{ data, error }, execute] = useAxios(
+    {
+      url: `${process.env.REACT_APP_BASE_URL}/api/v1/auth/login`,
+      method: "post",
+    },
+    { manual: true }
+  )
+
+  const navigate = useNavigate()
+
+  // Effect to check if there is a token already set
+  useEffect(() => {
+    const token = getToken()
+
+    checkToken(token) && setTokenIsSet(true)
+  }, [])
+
+  // Effect to redirect to main page if token is already set
+  useEffect(() => {
+    tokenIsSet && navigate("/main/my-team")
+  }, [tokenIsSet])
+
+  // Effect to set token
+  useEffect(() => {
+    if (data) {
+      const { token } = data.data
+
+      if (token) {
+        setToken(token)
+        setTokenIsSet(true)
+      }
+    }
+  }, [data])
+
+  // Effect to display login errors
+  useEffect(() => {
+    error && alert(error.code)
+  }, [error])
+
+  const onSubmit: SubmitHandler<ISigninInput> = (formData) => {
+    execute({ data: { ...formData } })
+  }
+
   return (
-    <MainContainer>
-      <HeaderContainer>
-        <img src={Header} alt="Header" />
-      </HeaderContainer>
+    <SigninFormContainer>
+      <FormHeaderContainer>
+        <img src={PurpleLineSVG} alt="Purple line" />
 
-      <SigninFormContainer>
-        <FormHeaderContainer>
-          <img src={LineSVG} alt="Line 1" />
+        <span>ورود به فانتزی</span>
 
-          <FormHeader>ورود به فانتزی</FormHeader>
+        <img src={PinkLineSVG} alt="Pink line" />
+      </FormHeaderContainer>
 
-          <img src={LineSVG} alt="Line 2" />
-        </FormHeaderContainer>
+      <FormContainer>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <InputContainer>
+            <label htmlFor="username">نام کاربری</label>
 
-        <FormContainer>
-          <form>
-            <InputContainer>
-              <Label htmlFor="username">نام کاربری</Label>
-              <Input id="username" name="username" />
-            </InputContainer>
+            <Input
+              id="username"
+              {...register("username", {
+                required: "نام کاربری حتما وارد شود",
+              })}
+            />
 
-            <InputContainer>
-              <Label htmlFor="password">رمزعبور</Label>
-              <Input type="password" id="password" name="password" />
-            </InputContainer>
+            <ValidationError>
+              {errors && errors.username?.message}
+            </ValidationError>
+          </InputContainer>
 
-            <ButtonGroup>
-              <SignupButton value="ثبت نام" />
+          <InputContainer>
+            <label htmlFor="password">رمزعبور</label>
 
-              <SigninButton value="ورود" />
-            </ButtonGroup>
-          </form>
-        </FormContainer>
-      </SigninFormContainer>
-    </MainContainer>
+            <Input
+              id="password"
+              type="password"
+              {...register("password", { required: "رمز عبور حتما وارد شود" })}
+            />
+
+            <ValidationError>
+              {errors && errors.password?.message}
+            </ValidationError>
+          </InputContainer>
+
+          <ButtonGroup>
+            <SigninButton value="ورود" />
+
+            <SignupButton
+              value="ثبت نام"
+              onClick={(e) => {
+                e.preventDefault()
+
+                navigate("/signup")
+              }}
+            />
+          </ButtonGroup>
+        </form>
+      </FormContainer>
+    </SigninFormContainer>
   )
 }
 
